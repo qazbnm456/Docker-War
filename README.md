@@ -22,7 +22,7 @@ This is the Git repo of the `Docker-War` images meant to serve as good bases for
 <a name="notice"></a>
 ## Some notices you have to check out.
 
-Sometimes you may confront services looping forever, and this [link](http://stackoverflow.com/questions/11583562/how-to-kill-a-process-running-on-particular-port-in-linux) might helps you. Besides, of you wanna re-add the host, just delete the files in /var/lib/rancher/state.
+Sometimes you may confront services looping forever, and this [link](http://stackoverflow.com/questions/11583562/how-to-kill-a-process-running-on-particular-port-in-linux) might helps you. Besides, if you wanna re-add the host, just delete the files in /var/lib/rancher/state.
 
 Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docker-War/blob/master/script/setup.sh) will change group of the docker.sock from docker(998) to app(9999) in order to let app user call docker in this image.
 
@@ -37,7 +37,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 * Ability to change challenges on-the-fly.
 * (Optional) Instant notifications built with WebSocket.
 * (Optional) Change to SPA when Rails 5 releases.
-* (Optional) Use [BTRFS](https://btrfs.wiki.kernel.org/index.php/Main_Page) filesystem to storage images.
+* (Optional) Use [BTRFS](https://btrfs.wiki.kernel.org/index.php/Main_Page) or [ZFS](http://zfsonlinux.org) filesystem to storage images.
 * (Optional) Importing the concept of [Continuous Deployment](http://rancher.com/continuous-deployment/).
 
 <a name="pre"></a>
