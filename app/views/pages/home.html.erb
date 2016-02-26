@@ -1,0 +1,55 @@
+<%= render 'title' %>
+<div class="container">
+  <div class="row">
+    <div class="span2">
+      <div class="nav nav-list">
+        <li class="nav-header">Notice</li>
+        <li><%= link_to 'Ranking', rank_path %></li>
+        <li><a href="http://widget.mibbit.com/?settings=b813ef50387d6ac72ea630754e59d291&server=irc.Mibbit.Net&channel=%23Docker-War" target="_blank">IRC</a></li>
+        <li class="nav-header">Contest</li>
+        <li><a href="#">None</a></li>
+      </div>
+      </br>
+      <%= form_for @qna, url: {action: 'new_q'}, :remote => 'true' do |f| %>
+          <%= f.text_area :question, :placeholder => '有任何問題想問嗎?你提出的問題都會被加在Q&A頁面中喔!', :rows => '3', :id => 'ask_question', :onkeyup => "words_deal();" %>
+          <%= f.submit '提問題(最多50字)', :class => "btn btn-small btn-success", :id => 'ask' %>
+      <% end %>
+    </div>
+    <div class="span8 offset1">
+      <table width="100%" class="table table-striped table-condensed" style="margin-left: -40px">
+        <tr>
+          <th>Date</th>
+          <th>Messages</th>
+        </tr>
+        <% if @all_news.each do |news| %>
+            <tr>
+              <td><%= news.date %></td>
+              <td><%= news.messages %></td>
+            </tr>
+        <% end.empty? %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+    function words_deal() {
+        var curLength = $("#ask_question").val().length;
+        if (curLength > 50) {
+            var num = $("#ask_question").val().substr(0, 50);
+            $("#ask_question").val(num);
+            sweetAlert("Oops...", "超過字數限制，多出的字將被移除！", "error");
+        } else {
+            $("#textCount").text(50 - $("#ask_question").val().length);
+        }
+    }
+    $('#new_qna').submit(function() {
+        var curLength = $("#ask_question").val().length;
+        if (curLength == 0) {
+            sweetAlert("Oops...", "請勿留空！", "error");
+            return false;
+        } else {
+            return true;
+        }
+    });
+</script>

@@ -1,0 +1,185 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<%= render 'title' %>
+<ul class='nav nav-tabs'>
+  <li class='<%= 'active' if params[:tab].nil? %>'>
+    <%= link_to "Ranking (#{@ranked_players.size})", rank_path %>
+  </li>
+  <li class='<%= 'active' if params[:tab] == 'Pie Chart' %>'>
+    <%= link_to "Chart", rank_path(tab: 'Pie Chart') %>
+  </li>
+  <li class='<%= 'active' if params[:tab] == 'live_submission' %>'>
+    <%= link_to "Live", rank_path(tab: 'live_submission') %>
+  </li>
+</ul>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <% if params[:tab].nil? %>
+        <table width="100%" class="table table-striped table-condensed">
+          <tr>
+            <th><%= link_to '#', rank_path %></th>
+            <th>Name</th>
+            <th>Score</th>
+            <th class="basic-pop-over-1"><%= link_to image_tag("order.png"), sort: :b1 %></th>
+            <th class="basic-pop-over-2"><%= link_to image_tag("order.png"), sort: :b2 %></th>
+            <th class="basic-pop-over-3"><%= link_to image_tag("order.png"), sort: :b3 %></th>
+            <th class="basic-pop-over-4"><%= link_to image_tag("order.png"), sort: :b4 %></th>
+            <th class="basic-pop-over-5"><%= link_to image_tag("order.png"), sort: :b5 %></th>
+            <th class="web-pop-over-1"><%= link_to image_tag("order.png"), sort: :w1 %></th>
+            <th class="web-pop-over-2"><%= link_to image_tag("order.png"), sort: :w2 %></th>
+            <th class="web-pop-over-3"><%= link_to image_tag("order.png"), sort: :w3 %></th>
+            <th class="web-pop-over-4"><%= link_to image_tag("order.png"), sort: :w4 %></th>
+            <th class="web-pop-over-5"><%= link_to image_tag("order.png"), sort: :w5 %></th>
+            <th class="reverse-pop-over-1"><%= link_to image_tag("order.png"), sort: :r1 %></th>
+            <th class="reverse-pop-over-2"><%= link_to image_tag("order.png"), sort: :r2 %></th>
+            <th class="reverse-pop-over-3"><%= link_to image_tag("order.png"), sort: :r3 %></th>
+            <th class="reverse-pop-over-4"><%= link_to image_tag("order.png"), sort: :r4 %></th>
+            <th class="reverse-pop-over-5"><%= link_to image_tag("order.png"), sort: :r5 %></th>
+            <th class="crypto-pop-over-1"><%= link_to image_tag("order.png"), sort: :c1 %></th>
+            <th class="crypto-pop-over-2"><%= link_to image_tag("order.png"), sort: :c2 %></th>
+            <th class="crypto-pop-over-3"><%= link_to image_tag("order.png"), sort: :c3 %></th>
+            <th class="crypto-pop-over-4"><%= link_to image_tag("order.png"), sort: :c4 %></th>
+            <th class="crypto-pop-over-5"><%= link_to image_tag("order.png"), sort: :c5 %></th>
+            <th>Last submission time</th>
+          </tr>
+          <% @ranked_players.each_with_index do |user, index| %>
+            <tr>
+              <td><%= index+1 %></td>
+              <td><%= link_to user.name, show_user_path(user) %></td>
+              <td><%= user.score %></td>
+              <% (0...20).each do |i| %>
+                <% if user.record[i].solved %>
+                  <td><div class="t1"></div></td>
+                <% else %>
+                  <td><div class="t0"></div></td>
+                <% end %>
+              <% end %>
+              <td><%= user.last_submit_time %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% elsif params[:tab] == 'live_submission' %>
+          <div id="time_line"></div>
+          <a class="btn btn-info btn-large" href="#" onclick="Push()">Refresh</a>
+          <script>
+              function Push() {
+                  $('#time_line').empty();
+                  $.getJSON('/timeline.json', function (data) {
+                      createStoryJS({
+                          type: 'timeline',
+                          width: '950',
+                          height: '300',
+                          source: data, //get the events.json format from https://github.com/VeriteCo/TimelineJS#file-formats
+                          embed_id: 'time_line',
+                          start_at_end: true
+                      });
+                  });
+              }
+              setTimeout(function() { Push(); }, 200);
+          </script>
+      <% elsif params[:tab] == 'Pie Chart' %>
+          <%= pie_chart Record.where(:solved => true).group(:cate).count %>
+          <div id="chart"></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  for(i = 1; i<= 5; i++)
+    $(".basic-pop-over-"+i).tooltip({
+        container: 'body',
+        trigger: 'hover',
+        placement: 'top',
+        title: "basic "+i+": "+i*10
+    })
+  for(i = 1; i<= 5; i++)
+      $(".web-pop-over-"+i).tooltip({
+          container: 'body',
+          trigger: 'hover',
+          placement: 'top',
+          title: "web "+i+": "+i*100
+      })
+  for(i = 1; i<= 5; i++)
+      $(".reverse-pop-over-"+i).tooltip({
+          container: 'body',
+          trigger: 'hover',
+          placement: 'top',
+          title: "reverse "+i+": "+i*100
+      })
+  for(i = 1; i<= 5; i++)
+      $(".crypto-pop-over-"+i).tooltip({
+          container: 'body',
+          trigger: 'hover',
+          placement: 'top',
+          title: "crypto "+i+": "+i*100
+      })
+</script>
+<script>
+    $(function () {
+        $.getJSON('/trend.json', function (data) {
+            Highcharts.setOptions({
+                global: {
+                    useUTC: false
+                }
+            });
+
+            $('#chart').highcharts({
+                chart: {
+                    zoomType: 'x'
+                },
+                title: {
+                    text: 'Ranking',
+                    x: -20 //center
+                },
+                xAxis: {
+                    title: {
+                        text: 'Date'
+                    },
+                    type: 'datetime'
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Score'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' pts',
+                    shared: true,
+                    crosshairs: true
+                },
+                plotOptions: {
+                    series: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function (e) {
+                                    hs.htmlExpand(null, {
+                                        pageOrigin: {
+                                            x: e.pageX || e.clientX,
+                                            y: e.pageY || e.clientY
+                                        },
+                                        headingText: this.series.name,
+                                        maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
+                                            this.series.cate + ' solved',
+                                        width: 200
+                                    });
+                                }
+                            }
+                        },
+                        marker: {
+                            lineWidth: 1
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: data
+            });
+        });
+    });
+</script>

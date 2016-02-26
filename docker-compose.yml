@@ -1,0 +1,20 @@
+wargame:
+  build: .
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+    - /usr/bin/docker:/usr/bin/docker:ro
+    - /lib/x86_64-linux-gnu/libsystemd-journal.so.0:/lib/x86_64-linux-gnu/libsystemd-journal.so.0:ro
+    - /usr/bin/protoc:/usr/bin/protoc:ro
+    - /usr/bin/node:/usr/bin/node:ro
+    - /usr/bin/npm:/user/bin/npm:ro
+  environment:
+    - PD_DATABASE_HOST=YOUR_HOST
+    - PD_DATABASE_USER=YOUR_USER
+    - PD_DATABASE_PASSWORD=YOUR_PASS
+    - PD_DATABASE_NAME=YOUR_DBNAME
+    - DEVISE_SECRET_KEY=YOUR_KEY
+    - APP_ID=YOUR_APP_ID
+    - APP_SECRET=YOUR_APP_SECRET
+  ports:
+    - "80:80"
+    - "443:443"

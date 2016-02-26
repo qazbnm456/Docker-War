@@ -1,0 +1,45 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "Docker-War", root_path, id: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "Q&A", qna_path %></li>
+          <li><%= link_to "Help", help_path %></li>
+          <% if user_signed_in? %>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= current_user.name %> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to  show_user_path current_user do %>
+                      <%= image_tag "icon/home.png", :width => '14px', :height => '14px' %>
+                      My profile
+                  <% end %></li>
+                <li><%= link_to  edit_user_registration_path do %>
+                      <%= image_tag "icon/edit.png", :width => '14px', :height => '14px' %>
+                      Edit profile
+                <% end %></li>
+                <% if current_user.admin? %>
+                  <% if can? :access, :rails_admin %>
+                    <li><%= link_to rails_admin_path do %>
+                      <i class="icon-pencil"></i>
+                        Admin
+                    <% end %></li>
+                  <% end %>
+                <% end %>
+                <li class="divider"></li>
+                <li><%= link_to  logout_path do %>
+                  <i class="icon-off"></i>
+                    Log out
+                <% end %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to "Log in", login_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

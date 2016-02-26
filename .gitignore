@@ -1,0 +1,21 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database and seeds.rb.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/seeds.rb
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+.env

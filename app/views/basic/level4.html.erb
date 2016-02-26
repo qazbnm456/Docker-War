@@ -1,0 +1,15 @@
+<div class="row">
+  <h4 style="text-align: center">
+    Download the attached file and find the flag.<br>
+    <%= link_to 'download', @url %>
+  </h4>
+  <hr>
+  <div class="span6 offset3">
+    <%= form_tag "/wargame/basic/level4" do %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+        <%= submit_tag 'Submit', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+<%= render 'shared/each_rank', ranked_players: @ranked_players, index: 3 %>

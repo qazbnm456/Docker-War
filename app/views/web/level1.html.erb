@@ -1,0 +1,17 @@
+<div class="row">
+  <h4 style="text-align: center">
+    L just learned XML, and he is really a beginner.<br>
+    Because lacking experience, his admin password is easy to get.<br>
+    Try to find out and submit it.<br>
+    Here:<%= link_to 'there', @url %>
+  </h4>
+  <hr>
+  <div class="span6 offset3">
+    <%= form_tag "/wargame/web/level1" do %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+        <%= submit_tag 'Submit', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+<%= render 'shared/each_rank', ranked_players: @ranked_players, index: 5 %>

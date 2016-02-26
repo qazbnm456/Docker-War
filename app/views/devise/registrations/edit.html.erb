@@ -1,0 +1,69 @@
+<h1>Edit <%= resource_name.to_s.humanize %></h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { :multipart => true, method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.label :avatar %>
+      <%= image_tag @user.avatar.url(:thumb), :class => 'circle' %>
+        <div class="file-upload-container">
+          <div class="file-upload-override-button  btn btn-small btn-success left">
+            Choose file
+            <%= f.file_field :avatar, :class => 'file-upload-button', :id => 'file-upload-button' %>
+          </div>
+          <div class="file-upload-filename left" id="file-upload-filename">No file selected</div>
+          <div class="both"></div>
+        </div>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+
+      <div class='control-group'>
+        <%= f.fields_for :sex do |s| %>
+            <%= s.label "Sex" %>
+            <%= s.collection_radio_buttons :sex_id, Sex.all, :id, :name do |cb| %>
+              <% cb.label(class: "radio inline") {cb.radio_button(class: "radio") + cb.text} %>
+            <% end %>
+        <% end %>
+      </div>
+
+      <div class='control-group'>
+        <%= f.fields_for :major do |m| %>
+           <%= m.label "Majors" %>
+           <%= m.collection_select :major_id, Major.all, :id, :name, prompt: true, class: "specify" %>
+        <% end %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+      <% end %>
+
+      <%= f.label :time_zone %>
+      <%= f.time_zone_select :time_zone %>
+
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+      <%= f.password_field :password, autocomplete: "off" %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+      <%= f.password_field :current_password, autocomplete: "off" %>
+
+      <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <!-- <h1>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-large btn-danger", method: :delete %></h1> -->
+  </div>
+</div>
+
+<%= link_to "Back", :back %>
+<script>
+  $("#user_sex_sex_id_<%= @current_user.sex_id %>").attr( 'checked', true )
+  $("option[value|='<%= @current_user.major_id %>']").attr( 'selected', true )
+  $("#file-upload-button").on("change", function () {
+      var fileName = $(this).val().replace('C:\\fakepath\\', '');
+      $("#file-upload-filename").html(fileName);
+  });
+</script>

@@ -1,0 +1,16 @@
+<div class="row">
+  <h4 style="text-align: center">
+    L just built a rails based website, but he forgot to change RAILS_ENV to production.<br>
+    Checkout /users for more infos.<br>
+    Here:<%= link_to 'there', @url %><br>
+  </h4>
+  <hr>
+  <div class="span6 offset3">
+    <%= form_tag "/wargame/web/level2" do %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+        <%= submit_tag 'Submit', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+<%= render 'shared/each_rank', ranked_players: @ranked_players, index: 6 %>

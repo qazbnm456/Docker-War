@@ -1,0 +1,87 @@
+# Docker based image for building a wargame platform
+
+This is the Git repo of the `Docker-War` images meant to serve as good bases for **Wargame platform** images.
+
+**Relevant links:**
+ [Github](https://github.com/qazbnm456/Docker-War) |
+ [NSYSU Wargame](https://wargame.cse.nsysu.edu.tw)
+
+---------------------------------------
+
+##**Table of contents**
+
+ * [Notice](#notice)
+ * [TODO](#todos)
+ * [Prerequisites](#pre)
+ * [Setup](#setup)
+ * [Known issues](#issues)
+ * [LICENSE](#license)
+
+---------------------------------------
+
+<a name="notice"></a>
+## Some notices you have to check out.
+
+Sometimes you may confront services looping forever, and this [link](http://stackoverflow.com/questions/11583562/how-to-kill-a-process-running-on-particular-port-in-linux) might helps you. Besides, of you wanna re-add the host, just delete the files in /var/lib/rancher/state.
+
+Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docker-War/blob/master/script/setup.sh) will change group of the docker.sock from docker(998) to app(9999) in order to let app user call docker in this image.
+
+    $ sudo chgrp 9999 /run/docker.sock
+
+<a name="todos"></a>
+## TODO
+
+* Modify [nginx-proxy](https://github.com/qazbnm456/nginx-proxy) to support managed IPs by [Rancher](https://github.com/rancher/rancher).
+* Covering Unit Test and Integration Test.
+* CI with [drone](https://github.com/drone/drone) and [dapper](https://github.com/rancher/dapper)
+* Ability to change challenges on-the-fly.
+* (Optional) Instant notifications built with WebSocket.
+* (Optional) Change to SPA when Rails 5 releases.
+* (Optional) Use [BTRFS](https://btrfs.wiki.kernel.org/index.php/Main_Page) filesystem to storage images.
+* (Optional) Importing the concept of [Continuous Deployment](http://rancher.com/continuous-deployment/).
+
+<a name="pre"></a>
+## Prerequisites
+
+* Git
+* Docker and Docker-Compose
+* Protoc
+* Node and Npm
+* Mysql (or others)
+
+<a name="setup"></a>
+## Setup
+
+### Installing Git
+
+1. `$ sudo apt-get install git`
+2. Clone the Github repo, `$ git clone git://github.com/qazbnm456/Docker-War`
+3. Switch into the repo directory, `$ cd Docker-War`
+
+### Installing Docker and Compose
+
+1. `$ sudo curl -fsSL https://get.docker.com/ | sh`
+2. Verify if docker is installed correctly, `$ sudo docker run hello-world`
+3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
+4. `$ sudo chmod +x /usr/local/bin/docker-compose`
+
+### Pre Setup Env Variables and Build the Image
+
+1. `$ sudo script/setup.sh`, and filling in fields it requires.
+2. `$ cat rails-env.conf` to see what variables you need to set when running this image.
+3. `$ sudo docker-compose build` and you can take a cup of coffee.
+
+### Up Server and See What You Get
+
+1. `$ sudo docker-compose up`
+
+<a name="issues"></a>
+## Known issues
+
+1. Email sender do not work correctly.
+2. Change challenges on-the-fly is still unstable.
+
+<a name="license"></a>
+## License
+
+This project use [SATA License](LICENSE) (Star And Thank Author License), so you have to star this project before using. Read the [license](LICENSE) carefully.

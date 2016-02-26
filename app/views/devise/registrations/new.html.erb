@@ -1,0 +1,57 @@
+<h1>Sign up</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, autofocus: true %>
+
+      <div class='control-group'>
+        <%= f.fields_for :sex do |s| %>
+          <%= s.label "Sex" %>
+          <%= s.collection_radio_buttons :sex_id, Sex.all, :id, :name do |cb| %>
+            <% cb.label(class: "radio inline") {cb.radio_button(class: "radio") + cb.text} %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class='control-group'>
+        <%= f.fields_for :major do |m| %>
+            <%= m.label "Majors" %>
+            <%= m.collection_select :major_id, Major.all, :id, :name, prompt: true %>
+        <% end %>
+      </div>
+
+      <%= f.label :email %>
+      <%= f.email_field :email  %>
+
+      <%= f.label :time_zone %>
+      <%= f.time_zone_select :time_zone %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "off" %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
+      <%= f.submit 'Register', class: "btn btn-large btn-primary" %>
+    <% end %>
+    <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+            <%= link_to image_tag( "fblogo_60x60.png", :alt =>  "Log in with #{provider.to_s.titleize}", class: 'data-pop-over' ), omniauth_authorize_path(resource_name, provider) %><br />
+        <% end -%>
+    <% end -%>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>
+<script>
+  $("#user_sex_sex_id_1").attr( 'checked', true )
+  $(".data-pop-over").tooltip({
+    container: 'body',
+    trigger: 'hover',
+    placement: 'right',
+    title: "If you are loging with FB, declaring you password with 'Forgot your password?'."
+  })
+</script>

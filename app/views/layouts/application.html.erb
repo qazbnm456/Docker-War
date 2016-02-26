@@ -1,0 +1,35 @@
+<!-- TODO: make the website RWD -->
+<!-- TODO: importing analysis tool -->
+<!-- TODO: redesign whole website with modern looks -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+  <title>Docker-War</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+  <script>
+      $(document).ready(function(){
+          $(".csstab tr").mouseover(function(){$(this).addClass("over");}).mouseout(function(){$(this).removeClass("over");})
+      });
+  </script>
+</head>
+<body>
+<%= render 'layouts/header' %>
+<div class="container">
+  <% if notice %>
+      <p class="alert alert-notice"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+  <% end %>
+  <%= render "announcements/public_announcement" %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+  <%= debug(params) if Rails.env.development? %>
+</div>
+</body>
+</html>

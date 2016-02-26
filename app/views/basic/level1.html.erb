@@ -1,0 +1,15 @@
+<div class="row">
+  <h4 style="text-align: center">
+    In this game you can test your hacker's ability, enjoy!
+  </h4>
+  <hr>
+  <div class="span6 offset3">
+    <%= form_tag "/wargame/basic/level1" do %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+        <%= submit_tag 'Submit', class: 'btn btn-success' %>
+        <font color="lightgoldenrodyellow" size="1">Password: 150a874ed46295baf7fc675622461e87</font>
+    <% end %>
+  </div>
+</div>
+<%= render 'shared/each_rank', ranked_players: @ranked_players, index: 0 %>

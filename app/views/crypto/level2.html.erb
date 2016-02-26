@@ -1,0 +1,31 @@
+<div class="row">
+  <h4 style="text-align: center">
+    L disguised as a small internal staff, and he sneaked into the evil hacker organization. After reading a internal message , he learned that.</br>
+    they developed a new form of encryption algorithms called MixCode.</br>
+    L then checked out the source code, going into a deep meditation. Can you help him crack this encoded password?</br>
+    <b style="color: #ff0000">TH4BnNXFNMyMASfP3eLvrRKT6hQoDnNIBr1L6eBMHpAaQy6sfh8u</b></br>
+  </h4>
+  <code>
+    import hashlib</br>
+    </br>
+    def mix_code(msg, salt):</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;token = hashlib.md5(salt).digest()</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;res = ""</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;password = "NSYSU-WARGAME-CRYPTO"</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;for c in msg:</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n = ord(c) ^ 0xaa ^ 0xbb ^ 0xcc ^ 0xdd ^ 0xee ^ 0xff</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for i in xrange(16) :</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n ^= ord(password[i]) ^ ord(token[i])</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res += chr(n)</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token = hashlib.md5(chr(n)).digest()</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;return res.encode('base64').encode('rot13')</code></br>
+  <hr>
+  <div class="span6 offset3">
+    <%= form_tag "/wargame/crypto/level2" do %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+        <%= submit_tag 'Submit', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+<%= render 'shared/each_rank', ranked_players: @ranked_players, index: 16 %>
