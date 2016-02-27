@@ -73,7 +73,8 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 ### Up Server and See What You Get
 
-1. `$ sudo docker-compose up`
+1. `$ sudo docker-compose up` to up the server.
+2. `$ sudo docker run dockerwar_wargame rake db:migrate:seeds database:convert_to_utf8mb4`
 
 <a name="issues"></a>
 ## Known issues
