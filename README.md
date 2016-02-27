@@ -80,6 +80,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 1. Email sender do not work correctly.
 2. Change challenges on-the-fly is still unstable.
+3. Some problems on setting up sqlchop proxy server.
 
 <a name="license"></a>
 ## License
