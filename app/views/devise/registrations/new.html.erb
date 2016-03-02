@@ -37,21 +37,7 @@
 
       <%= f.submit 'Register', class: "btn btn-large btn-primary" %>
     <% end %>
-    <%- if devise_mapping.omniauthable? %>
-        <%- resource_class.omniauth_providers.each do |provider| %>
-            <%= link_to image_tag( "fblogo_60x60.png", :alt =>  "Log in with #{provider.to_s.titleize}", class: 'data-pop-over' ), omniauth_authorize_path(resource_name, provider) %><br />
-        <% end -%>
-    <% end -%>
   </div>
 </div>
 
 <%= render "devise/shared/links" %>
-<script>
-  $("#user_sex_sex_id_1").attr( 'checked', true )
-  $(".data-pop-over").tooltip({
-    container: 'body',
-    trigger: 'hover',
-    placement: 'right',
-    title: "If you are loging with FB, declaring you password with 'Forgot your password?'."
-  })
-</script>

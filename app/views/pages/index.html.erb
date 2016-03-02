@@ -18,6 +18,75 @@
   <li class="layer" data-depth="0.80"><div class="wave paint depth-80"></div></li>
   <li class="layer" data-depth="1"><div class="wave paint depth-100"></div></li>
 </ul>
+<section id="about" class="wrapper about accelerate hide">
+  <div class="cell accelerate">
+    <div class="cables center accelerate">
+      <div class="panel accelerate container" style="margin-top: 0px;">
+        <header>
+          <h1><em>Docker-War</em></h1>
+        </header>
+        <p>It's time for you.</p>
+        <p>A whole new experience playing CTF.</p>
+        <ul class="links">
+          <li><a class="download" href="/register">Registration</a></li>
+          <li><a class="download" href="/home">Homepage</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<button id="toggle" class="toggle i">
+  <div class="cross">
+    <div class="x"></div>
+    <div class="y"></div>
+  </div>
+</button>
+
 <script>
-  var $scene = $('#scene').parallax();
+  // Hide browser menu.
+  (function() {
+    setTimeout(function(){window.scrollTo(0,0);},0);
+  })();
+
+  // Setup FastClick.
+  var attachFastClick = Origami.fastclick;
+  attachFastClick(document.body);
+
+  // jQuery Selections
+  var $html = $('html'),
+    $toggle = $('#toggle'),
+    $about  = $('#about'),
+    $scene  = $('#scene')
+
+  // Add touch functionality.
+  if (Hammer.HAS_TOUCHEVENTS) {
+    $container.hammer({drag_lock_to_axis: true});
+    _.tap($html, 'a,button,[data-tap]');
+  }
+  // Add touch or mouse class to html element.
+  $html.addClass(Hammer.HAS_TOUCHEVENTS ? 'touch' : 'mouse');
+  // Resize handler.
+  (resize = function() {
+    $scene[0].style.width = window.innerWidth + 'px';
+    $scene[0].style.height = window.innerHeight + 'px';
+  })();
+  // Attach window listeners.
+  window.onresize = _.debounce(resize, 200);
+  window.onscroll = _.debounce(resize, 200);
+  function showDetails() {
+    $about.removeClass('hide');
+    $toggle.removeClass('i');
+  }
+
+  function hideDetails() {
+    $about.addClass('hide');
+    $toggle.addClass('i');
+  }
+
+  // Listen for toggle click event.
+  $toggle.on('click', function(event) {
+    $toggle.hasClass('i') ? showDetails() : hideDetails();
+  });
+
+  $scene.parallax();
 </script>
