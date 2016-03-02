@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :set_timezone, :current_ability
 
   protected
+  def disable_nav
+    @disable_nav = true
+  end
+
   def devise_parameter_sanitizer
     if resource_class == User
       #User::ParameterSanitizer.new(User, :user, params)

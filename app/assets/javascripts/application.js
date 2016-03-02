@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.parallax.min
 //= require bootstrap
 //= require bootstrap-tooltip
 //= require bootstrap-popover

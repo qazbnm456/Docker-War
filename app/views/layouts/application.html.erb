@@ -18,18 +18,20 @@
   </script>
 </head>
 <body>
-<%= render 'layouts/header' %>
-<div class="container">
+<%= render 'layouts/header' unless @disable_nav %>
+<div class="container wrapper">
   <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
+    <p class="alert alert-notice"><%= notice %></p>
   <% end %>
   <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
+    <p class="alert alert-error"><%= alert %></p>
   <% end %>
   <%= render "announcements/public_announcement" %>
   <%= yield %>
-  <%= render 'layouts/footer' %>
-  <%= debug(params) if Rails.env.development? %>
+  <%= render 'layouts/footer' unless @disable_nav %>
+  <div class="container">
+    <%= debug(params) if Rails.env.development? && !@disable_nav %>
+  </div>
 </div>
 </body>
 </html>

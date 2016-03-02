@@ -20,7 +20,6 @@ html {
 
 body {
   background-color: lightgoldenrodyellow;
-  padding-top: 60px;
 }
 
 section {
@@ -228,6 +227,22 @@ footer {
 }
 
 /* miscellaneous */
+
+.wrapper {
+  min-height: 600px;
+  overflow: hidden;
+  display: table;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  left: 0;
+}
+
+@media (min-width: 400px) {
+  .wrapper {
+    min-height: 400px;
+  }
+}
 
 .debug_dump {
   clear: both;
@@ -558,4 +573,381 @@ code {
   background-color: #f2dede;
   border-color: #eed3d7;
   color: #b94a48;
+}
+
+/* Home page Parallax JS effect */
+
+ul.scene {
+  list-style: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.scene {
+  min-height: 601px;
+  position: relative;
+  overflow: hidden;
+  .layer {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (min-width: 400px) {
+  .scene {
+    min-height: 401px;
+  }
+}
+
+@media (min-width: 600px) {
+  .scene {
+    min-height: 501px;
+  }
+}
+
+@media (min-width: 900px) {
+  .scene {
+    min-height: 601px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .scene {
+    min-height: 701px;
+  }
+}
+
+.layer div {
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.background {
+  background-image: asset-data-url('home/background.jpg');
+  background-repeat: no-repeat;
+  bottom: 96px;
+  background-size: cover;
+  position: absolute;
+  width: 110%;
+  min-height: 100%;
+  left: -5%;
+  top: -50%;
+}
+
+@media (min-width: 600px) {
+  .background {
+    bottom: 96px;
+  }
+}
+
+@media (min-width: 900px) {
+  .background {
+    bottom: 160px;
+  }
+}
+
+.light {
+  margin: -120px -120px;
+  background-size: 240px 240px;
+  height: 240px;
+  width: 240px;
+  background-repeat: no-repeat;
+  bottom: 112px;
+  position: absolute;
+  left: 50%;
+}
+
+.light {
+  &.orange {
+    background-image: asset-data-url('home/light-orange.png');
+  }
+  &.purple {
+    background-image: asset-data-url('home/light-purple.png');
+  }
+}
+
+.light {
+  &.b {
+    bottom: 80px;
+    left: 30%;
+  }
+  &.c {
+    bottom: 112px;
+    left: 45%;
+  }
+  &.d {
+    bottom: 96px;
+    left: 60%;
+  }
+}
+
+.light {
+  &.phase-3 {
+    -webkit-animation: phase 16s 0.1s infinite linear;
+    -moz-animation: phase 16s 0.1s infinite linear;
+    animation: phase 16s 0.1s infinite linear;
+  }
+  &.phase-4 {
+    -webkit-animation: phase 14s 0.1s infinite linear;
+    -moz-animation: phase 14s 0.1s infinite linear;
+    animation: phase 14s 0.1s infinite linear;
+  }
+  &.phase-5 {
+    -webkit-animation: phase 12s 0.1s infinite linear;
+    -moz-animation: phase 12s 0.1s infinite linear;
+    animation: phase 12s 0.1s infinite linear;
+  }
+}
+
+@media (min-width: 600px) {
+  .light {
+    &.b {
+      bottom: 144px;
+    }
+    &.c {
+      bottom: 192px;
+    }
+    &.d {
+      bottom: 160px;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .light {
+    margin: -140px -140px;
+    background-size: 280px 280px;
+    height: 280px;
+    width: 280px;
+  }
+}
+
+@media (min-width: 900px) {
+  .light {
+    &.b {
+      bottom: 160px;
+    }
+    &.c {
+      bottom: 208px;
+    }
+    &.d {
+      bottom: 176px;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .light {
+    margin: -160px -160px;
+    background-size: 320px 320px;
+    height: 320px;
+    width: 320px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .light {
+    margin: -200px -200px;
+    background-size: 400px 400px;
+    height: 400px;
+    width: 400px;
+  }
+}
+
+.wave {
+  background: transparent repeat-x;
+  position: absolute;
+  width: 300%;
+  left: -100%;
+  &.paint {
+    background-image: asset-data-url('home/wave-paint.png');
+  }
+  &.depth-30 {
+    -webkit-animation: wave 7.11111s 0.1s infinite linear;
+    -moz-animation: wave 7.11111s 0.1s infinite linear;
+    animation: wave 7.11111s 0.1s infinite linear;
+    bottom: 100px;
+    margin: 0px 0px;
+    background-size: 120px 48px;
+    height: 48px;
+  }
+  &.depth-40 {
+    -webkit-animation: wave 6.66667s 0.1s infinite linear;
+    -moz-animation: wave 6.66667s 0.1s infinite linear;
+    animation: wave 6.66667s 0.1s infinite linear;
+    bottom: 80px;
+    margin: 0px 0px;
+    background-size: 160px 64px;
+    height: 64px;
+  }
+  &.depth-50 {
+    -webkit-animation: wave 6.22222s 0.1s infinite linear;
+    -moz-animation: wave 6.22222s 0.1s infinite linear;
+    animation: wave 6.22222s 0.1s infinite linear;
+    bottom: 60px;
+    margin: 0px 0px;
+    background-size: 200px 80px;
+    height: 80px;
+  }
+  &.depth-60 {
+    -webkit-animation: wave 5.77778s 0.1s infinite linear;
+    -moz-animation: wave 5.77778s 0.1s infinite linear;
+    animation: wave 5.77778s 0.1s infinite linear;
+    bottom: 40px;
+    margin: 0px 0px;
+    background-size: 240px 96px;
+    height: 96px;
+  }
+  &.depth-80 {
+    -webkit-animation: wave 4.88889s 0.1s infinite linear;
+    -moz-animation: wave 4.88889s 0.1s infinite linear;
+    animation: wave 4.88889s 0.1s infinite linear;
+    bottom: 0px;
+    margin: 0px 0px;
+    background-size: 320px 128px;
+    height: 128px;
+  }
+  &.depth-100 {
+    -webkit-animation: wave 4s 0.1s infinite linear;
+    -moz-animation: wave 4s 0.1s infinite linear;
+    animation: wave 4s 0.1s infinite linear;
+    bottom: -40px;
+    margin: 0px 0px;
+    background-size: 400px 160px;
+    height: 160px;
+  }
+}
+
+@media (min-width: 600px) {
+  .wave {
+    &.depth-30 {
+      bottom: 150px;
+      margin: 0px 0px;
+      background-size: 180px 72px;
+      height: 72px;
+    }
+    &.depth-40 {
+      bottom: 120px;
+      margin: 0px 0px;
+      background-size: 240px 96px;
+      height: 96px;
+    }
+    &.depth-50 {
+      bottom: 90px;
+      margin: 0px 0px;
+      background-size: 300px 120px;
+      height: 120px;
+    }
+    &.depth-60 {
+      bottom: 60px;
+      margin: 0px 0px;
+      background-size: 360px 144px;
+      height: 144px;
+    }
+    &.depth-80 {
+      bottom: 0px;
+      margin: 0px 0px;
+      background-size: 480px 192px;
+      height: 192px;
+    }
+    &.depth-100 {
+      bottom: -60px;
+      margin: 0px 0px;
+      background-size: 600px 240px;
+      height: 240px;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .wave {
+    &.depth-30 {
+      bottom: 150px;
+      margin: 0px 0px;
+      background-size: 180px 72px;
+      height: 72px;
+    }
+    &.depth-40 {
+      bottom: 136px;
+      margin: 0px 0px;
+      background-size: 272px 108.8px;
+      height: 109px;
+    }
+    &.depth-50 {
+      bottom: 102px;
+      margin: 0px 0px;
+      background-size: 340px 136px;
+      height: 136px;
+    }
+    &.depth-60 {
+      bottom: 68px;
+      margin: 0px 0px;
+      background-size: 408px 163.2px;
+      height: 163px;
+    }
+    &.depth-80 {
+      bottom: 0px;
+      margin: 0px 0px;
+      background-size: 544px 217.6px;
+      height: 218px;
+    }
+    &.depth-100 {
+      bottom: -68px;
+      margin: 0px 0px;
+      background-size: 680px 272px;
+      height: 272px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .wave {
+    &.depth-30 {
+      bottom: 180px;
+      margin: 0px 0px;
+      background-size: 216px 86.4px;
+      height: 86px;
+    }
+    &.depth-40 {
+      bottom: 144px;
+      margin: 0px 0px;
+      background-size: 288px 115.2px;
+      height: 115px;
+    }
+    &.depth-50 {
+      bottom: 108px;
+      margin: 0px 0px;
+      background-size: 360px 144px;
+      height: 144px;
+    }
+    &.depth-60 {
+      bottom: 72px;
+      margin: 0px 0px;
+      background-size: 432px 172.8px;
+      height: 173px;
+    }
+    &.depth-80 {
+      bottom: 0px;
+      margin: 0px 0px;
+      background-size: 576px 230.4px;
+      height: 230px;
+    }
+    &.depth-100 {
+      bottom: -72px;
+      margin: 0px 0px;
+      background-size: 720px 288px;
+      height: 288px;
+    }
+  }
 }

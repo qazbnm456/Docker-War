@@ -17,7 +17,7 @@ defined?(Footnotes) && Footnotes.setup do |f|
   # f.no_style = true
 
   # Lock notes to top right :
-  # f.lock_top_right = true
+  f.lock_top_right = true
 
   # Change font size :
   # f.font_size = '11px'

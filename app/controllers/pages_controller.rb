@@ -1,7 +1,11 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:wargame, :new_q, :qna_ans, :qna_edit]
   before_action :load_data, only: :timeline
+  before_action :disable_nav, only: :index
   after_action :save_data, only: :timeline
+
+  def index
+  end
 
   def home
     @all_news = News.all

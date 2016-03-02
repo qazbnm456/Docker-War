@@ -1,6 +1,8 @@
 DockerWar::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root 'pages#home'
+  root 'pages#index'
+
+  match '/home', to: 'pages#home', via: 'get'
   match '/qna', to: 'pages#qna', via: 'get'
   match '/new_q', to: 'pages#new_q', via: 'post'
   match '/qna_ans', to: 'pages#qna_ans', via: 'patch'

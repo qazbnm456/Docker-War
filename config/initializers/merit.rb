@@ -26,7 +26,9 @@ Merit::Badge.create!({
     level: 0,
     description: "初來乍到",
     custom_fields: { display_name: "萌芽勳章", image: 'badges/萌芽勳章.gif' }
-}, {
+})
+
+Merit::Badge.create!({
     id: 2,
     name: "1000pts",
     level: 1,
