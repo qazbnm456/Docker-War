@@ -43,7 +43,7 @@ class PagesController < ApplicationController
     end
   end
 
-  def help
+  def rule
   end
 
   def about
