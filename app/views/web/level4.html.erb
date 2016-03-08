@@ -1,4 +1,4 @@
-<div class="row">
+<div class="columns-12">
   <h4 style="text-align: center">
     L knew his password has been found last time, but he is positive. Now he has written another php file.<br>
     This time, his password has been finely hidden into key.php.<br>
@@ -6,7 +6,7 @@
     Here:<%= link_to 'there', @url %>
   </h4>
   <hr>
-  <div class="span6 offset3">
+  <div class="col-6 col-offset-3">
     <%= form_tag "/wargame/web/level4" do %>
         <%= label_tag :password %>
         <%= password_field_tag :password %>

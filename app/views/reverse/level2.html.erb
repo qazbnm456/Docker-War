@@ -1,10 +1,10 @@
-<div class="row">
+<div class="columns-12">
   <h4 style="text-align: center">
     Download and find out the password, pasting it to the following field.</br>
     Check: <%= link_to 'there', @url %>
   </h4>
   <hr>
-  <div class="span6 offset3">
+  <div class="col-6 col-offset-3">
     <%= form_tag "/wargame/reverse/level2" do %>
         <%= label_tag :password %>
         <%= password_field_tag :password %>

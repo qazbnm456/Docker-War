@@ -17,7 +17,7 @@
       });
   </script>
 </head>
-<body data-no-turbolink>
+<body <%= 'class=downalittle' unless @disable_nav %> data-no-turbolink>
 <%= render 'layouts/header' unless @disable_nav %>
 <div class="container wrapper">
   <% if notice %>

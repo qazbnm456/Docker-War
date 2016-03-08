@@ -1,4 +1,4 @@
-<div class="row">
+<div class="columns-12">
   <h4 style="text-align: center">
     L disguised as a small internal staff, and he sneaked into the evil hacker organization. After reading a internal message , he learned that.</br>
     they developed a new form of encryption algorithms called MixCode.</br>
@@ -20,7 +20,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token = hashlib.md5(chr(n)).digest()</br>
     &nbsp;&nbsp;&nbsp;&nbsp;return res.encode('base64').encode('rot13')</code></br>
   <hr>
-  <div class="span6 offset3">
+  <div class="col-6 col-offset-3">
     <%= form_tag "/wargame/crypto/level2" do %>
         <%= label_tag :password %>
         <%= password_field_tag :password %>

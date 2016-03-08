@@ -1,4 +1,4 @@
-<div class="row">
+<div class="columns-12">
   <h4 style="text-align: center">
     L just learned XML, and he is really a beginner.<br>
     Because lacking experience, his admin password is easy to get.<br>
@@ -6,7 +6,7 @@
     Here:<%= link_to 'there', @url %>
   </h4>
   <hr>
-  <div class="span6 offset3">
+  <div class="col-6 col-offset-3">
     <%= form_tag "/wargame/web/level1" do %>
         <%= label_tag :password %>
         <%= password_field_tag :password %>

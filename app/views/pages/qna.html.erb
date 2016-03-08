@@ -1,4 +1,4 @@
-<h1 class="downalittle">Q&A</h1>
+<h1>Q&A</h1>
 <% if @qnas.each do |qna| %>
     <% if (qna.status == 0) && !current_user.nil? && current_user.admin? %>
         <div class="row">
