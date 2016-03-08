@@ -8,8 +8,10 @@ RUN echo unix:///tmp/docker.sock > /etc/container_environment/DOCKER_HOST
 
 CMD ["/sbin/my_init"]
 
+# https://forums.docker.com/t/using-docker-in-a-dockerized-jenkins-container/322/6
 RUN apt-get update \
   && apt-get upgrade -y \
+  && apt-get install -y lxc \
   && apt-get install -y ruby2.3 ruby2.3-dev \
   && ruby-switch --set ruby2.3
 
@@ -18,9 +20,6 @@ ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN gem install bundler \
   && bundle install
-
-# https://forums.docker.com/t/using-docker-in-a-dockerized-jenkins-container/322/6
-RUN apt-get install -y lxc
 RUN rm -f /etc/service/nginx/down
 RUN rm /etc/nginx/sites-enabled/default
 
