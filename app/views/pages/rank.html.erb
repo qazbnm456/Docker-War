@@ -11,10 +11,9 @@
     <%= link_to "Live", rank_path(tab: 'live_submission') %>
   </li>
 </ul>
-<div class="container">
-  <div class="row">
-    <div class="span12">
-      <% if params[:tab].nil? %>
+<div class="columns-12">
+  <div class="col-12">
+    <% if params[:tab].nil? %>
         <table width="100%" class="table table-striped table-condensed">
           <tr>
             <th><%= link_to '#', rank_path %></th>
@@ -43,45 +42,44 @@
             <th>Last submission time</th>
           </tr>
           <% @ranked_players.each_with_index do |user, index| %>
-            <tr>
-              <td><%= index+1 %></td>
-              <td><%= link_to user.name, show_user_path(user) %></td>
-              <td><%= user.score %></td>
-              <% (0...20).each do |i| %>
-                <% if user.record[i].solved %>
-                  <td><div class="t1"></div></td>
-                <% else %>
-                  <td><div class="t0"></div></td>
+              <tr>
+                <td><%= index+1 %></td>
+                <td><%= link_to user.name, show_user_path(user) %></td>
+                <td><%= user.score %></td>
+                <% (0...20).each do |i| %>
+                    <% if user.record[i].solved %>
+                        <td><div class="t1"></div></td>
+                    <% else %>
+                        <td><div class="t0"></div></td>
+                    <% end %>
                 <% end %>
-              <% end %>
-              <td><%= user.last_submit_time %></td>
-            </tr>
+                <td><%= user.last_submit_time %></td>
+              </tr>
           <% end %>
         </table>
-      <% elsif params[:tab] == 'live_submission' %>
-          <div id="time_line"></div>
-          <a class="btn btn-info btn-large" href="#" onclick="Push()">Refresh</a>
-          <script>
-              function Push() {
-                  $('#time_line').empty();
-                  $.getJSON('/timeline.json', function (data) {
-                      createStoryJS({
-                          type: 'timeline',
-                          width: '950',
-                          height: '300',
-                          source: data, //get the events.json format from https://github.com/VeriteCo/TimelineJS#file-formats
-                          embed_id: 'time_line',
-                          start_at_end: true
-                      });
-                  });
-              }
-              setTimeout(function() { Push(); }, 200);
-          </script>
-      <% elsif params[:tab] == 'Pie Chart' %>
-          <%= pie_chart Record.where(:solved => true).group(:cate).count %>
-          <div id="chart"></div>
-      <% end %>
-    </div>
+    <% elsif params[:tab] == 'live_submission' %>
+        <div id="time_line"></div>
+        <a class="btn btn-info btn-large" href="#" onclick="Push()">Refresh</a>
+        <script>
+          function Push() {
+            $('#time_line').empty();
+            $.getJSON('/timeline.json', function (data) {
+              createStoryJS({
+                type: 'timeline',
+                width: '100%',
+                height: 'auto',
+                source: data, //get the events.json format from https://github.com/VeriteCo/TimelineJS#file-formats
+                embed_id: 'time_line',
+                start_at_end: true
+              });
+            });
+          }
+          setTimeout(function() { Push(); }, 200);
+        </script>
+    <% elsif params[:tab] == 'Pie Chart' %>
+        <%= pie_chart Record.where(:solved => true).group(:cate).count %>
+        <div id="chart"></div>
+    <% end %>
   </div>
 </div>
 <script>

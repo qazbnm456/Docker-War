@@ -1,43 +1,199 @@
-<h1>Sign up</h1>
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
+<h1 class="downalittle">Sign up</h1>
+<div class="columns-12">
+  <div class="col-6 col-offset-3">
+    <div class="logmod__wrapper">
+      <div class="logmod__container">
+        <div class="logmod__tab-wrapper">
+          <ul class="logmod__tabs">
+            <li data-tabtar="lgm-1"><a href="#">Login</a></li>
+            <li data-tabtar="lgm-2"><a href="#">Sign Up</a></li>
+          </ul>
+          <div class="logmod__tab lgm-2">
+            <div class="logmod__heading">
+              <span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>
+            </div>
+            <div class="logmod__form">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, autofocus: true %>
+                  <div class="sminputs">
+                    <div class="input full">
+                      <%= f.label :name, :class => 'string optional' %>
+                      <%= f.text_field :name, autofocus: true, :class => 'string optional', :id => 'user-name', :placeholder => 'Name' %>
+                    </div>
+                  </div>
 
-      <div class='control-group'>
-        <%= f.fields_for :sex do |s| %>
-          <%= s.label "Sex" %>
-          <%= s.collection_radio_buttons :sex_id, Sex.all, :id, :name do |cb| %>
-            <% cb.label(class: "radio inline") {cb.radio_button(class: "radio") + cb.text} %>
-          <% end %>
-        <% end %>
+                  <div class="sminputs">
+                    <div class="full" style="padding: 11px 24px;">
+                      <div class='control-group'>
+                        <%= f.fields_for :sex do |s| %>
+                          <%= s.label "Sex", :class => 'string optional', :style => "text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-size: 12px; line-height: 24px;" %>
+                          <%= s.collection_radio_buttons :sex_id, Sex.all, :id, :name do |cb| %>
+                            <% cb.label(class: "radio inline") {cb.radio_button(class: "radio") + cb.text} %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sminputs">
+                    <div class="input full">
+                      <div class='control-group'>
+                        <%= f.fields_for :major do |m| %>
+                            <%= m.label "Majors", :class => 'string optional' %>
+                            <%= m.collection_select :major_id, Major.all, :id, :name, prompt: true %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sminputs">
+                    <div class="input full">
+                      <%= f.label :email, :class => 'string optional' %>
+                      <%= f.email_field :email, :class => 'string optional', :id => 'user-email', :placeholder => 'Email'  %>
+                    </div>
+                  </div>
+
+                  <div class="sminputs">
+                    <div class="input full">
+                      <%= f.label :time_zone, :class => 'string optional' %>
+                      <%= f.time_zone_select :time_zone %>
+                    </div>
+                  </div>
+
+                  <div class="sminputs">
+                    <div class="input string optional">
+                      <%= f.label :password, :class => 'string optional' %>
+                      <%= f.password_field :password, autocomplete: "off", :class => 'string optional', :id => 'user-pw', :placeholder => 'Password' %>
+                    </div>
+                    <div class="input string optional">
+                      <%= f.label :password_confirmation, :class => 'string optional' %>
+                      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'string optional', :id => 'user-pw-repeat', :placeholder => 'Repeat password' %>
+                    </div>
+                  </div>
+
+                  <div class="simform__actions">
+                    <div style="text-align: center; margin: 9px;">
+                      <%= f.submit 'Register', class: "btn btn-large btn-primary" %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+            <div class="logmod__alter">
+              <div class="logmod__alter-container">
+                <a href="https://www.facebook.com/" class="connect facebook">
+                  <div class="connect__icon">
+                    <i class="fa fa-facebook"></i>
+                  </div>
+                  <div class="connect__context">
+                    <span>Create an account with <strong>Facebook</strong></span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class='control-group'>
-        <%= f.fields_for :major do |m| %>
-            <%= m.label "Majors" %>
-            <%= m.collection_select :major_id, Major.all, :id, :name, prompt: true %>
-        <% end %>
-      </div>
-
-      <%= f.label :email %>
-      <%= f.email_field :email  %>
-
-      <%= f.label :time_zone %>
-      <%= f.time_zone_select :time_zone %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "off" %>
-
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-
-      <%= f.submit 'Register', class: "btn btn-large btn-primary" %>
-    <% end %>
+    </div>
   </div>
 </div>
 
-<%= render "devise/shared/links" %>
+<script>
+  $("#user_sex_sex_id_1").attr( 'checked', true )
+
+  var LoginModalController = {
+    tabsElementName: ".logmod__tabs li",
+    tabElementName: ".logmod__tab",
+    inputElementsName: ".logmod__form .input",
+    hidePasswordName: ".hide-password",
+
+    inputElements: null,
+    tabsElement: null,
+    tabElement: null,
+    hidePassword: null,
+
+    activeTab: null,
+    tabSelection: 0, // 0 - first, 1 - second
+
+    findElements: function () {
+      var base = this;
+
+      base.tabsElement = $(base.tabsElementName);
+      base.tabElement = $(base.tabElementName);
+      base.inputElements = $(base.inputElementsName);
+      base.hidePassword = $(base.hidePasswordName);
+
+      return base;
+    },
+
+    setState: function (state) {
+      var base = this,
+          elem = null;
+
+      if (!state) {
+        state = 1;
+      }
+
+      if (base.tabsElement) {
+        elem = $(base.tabsElement[state]);
+        elem.addClass("current");
+        $("." + elem.attr("data-tabtar")).addClass("show");
+      }
+
+      return base;
+    },
+
+    getActiveTab: function () {
+      var base = this;
+
+      base.tabsElement.each(function (i, el) {
+        if ($(el).hasClass("current")) {
+          base.activeTab = $(el);
+        }
+      });
+
+      return base;
+    },
+
+    addClickEvents: function () {
+      var base = this;
+
+      base.hidePassword.on("click", function (e) {
+        var $this = $(this),
+            $pwInput = $this.prev("input");
+
+        if ($pwInput.attr("type") == "password") {
+          $pwInput.attr("type", "text");
+          $this.text("Hide");
+        } else {
+          $pwInput.attr("type", "password");
+          $this.text("Show");
+        }
+      });
+
+      base.tabsElement.on("click", function (e) {
+        location.href="/login"
+      });
+
+      base.inputElements.find("label").on("click", function (e) {
+        var $this = $(this),
+            $input = $this.next("input");
+
+        $input.focus();
+      });
+
+      return base;
+    },
+
+    initialize: function () {
+      var base = this;
+
+      base.findElements().setState().getActiveTab().addClickEvents();
+    }
+  };
+
+  $(document).ready(function() {
+    LoginModalController.initialize();
+  });
+
+</script>

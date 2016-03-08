@@ -1,56 +1,54 @@
-<h1>Q&A</h1>
-<div class="container">
-  <% if @qnas.each do |qna| %>
+<h1 class="downalittle">Q&A</h1>
+<% if @qnas.each do |qna| %>
     <% if (qna.status == 0) && !current_user.nil? && current_user.admin? %>
-      <div class="row">
-        <div class="well span12 fix-size">
-          <div class="row">
-            <div class="panel-segment-header-note span2">
-              Q</br></br><span style="font-size: 25px; color: #24b3ef;">A</span>
-            </div>
-            <div class="panel-segment-header-main span10 offset1">
-              <div class="panel-segment-title2"><%= qna.question %></br></div>
-              <div class="panel-segment-title3" id="qna-<%= qna.id %>">
-                <%= render 'qna_form_edit', :qna_instance => qna, :url_instance => 'qna_ans' %>
+        <div class="row">
+          <div class="well span12 fix-size">
+            <div class="row">
+              <div class="panel-segment-header-note span2">
+                Q</br></br><span style="font-size: 25px; color: #24b3ef;">A</span>
+              </div>
+              <div class="panel-segment-header-main span10 offset1">
+                <div class="panel-segment-title2"><%= qna.question %></br></div>
+                <div class="panel-segment-title3" id="qna-<%= qna.id %>">
+                  <%= render 'qna_form_edit', :qna_instance => qna, :url_instance => 'qna_ans' %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     <% elsif (qna.status == 1) && !current_user.nil? && current_user.admin? %>
-          <div class="row">
-            <div class="well span12 fix-size">
-              <div class="row">
-                <div class="panel-segment-header-note span2">
-                  Q</br></br><span style="font-size: 25px; color: #24b3ef;">A</span>
-                </div>
-                <div class="panel-segment-header-main span10 offset1">
-                  <div class="panel-segment-title2"><%= qna.question %></br></div>
-                  <div class="panel-segment-title3" id="qna-<%= qna.id %>"><%= qna.answer %>
-                    <%= form_for qna, url: {action: 'qna_edit'}, :remote => 'true' do |f| %>
-                        <%= f.hidden_field :id, :value => qna.id %>
-                        <%= f.submit 'Edit', :style => "position: relative; bottom: 37px; left: 102%;", :class => "btn btn-small btn-info" %>
-                    <% end %>
-                  </div>
+        <div class="row">
+          <div class="well span12 fix-size">
+            <div class="row">
+              <div class="panel-segment-header-note span2">
+                Q</br></br><span style="font-size: 25px; color: #24b3ef;">A</span>
+              </div>
+              <div class="panel-segment-header-main span10 offset1">
+                <div class="panel-segment-title2"><%= qna.question %></br></div>
+                <div class="panel-segment-title3" id="qna-<%= qna.id %>"><%= qna.answer %>
+                  <%= form_for qna, url: {action: 'qna_edit'}, :remote => 'true' do |f| %>
+                      <%= f.hidden_field :id, :value => qna.id %>
+                      <%= f.submit 'Edit', :style => "position: relative; bottom: 37px; left: 102%;", :class => "btn btn-small btn-info" %>
+                  <% end %>
                 </div>
               </div>
             </div>
           </div>
+        </div>
     <% elsif qna.status == 1 %>
-          <div class="row">
-            <div class="well span12 fix-size">
-              <div class="row">
-                <div class="panel-segment-header-note span2">
-                  Q</br></br><span style="font-size: 25px; color: #24b3ef;">A</span>
-                </div>
-                <div class="panel-segment-header-main span10 offset1">
-                  <div class="panel-segment-title2"><%= qna.question %></br></div>
-                  <div class="panel-segment-title3" id="qna-<%= qna.id %>"><%= qna.answer %></br></div>
-                </div>
+        <div class="row">
+          <div class="well span12 fix-size">
+            <div class="row">
+              <div class="panel-segment-header-note span2">
+                Q</br></br><span style="font-size: 25px; color: #24b3ef;">A</span>
+              </div>
+              <div class="panel-segment-header-main span10 offset1">
+                <div class="panel-segment-title2"><%= qna.question %></br></div>
+                <div class="panel-segment-title3" id="qna-<%= qna.id %>"><%= qna.answer %></br></div>
               </div>
             </div>
           </div>
+        </div>
     <% end %>
-  <% end.empty? %>
-  <% end %>
-</div>
+<% end.empty? %>
+<% end %>

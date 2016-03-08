@@ -10,6 +10,8 @@
  *
  *= require_self
  *= require bootstrap-responsive
+ *= require kule/kule-grid.min
+ *= require kule/kule-theme-default.min
  *= require timelineJS/timeline
  *= require sweet-alert
  *= require_tree .

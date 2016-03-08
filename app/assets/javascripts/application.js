@@ -19,6 +19,7 @@
 //= require bootstrap
 //= require bootstrap-tooltip
 //= require bootstrap-popover
+//= require kule.urbrowser.min
 //= require nprogress
 //= require nprogress-turbolinks
 //= require timelineJS/embed

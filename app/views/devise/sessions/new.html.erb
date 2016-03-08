@@ -1,34 +1,172 @@
-<h1>Log in</h1>
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<h1 class="downalittle">Log in</h1>
+<div class="columns-12">
+  <div class="col-6 col-offset-3">
+    <div class="logmod__wrapper">
+      <div class="logmod__container">
+        <div class="logmod__tab-wrapper">
+          <ul class="logmod__tabs">
+            <li data-tabtar="lgm-1"><a href="#">Login</a></li>
+            <li data-tabtar="lgm-2"><a href="#">Sign Up</a></li>
+          </ul>
+          <div class="logmod__tab lgm-1">
+            <div class="logmod__heading">
+              <span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>
+            </div>
+            <div class="logmod__form">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'simform' }) do |f| %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email  %>
+                  <div class="sminputs">
+                    <div class="input full">
+                      <%= f.label :email, :class => 'string optional' %>
+                      <%= f.email_field :email, :class => 'string optional', :id => 'user-email', :placeholder => 'Email'  %>
+                    </div>
+                  </div>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "off" %>
+                  <div class="sminputs">
+                    <div class="input full">
+                      <%= f.label :password, :class => 'string optional' %>
+                      <%= f.password_field :password, autocomplete: "off", :class => 'string optional', :id => 'user-pw', :placeholder => 'Password' %>
+                      <span class="hide-password">Show</span>
+                    </div>
+                  </div>
 
-      <% if devise_mapping.rememberable? -%>
-        <%= f.check_box :remember_me %><%= f.label :remember_me %>
-      <% end -%>
-
-      <%= f.submit "Log in", class: "btn btn-large btn-primary" %>
-    <% end %>
-    <%- if devise_mapping.omniauthable? %>
-        <%- resource_class.omniauth_providers.each do |provider| %>
-            <%= link_to image_tag( "fblogo_60x60.png", :alt =>  "Log in with #{provider.to_s.titleize}", class: 'data-pop-over'), omniauth_authorize_path(resource_name, provider) %><br />
-        <% end -%>
-    <% end -%>
+                  <div class="simform__actions">
+                    <div style="float: right; width: 30%; margin: 9px;">
+                      <%= f.submit "Log in", class: "btn btn-large btn-primary submit" %>
+                      <% if devise_mapping.rememberable? -%>
+                          <div>
+                            <%= f.check_box :remember_me %><%= f.label :remember_me, :style => "float: left;" %>
+                          </div>
+                      <% end -%>
+                    </div>
+                    <span class="simform__actions-sidetext"><%= render "devise/shared/links" %></span>
+                  </div>
+              <% end %>
+            </div>
+            <div class="logmod__alter">
+              <div class="logmod__alter-container">
+                <%- if devise_mapping.omniauthable? %>
+                    <%- resource_class.omniauth_providers.each do |provider| %>
+                        <a href="<%= omniauth_authorize_path(resource_name, provider) %>" class="connect facebook data-pop-over">
+                          <div class="connect__icon">
+                            <i class="fa fa-facebook"></i>
+                          </div>
+                          <div class="connect__context">
+                            <span>Sign in with <strong>Facebook</strong></span>
+                          </div>
+                        </a>
+                    <% end -%>
+                <% end -%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<%= render "devise/shared/links" %>
 <script>
-    $(".data-pop-over").tooltip({
-      container: 'body',
-      trigger: 'hover',
-      placement: 'right',
-      title: "If you are loging with FB, declaring you password with 'Forgot your password?'."
-    })
+  $(".data-pop-over").tooltip({
+    container: 'body',
+    trigger: 'hover',
+    placement: 'right',
+    title: "If you are loging with FB, declaring you password with 'Forgot your password?'."
+  })
+
+  var LoginModalController = {
+    tabsElementName: ".logmod__tabs li",
+    tabElementName: ".logmod__tab",
+    inputElementsName: ".logmod__form .input",
+    hidePasswordName: ".hide-password",
+
+    inputElements: null,
+    tabsElement: null,
+    tabElement: null,
+    hidePassword: null,
+
+    activeTab: null,
+    tabSelection: 0, // 0 - first, 1 - second
+
+    findElements: function () {
+      var base = this;
+
+      base.tabsElement = $(base.tabsElementName);
+      base.tabElement = $(base.tabElementName);
+      base.inputElements = $(base.inputElementsName);
+      base.hidePassword = $(base.hidePasswordName);
+
+      return base;
+    },
+
+    setState: function (state) {
+      var base = this,
+          elem = null;
+
+      if (!state) {
+        state = 0;
+      }
+
+      if (base.tabsElement) {
+        elem = $(base.tabsElement[state]);
+        elem.addClass("current");
+        $("." + elem.attr("data-tabtar")).addClass("show");
+      }
+
+      return base;
+    },
+
+    getActiveTab: function () {
+      var base = this;
+
+      base.tabsElement.each(function (i, el) {
+        if ($(el).hasClass("current")) {
+          base.activeTab = $(el);
+        }
+      });
+
+      return base;
+    },
+
+    addClickEvents: function () {
+      var base = this;
+
+      base.hidePassword.on("click", function (e) {
+        var $this = $(this),
+            $pwInput = $this.prev("input");
+
+        if ($pwInput.attr("type") == "password") {
+          $pwInput.attr("type", "text");
+          $this.text("Hide");
+        } else {
+          $pwInput.attr("type", "password");
+          $this.text("Show");
+        }
+      });
+
+      base.tabsElement.on("click", function (e) {
+        location.href="/register"
+      });
+
+      base.inputElements.find("label").on("click", function (e) {
+        var $this = $(this),
+            $input = $this.next("input");
+
+        $input.focus();
+      });
+
+      return base;
+    },
+
+    initialize: function () {
+      var base = this;
+
+      base.findElements().setState().getActiveTab().addClickEvents();
+    }
+  };
+
+  $(document).ready(function() {
+    LoginModalController.initialize();
+  });
+
 </script>

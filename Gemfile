@@ -33,6 +33,7 @@ gem 'paperclip'
 gem 'apartment'
 gem 'spring'
 gem 'lol_dba'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'better_errors'

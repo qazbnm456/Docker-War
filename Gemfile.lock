@@ -449,6 +449,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_girl_rails
+  font-awesome-rails
   groupdate
   jbuilder
   jquery-rails
