@@ -34,6 +34,7 @@ gem 'apartment'
 gem 'spring'
 gem 'lol_dba'
 gem 'font-awesome-rails'
+gem 'kramdown'
 
 group :development do
   gem 'better_errors'

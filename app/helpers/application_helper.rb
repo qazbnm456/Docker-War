@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def markdown(source)
+    Kramdown::Document.new(source).to_html.html_safe
+  end
+
   def flag_destroy(env=nil)
     if env.nil?
       session[:web][:level1] = nil
