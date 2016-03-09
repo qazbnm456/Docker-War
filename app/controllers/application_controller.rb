@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
     @disable_nav = true
   end
 
+  def after_sign_in_path_for(resource)
+    home_path
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    request.referrer
+  end
+
   def devise_parameter_sanitizer
     if resource_class == User
       #User::ParameterSanitizer.new(User, :user, params)

@@ -35,6 +35,7 @@ gem 'spring'
 gem 'lol_dba'
 gem 'font-awesome-rails'
 gem 'kramdown'
+gem 'diuitauth'
 
 group :development do
   gem 'better_errors'

@@ -50,4 +50,8 @@
             return true;
         }
     });
+    var socket = io('https://api.diuit.net');
+    socket.on('broadcast', function (data) {
+      console.log(data);
+    });
 </script>

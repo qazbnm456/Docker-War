@@ -29,4 +29,5 @@
 //= require jsapi
 //= require chartkick.js
 //= require highcharts
+//= require socket.io
 //= require_tree .
