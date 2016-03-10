@@ -3,6 +3,7 @@ DockerWar::Application.routes.draw do
   root 'pages#index'
 
   match '/home', to: 'pages#home', via: 'get'
+  match '/chatroom', to: 'pages#chatroom', via: 'get'
   match '/qna', to: 'pages#qna', via: 'get'
   match '/new_q', to: 'pages#new_q', via: 'post'
   match '/qna_ans', to: 'pages#qna_ans', via: 'patch'

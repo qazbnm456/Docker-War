@@ -4,6 +4,7 @@
       <%= link_to "Docker-War", home_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
+          <li><%= link_to "Chatroom(BETA)", chatroom_path %></li>
           <li><%= link_to "Q&A", qna_path %></li>
           <li><%= link_to "Rule", rule_path %></li>
           <% if user_signed_in? %>

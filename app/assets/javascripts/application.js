@@ -30,4 +30,5 @@
 //= require chartkick.js
 //= require highcharts
 //= require socket.io
+//= require sanitize
 //= require_tree .

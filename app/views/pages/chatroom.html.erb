@@ -1,0 +1,180 @@
+<style>
+  #user-output {
+    height: 150px;
+    overflow-y: scroll;
+  }
+  #chatroom-output {
+    height: 150px;
+    overflow-y: scroll;
+  }
+  #chat-output {
+    height: 400px;
+    overflow-y: scroll;
+  }
+</style>
+
+<div class="columns-12">
+  <div class="col-3">
+    <div class="alert alert-info">You are <strong id="whoami"><%= current_user.name + "[" + current_user.email + "]" %></strong></div>
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Online Users</div>
+      </div>
+      <div class="list-grp" id="user-output"></div>
+      <div class="panel-box" id="online-users"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Online Chatrooms</div>
+      </div>
+      <div class="list-grp" id="chatroom-output"></div>
+      <div class="panel-box" id="online-rooms"></div>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Live Chat</div>
+      </div>
+      <div class="list-grp" id="chat-output"></div>
+      <div class="panel-box">
+        <form id="chat">
+          <div class="input-grp">
+            <input type="text" class="ctrl-input" id="chat-input" />
+            <span class="input-grp-btn">
+              <a href="#" class="btn" onclick="sendMessage()">Send Message</a>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var $sanitize = new Sanitize();
+  var $data;
+  var $sys_info;
+  var $chatroomOutput = $('#chatroom-output');
+  var $userOutput = $('#user-output');
+  var $chatOutput = $('#chat-output');
+  var socket = io('https://api.diuit.net');
+
+  socket.on('connect', function() {
+    socket.emit('authenticate', { authToken: "<%= ActiveSupport::JSON.decode(@token)['session'] %>" });
+    socket.emit('chats/list', {}, function(data_one) {
+      data_one.chats.forEach(function(chat) {
+        if(chat.meta != null) {
+          $('#chatroom-output').append("<a class='list-grp-item' chatid='" + chat.id + "'>" + sanitize("<a class='list-grp-item' chatid='" + chat.id + "'>" + chat.meta['CHAT_ROOM_NAME'] + "</a>") + "</a>");
+        }
+        chat.memberSerials.forEach(function(user) {
+          if(user == "<%= current_user.email %>") {
+            $chatroomOutput.find("[chatid='" + chat.id + "']").addClass('active');
+            socket.emit('chats/join', { chatId: chat.id }, function(data_two) {
+              $('#user-output').empty();
+              data_two.chat.memberSerials.forEach(function(ele) {
+                $('#user-output').append("<a class='list-grp-item'>" + ele + "</a>");
+                // follow to the latest message
+                $userOutput.scrollTop($userOutput[0].scrollHeight);
+              });
+            });
+          }
+        });
+
+        // follow to the latest chatroom
+        $chatroomOutput.scrollTop($chatroomOutput[0].scrollHeight);
+      });
+      var $lists = $('#chatroom-output .list-grp-item').click(function(e) {
+        socket.emit('chats/leave', { chatId: $lists.filter(".active").attr("chatid") });
+        $lists.filter(".active").removeClass("active");
+        $(this).addClass('active');
+        socket.emit('chats/join', { chatId: $(this).attr("chatid") }, function(data) {
+          $('#user-output').empty();
+          data.chat.memberSerials.forEach(function(ele) {
+            $('#user-output').append("<a class='list-grp-item'>" + ele + "</a>");
+            // follow to the latest message
+            $userOutput.scrollTop($userOutput[0].scrollHeight);
+          });
+        });
+        e.preventDefault(); /*ignores actual link*/
+      });
+    });
+  });
+
+  socket.on('message', function(data) {
+    if(jQuery.isEmptyObject(data.senderUser)) {
+      console.log(data);
+      if(data.chat.id.toString() == $('#chatroom-output .list-grp-item').filter(".active").attr("chatId")) {
+        $data = JSON.parse(data.data);
+        if ($data.type == "user.joined") {
+          $sys_info = $data.userId + " joined";
+          updateUserlist($data.type, $data.userId); // need to be fixed
+        } else if ($data.type == "user.left") {
+          $sys_info = $data.userId + " left";
+          updateUserlist($data.type, $data.userId); // need to be fixed
+        } else if ($data.type == "user.kicked")
+          $sys_info = $data.userId + " kicked";
+        else if ($data.type == "whiteList.updated")
+          $sys_info = $data.whiteList + " <- whiteList updated";
+        else if ($data.type == "meta.updated")
+          $sys_info = $data.meta + " <- meta updated";
+
+        $chatOutput.append("<span class='list-grp-item'>" + $sys_info + "</span>");
+      }
+    } else if(data.senderUser.serial == "<%= current_user.email %>") {
+      $chatOutput.append("<span class='list-grp-item' style='text-align: right;'>" + sanitize("<span class='list-grp-item' style='text-align: right;'>" + data.data + "</span>") + "</span>");
+    } else {
+      $chatOutput.append("<span class='list-grp-item' style='text-align: left;'>" + sanitize("<span class='list-grp-item' style='text-align: left;'>" + data.senderUser.serial + ": " + data.data + "</span>") + "</span>");
+    }
+
+    // follow to the latest message
+    $chatOutput.scrollTop($chatOutput[0].scrollHeight);
+  });
+
+  socket.on('disconnect', function() {
+    console.log('Failed...');
+  });
+
+  window.onbeforeunload = function(event) {
+    socket.emit('chats/leave', { chatId: $('#chatroom-output .list-grp-item').filter(".active").attr("chatid") });
+  };
+
+  function sendMessage() {
+    socket.emit('messages/create', { chatId: $('#chatroom-output .list-grp-item').filter(".active").attr("chatid"), data: $('#chat-input').val(), mime: "text/plain", encoding: "utf8", meta: null });
+    $('#chat-input').val('');
+  }
+
+  function createChatRoom() {
+    socket.emit('chats/create', { members: ["test2@test.test"], whiteList: null, meta: { CHAT_ROOM_NAME: "public3", CHAT_ROOM_PHOTO: "" } });
+  }
+
+  function updateUserlist(type, sub) {
+    if(type == "user.joined")
+      $userOutput.append("<a class='list-grp-item'>" + sub + "</a>");
+    else if(type == "user.left")
+      $userOutput.find('a:last-child').remove(); // need to be fixed
+
+    // follow to the latest message
+    $userOutput.scrollTop($userOutput[0].scrollHeight);
+  }
+
+  function sanitize(unvalidate) {
+    var input = unvalidate;
+
+    // Wrap input in a dummy element (required for Santize)
+    var dummyInputNode = document.createElement('div');
+    dummyInputNode.innerHTML = input;
+
+    var scrubber = $sanitize;
+
+    // Get a DocumentFragment back after cleaning
+    var cleanFragment = scrubber.clean_node(dummyInputNode);
+
+    // Wrap the fragment in a div in order to generate HTML from fragment
+    var dummyOutputNode = document.createElement('div');
+    dummyOutputNode.appendChild(cleanFragment.cloneNode(true));
+
+    // Get the html string from inside the div
+    return dummyOutputNode.innerHTML;
+  }
+</script>

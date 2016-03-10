@@ -1,5 +1,6 @@
+require 'diuitauth'
 class PagesController < ApplicationController
-  before_action :authenticate_user!, only: [:wargame, :new_q, :qna_ans, :qna_edit]
+  before_action :authenticate_user!, only: [:chatroom, :wargame, :new_q, :qna_ans, :qna_edit]
   before_action :load_data, only: :timeline
   before_action :disable_nav, only: :index
   after_action :save_data, only: :timeline
@@ -10,6 +11,10 @@ class PagesController < ApplicationController
   def home
     @all_news = News.all
     @qna = Qna.new
+  end
+
+  def chatroom
+    @token = getToken
   end
 
   def qna
@@ -117,5 +122,23 @@ class PagesController < ApplicationController
       headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
       session[:time] = DateTime.current
       session[:data] = @@data
+    end
+
+    def getToken
+      private_key = "#{ENV['DIUIT_PRIVATE_KEY']}"
+      exp = Time.now.utc.to_i + 4 * 3600
+
+      client = {
+          :app_id => "25c78f12f85021256c478e97bc496d72",
+          :app_key => "053f399114d2be2dc906c32024d5ebc1",
+          :key_id => "18bfbc1e381cb9db4c7a079a95ff5bcc",
+          :private_key => "#{private_key}",
+          :exp => "#{exp}",
+          :platform => "ios_sandbox", # ['gcm', 'ios_sandbox', 'ios_production']
+          :user_serial => current_user.email,
+          :device_id => "f9c7ea67eb5da560f8f1d10cdfbafc75e225e9346a17a24f2677062360747bb8dc2a645686a58e4771d34de020f5d8b94dc30496611168250cb1515483277532"
+      }
+
+      return Diuitauth::Login.get_session_token client.to_json
     end
 end

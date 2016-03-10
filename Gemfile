@@ -35,6 +35,7 @@ gem 'spring'
 gem 'lol_dba'
 gem 'font-awesome-rails'
 gem 'kramdown'
+gem 'rest-client'
 gem 'diuitauth'
 
 group :development do
