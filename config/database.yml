@@ -1,12 +1,12 @@
 development:
   adapter: mysql2
-  database: <%= ENV['PD_DATABASE_NAME'] %>
+  database: <%= ENV['DEV_DATABASE_NAME'] %>
   encoding: utf8
   pool: 5
-  host: <%= ENV['PD_DATABASE_HOST'] %>
+  host: <%= ENV['DEV_DATABASE_HOST'] %>
   port: 3306
-  username: <%= ENV['PD_DATABASE_USER'] %>
-  password: <%= ENV['PD_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DEV_DATABASE_USER'] %>
+  password: <%= ENV['DEV_DATABASE_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
