@@ -1833,3 +1833,9 @@ html {
 .rulelists {
   list-style-type: none;
 }
+
+/* fix kule-lazy img problem */
+
+.divider:before {
+  background-image: asset_data_url('kule/divider.jpg');
+}

@@ -82,6 +82,7 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
                 if [[ "$DB" == "" ]]; then
                     docker run \
                         -d \
+                        -e TEMPLATE_NGINX_HTML=1 \
                         -e VIRTUAL_HOST=$SUBDOMAIN.$DOMAIN \
                         -e FLAG="$FLAG" \
                         --label $DOMAIN="$NAME" \
@@ -103,8 +104,10 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
                                 $DB_DIR/$IMAGE/$IMAGE.sql \
                                 "$SUBDOMAIN"_"$NAME"_"$DB":/docker-entrypoint-initdb.d/
                             docker run -d \
+                                -e TEMPLATE_NGINX_HTML=1 \
                                 -e VIRTUAL_HOST=$SUBDOMAIN.$DOMAIN \
                                 -e DBHOST="$SUBDOMAIN"_"$NAME"_"$DB" \
+                                -e FLAG="$FLAG" \
                                 --link "$SUBDOMAIN"_"$NAME"_"$DB":$MYSQL \
                                 --label $DOMAIN="$NAME" \
                                 --name "$SUBDOMAIN"_"$NAME" \
