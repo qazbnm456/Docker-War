@@ -8,6 +8,7 @@ DockerWar::Application.routes.draw do
   match '/new_q', to: 'pages#new_q', via: 'post'
   match '/qna_ans', to: 'pages#qna_ans', via: 'patch'
   match '/qna_edit', to: 'pages#qna_edit', via: 'patch'
+  match '/qna_delete', to: 'pages#qna_delete', via: 'delete'
   match '/rule', to: 'pages#rule', via: 'get'
   match '/about', to: 'pages#about', via: 'get'
   match '/wargame', to: 'pages#wargame', via: 'get'

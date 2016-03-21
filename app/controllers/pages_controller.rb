@@ -1,6 +1,6 @@
 require 'diuitauth'
 class PagesController < ApplicationController
-  before_action :authenticate_user!, only: [:chatroom, :wargame, :new_q, :qna_ans, :qna_edit]
+  before_action :authenticate_user!, only: [:chatroom, :wargame, :new_q, :qna_ans, :qna_edit, :qna_delete]
   before_action :load_data, only: :timeline
   before_action :disable_nav, only: :index
   after_action :save_data, only: :timeline
@@ -22,7 +22,12 @@ class PagesController < ApplicationController
   end
 
   def new_q
-    @qna = Qna.new(params.require(:qna).permit(:question))
+    @question = params[:qna][:question]
+    loop do
+      @question.gsub!(/(\\u|\\x)/, '')
+      break if @question.scan(/(\\u|\\x)/).size == 0
+    end
+    @qna = Qna.new({:question => @question})
     if @qna.save
       respond_to do |format|
         format.js
@@ -46,6 +51,12 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def qna_delete
+    @qna = Qna.find_by(:id => params[:qna][:id])
+    @qna.destroy
+    redirect_to qna_path
   end
 
   def rule
