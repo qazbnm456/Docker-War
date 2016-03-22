@@ -37,6 +37,7 @@ gem 'font-awesome-rails'
 gem 'kramdown'
 gem 'rest-client'
 gem 'diuitauth'
+gem 'tinymce-rails'
 
 group :development do
   gem 'better_errors'

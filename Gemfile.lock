@@ -407,6 +407,8 @@ GEM
     tilt (1.4.1)
     timelineJS-rails (1.1.5)
       jquery-rails
+    tinymce-rails (4.3.8)
+      railties (>= 3.1.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -492,6 +494,7 @@ DEPENDENCIES
   sprockets (~> 2.0)
   sweetalert-rails
   timelineJS-rails (~> 1.1.5)
+  tinymce-rails
   turbolinks
   uglifier
   web-console

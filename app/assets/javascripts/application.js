@@ -31,4 +31,5 @@
 //= require highcharts
 //= require socket.io
 //= require sanitize
+//= require tinymce-jquery
 //= require_tree .

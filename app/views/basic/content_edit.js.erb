@@ -1,1 +1,7 @@
-$("h4").html('<%= render "shared/challenge_content_form", :chal_instance => @chal, :url_instance => "content_save" %>');
+$("h4").html('<%= (render "shared/challenge_content_form", :chal_instance => @chal, :url_instance => "content_save").gsub("\n",'').html_safe %>');
+tinyMCE.init({
+  force_br_newlines : true,
+  force_p_newlines : false,
+  forced_root_block : "",
+  selector: '#basic_content'
+});

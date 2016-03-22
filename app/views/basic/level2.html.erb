@@ -2,9 +2,7 @@
   <h4 style="text-align: center">
     <%= sanitize @chal.content %>
     <% if !current_user.nil? && current_user.admin? %>
-        <%= form_for @chal, url: {action: 'content_edit'}, :remote => 'true' do |f| %>
-            <%= render "shared/challenge_content_confirm", :chal_instance => @chal, :url_instance => "content_edit" %>
-        <% end %>
+        <%= render "shared/challenge_content_confirm", :chal_instance => @chal, :url_instance => "content_edit" %>
     <% end %>
   </h4>
   <hr>
