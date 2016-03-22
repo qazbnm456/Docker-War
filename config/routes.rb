@@ -20,7 +20,7 @@ DockerWar::Application.routes.draw do
   match '/timeline', to: 'pages#timeline', via: ['get', 'options']
 
   match '/wargame/basic', to: 'basic#index', via: 'get'
-  match '/wargame/basic/save', to: 'basic#content_save', via: 'post'
+  match '/wargame/basic/save', to: 'basic#content_save', via: 'patch'
   match '/wargame/basic/edit', to: 'basic#content_edit', via: 'patch'
   match '/wargame/basic/level1', to: 'basic#level1', via: [ 'get', 'post' ]
   match '/wargame/basic/level2', to: 'basic#level2', via: [ 'get', 'post' ]

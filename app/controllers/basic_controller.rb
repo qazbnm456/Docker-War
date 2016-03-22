@@ -191,7 +191,7 @@ class BasicController < ApplicationController
   def content_save
     @chal = Basic.find_by(:id => params[:basic][:id])
     @chal.content = params[:basic][:content]
-    if !!chal.save
+    if !!@chal.save
       respond_to do |format|
         format.js
       end
