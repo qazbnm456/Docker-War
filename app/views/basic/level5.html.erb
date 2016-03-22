@@ -1,8 +1,13 @@
 <div class="columns-12">
   <h4 style="text-align: center">
-    Simple injection. Check error messages.</br>
-    Check: <%= link_to 'there', @url %>
+    <%= sanitize @chal.content %>
+    <% if !current_user.nil? && current_user.admin? %>
+        <%= form_for @chal, url: {action: 'content_edit'}, :remote => 'true' do |f| %>
+            <%= render "shared/challenge_content_confirm", :chal_instance => @chal, :url_instance => "content_edit" %>
+        <% end %>
+    <% end %>
   </h4>
+  <%= link_to @url, @url %>
   <hr>
   <div class="col-6 col-offset-3">
     <%= form_tag "/wargame/basic/level5" do %>

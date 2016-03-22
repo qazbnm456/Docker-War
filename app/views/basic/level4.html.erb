@@ -1,8 +1,13 @@
 <div class="columns-12">
   <h4 style="text-align: center">
-    Download the attached file and find the flag.<br>
-    <%= link_to 'download', @url %>
+    <%= sanitize @chal.content %>
+    <% if !current_user.nil? && current_user.admin? %>
+        <%= form_for @chal, url: {action: 'content_edit'}, :remote => 'true' do |f| %>
+            <%= render "shared/challenge_content_confirm", :chal_instance => @chal, :url_instance => "content_edit" %>
+        <% end %>
+    <% end %>
   </h4>
+  <%= link_to 'Download', @url %>
   <hr>
   <div class="col-6 col-offset-3">
     <%= form_tag "/wargame/basic/level4" do %>

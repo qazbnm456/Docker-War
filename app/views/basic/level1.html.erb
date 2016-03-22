@@ -1,9 +1,10 @@
 <div class="columns-12">
   <h4 style="text-align: center">
     <%= sanitize @chal.content %>
-    <%= form_for @chal, url: {action: 'content_edit'}, :remote => 'true' do |f| %>
-        <%= f.hidden_field :id, :value => @chal.id %>
-        <%= f.submit 'Edit', :class => "btn btn-info" %>
+    <% if !current_user.nil? && current_user.admin? %>
+      <%= form_for @chal, url: {action: 'content_edit'}, :remote => 'true' do |f| %>
+          <%= render "shared/challenge_content_confirm", :chal_instance => @chal, :url_instance => "content_edit" %>
+      <% end %>
     <% end %>
   </h4>
   <hr>

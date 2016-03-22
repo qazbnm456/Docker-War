@@ -48,6 +48,7 @@ class BasicController < ApplicationController
         @ranked_players << r.user
       end
     end
+    @chal = Basic.find_by_id(2)
     @user = current_user
     @userpass = user_params[:password]
     @pass = Digest::SHA1.hexdigest(Basic.flag(2).first.flag)
@@ -85,6 +86,7 @@ class BasicController < ApplicationController
       end
     end
     @url = Basic.url(3).first.url
+    @chal = Basic.find_by_id(3)
     @user = current_user
     @userpass = user_params[:password]
     @pass = Digest::SHA1.hexdigest(Basic.flag(3).first.flag)
@@ -122,6 +124,7 @@ class BasicController < ApplicationController
       end
     end
     @url = Basic.url(4).first.url
+    @chal = Basic.find_by_id(4)
     @user = current_user
     @userpass = user_params[:password]
     @pass = Digest::SHA1.hexdigest(Basic.flag(4).first.flag)
@@ -159,6 +162,7 @@ class BasicController < ApplicationController
       end
     end
     @url = Basic.url(5).first.url
+    @chal = Basic.find_by_id(5)
     @user = current_user
     @userpass = user_params[:password]
     @pass = Digest::SHA1.hexdigest(Basic.flag(5).first.flag)

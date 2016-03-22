@@ -1,0 +1,1 @@
+<%= form_for chal_instance, url: {action: url_instance}, :remote => 'true' do |f| %><%= f.hidden_field :id, :value => chal_instance.id %><%= f.submit 'Edit', :class => "btn btn-info" %><% end %>
