@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   end
 
   def qna_ans
-    @qna = Qna.find_by(id: params[:qna][:id])
+    @qna = Qna.find_by(:id => params[:qna][:id])
     @qna.answer = params[:qna][:answer]
     @qna.status = 1
     if !!@qna.save

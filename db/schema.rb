@@ -11,139 +11,140 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209151526) do
+ActiveRecord::Schema.define(version: 20160322060337) do
 
   create_table "announcements", force: :cascade do |t|
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "body",       limit: 16777215
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "badges_sashes", force: :cascade do |t|
-    t.integer  "badge_id"
-    t.integer  "sash_id"
-    t.boolean  "notified_user", default: false
+    t.integer  "badge_id",      limit: 4
+    t.integer  "sash_id",       limit: 4
+    t.boolean  "notified_user", limit: 1, default: false
     t.datetime "created_at"
   end
 
-  add_index "badges_sashes", ["badge_id", "sash_id"], name: "index_badges_sashes_on_badge_id_and_sash_id"
-  add_index "badges_sashes", ["badge_id"], name: "index_badges_sashes_on_badge_id"
-  add_index "badges_sashes", ["sash_id"], name: "index_badges_sashes_on_sash_id"
+  add_index "badges_sashes", ["badge_id", "sash_id"], name: "index_badges_sashes_on_badge_id_and_sash_id", using: :btree
+  add_index "badges_sashes", ["badge_id"], name: "index_badges_sashes_on_badge_id", using: :btree
+  add_index "badges_sashes", ["sash_id"], name: "index_badges_sashes_on_sash_id", using: :btree
 
   create_table "basics", force: :cascade do |t|
-    t.string   "title"
-    t.string   "url"
-    t.string   "flag"
+    t.string   "title",      limit: 255
+    t.string   "url",        limit: 255
+    t.string   "flag",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content",    limit: 255
   end
 
   create_table "cryptos", force: :cascade do |t|
-    t.string   "title"
-    t.string   "url"
-    t.string   "flag"
+    t.string   "title",      limit: 255
+    t.string   "url",        limit: 255
+    t.string   "flag",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "forensics", force: :cascade do |t|
-    t.string   "title"
-    t.string   "url"
-    t.string   "flag"
+    t.string   "title",      limit: 255
+    t.string   "url",        limit: 255
+    t.string   "flag",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "identities", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "oauth_token"
-    t.string   "oauth_secret"
+    t.integer  "user_id",          limit: 4
+    t.string   "provider",         limit: 255
+    t.string   "uid",              limit: 255
+    t.string   "oauth_token",      limit: 255
+    t.string   "oauth_secret",     limit: 255
     t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "indicators", force: :cascade do |t|
-    t.boolean "value", default: false
+    t.boolean "value", limit: 1, default: false
   end
 
   create_table "majors", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 255
   end
 
   create_table "merit_actions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "action_method"
-    t.integer  "action_value"
-    t.boolean  "had_errors",    default: false
-    t.string   "target_model"
-    t.integer  "target_id"
-    t.text     "target_data"
-    t.boolean  "processed",     default: false
+    t.integer  "user_id",       limit: 4
+    t.string   "action_method", limit: 255
+    t.integer  "action_value",  limit: 4
+    t.boolean  "had_errors",    limit: 1,        default: false
+    t.string   "target_model",  limit: 255
+    t.integer  "target_id",     limit: 4
+    t.text     "target_data",   limit: 16777215
+    t.boolean  "processed",     limit: 1,        default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "merit_activity_logs", force: :cascade do |t|
-    t.integer  "action_id"
-    t.string   "related_change_type"
-    t.integer  "related_change_id"
-    t.string   "description"
+    t.integer  "action_id",           limit: 4
+    t.string   "related_change_type", limit: 191
+    t.integer  "related_change_id",   limit: 4
+    t.string   "description",         limit: 255
     t.datetime "created_at"
   end
 
-  add_index "merit_activity_logs", ["action_id"], name: "index_merit_activity_logs_on_action_id"
-  add_index "merit_activity_logs", ["related_change_id", "related_change_type"], name: "index_merit_activity_logs_on_rcid_and_rctype"
+  add_index "merit_activity_logs", ["action_id"], name: "index_merit_activity_logs_on_action_id", using: :btree
+  add_index "merit_activity_logs", ["related_change_id", "related_change_type"], name: "index_merit_activity_logs_on_rcid_and_rctype", using: :btree
 
   create_table "merit_score_points", force: :cascade do |t|
-    t.integer  "score_id"
-    t.integer  "num_points", default: 0
-    t.string   "log"
+    t.integer  "score_id",   limit: 4
+    t.integer  "num_points", limit: 4,   default: 0
+    t.string   "log",        limit: 255
     t.datetime "created_at"
   end
 
-  add_index "merit_score_points", ["score_id"], name: "index_merit_score_points_on_score_id"
+  add_index "merit_score_points", ["score_id"], name: "index_merit_score_points_on_score_id", using: :btree
 
   create_table "merit_scores", force: :cascade do |t|
-    t.integer "sash_id"
-    t.string  "category", default: "default"
+    t.integer "sash_id",  limit: 4
+    t.string  "category", limit: 255
   end
 
-  add_index "merit_scores", ["sash_id"], name: "index_merit_scores_on_sash_id"
+  add_index "merit_scores", ["sash_id"], name: "index_merit_scores_on_sash_id", using: :btree
 
   create_table "news", force: :cascade do |t|
-    t.string   "messages"
+    t.string   "messages", limit: 255
     t.datetime "date"
   end
 
   create_table "qnas", force: :cascade do |t|
-    t.string   "question"
-    t.string   "answer"
+    t.string   "question",   limit: 255
+    t.string   "answer",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status",     default: 0
+    t.integer  "status",     limit: 4,   default: 0
   end
 
   create_table "records", force: :cascade do |t|
-    t.string   "cate"
-    t.boolean  "solved",                  default: false
-    t.integer  "user_id"
+    t.string   "cate",          limit: 255
+    t.boolean  "solved",        limit: 1,   default: false
+    t.integer  "user_id",       limit: 4
     t.datetime "last_try_time"
     t.datetime "finish_time"
-    t.integer  "score",         limit: 5, default: 0
-    t.string   "tag",                                     null: false
+    t.integer  "score",         limit: 8,   default: 0
+    t.string   "tag",           limit: 255
   end
 
-  add_index "records", ["user_id"], name: "index_records_on_user_id"
+  add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
 
   create_table "reverses", force: :cascade do |t|
-    t.string   "title"
-    t.string   "url"
-    t.string   "flag"
+    t.string   "title",      limit: 255
+    t.string   "url",        limit: 255
+    t.string   "flag",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -154,67 +155,67 @@ ActiveRecord::Schema.define(version: 20160209151526) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.string   "session_id", null: false
-    t.text     "data"
+    t.string   "session_id", limit: 191
+    t.text     "data",       limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "settings", force: :cascade do |t|
-    t.string  "tag",                    null: false
-    t.boolean "active", default: false
+    t.string  "tag",    limit: 255
+    t.boolean "active", limit: 1,   default: false
   end
 
   create_table "sexes", force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 255
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                            default: "",       null: false
-    t.string   "encrypted_password",               default: "",       null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 191
+    t.string   "encrypted_password",     limit: 255
+    t.string   "reset_password_token",   limit: 191
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    default: 0,        null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.integer  "major_id"
-    t.integer  "sex_id"
-    t.integer  "score",                            default: 0
+    t.string   "name",                   limit: 255
+    t.integer  "major_id",               limit: 4
+    t.integer  "sex_id",                 limit: 4
+    t.integer  "score",                  limit: 4,   default: 0
     t.datetime "last_submit_time"
-    t.string   "time_zone",                        default: "Taipei"
-    t.boolean  "admin",                            default: false
-    t.integer  "sash_id"
-    t.integer  "level",                            default: 0
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
+    t.string   "time_zone",              limit: 255
+    t.boolean  "admin",                  limit: 1,   default: false
+    t.integer  "sash_id",                limit: 4
+    t.integer  "level",                  limit: 4,   default: 0
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
+    t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
-    t.integer  "port",                   limit: 5
+    t.integer  "port",                   limit: 8
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["major_id"], name: "index_users_on_major_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["sash_id"], name: "index_users_on_sash_id"
-  add_index "users", ["score"], name: "index_users_on_score"
-  add_index "users", ["sex_id"], name: "index_users_on_sex_id"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["major_id"], name: "index_users_on_major_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["sash_id"], name: "index_users_on_sash_id", using: :btree
+  add_index "users", ["score"], name: "index_users_on_score", using: :btree
+  add_index "users", ["sex_id"], name: "index_users_on_sex_id", using: :btree
 
   create_table "webs", force: :cascade do |t|
-    t.string   "title"
-    t.string   "url"
-    t.string   "subdomain"
+    t.string   "title",      limit: 255
+    t.string   "url",        limit: 255
+    t.string   "subdomain",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "db"
+    t.string   "db",         limit: 255
   end
 
 end

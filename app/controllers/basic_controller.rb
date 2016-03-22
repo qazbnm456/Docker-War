@@ -11,6 +11,7 @@ class BasicController < ApplicationController
         @ranked_players << r.user
       end
     end
+    @chal = Basic.find_by_id(1)
     @user = current_user
     @userpass = user_params[:password]
     @pass = Digest::SHA1.hexdigest(Basic.flag(1).first.flag)
@@ -186,6 +187,24 @@ class BasicController < ApplicationController
       end
     end
   end
+
+  def content_save
+    @chal = Basic.find_by(:id => params[:basic][:id])
+    @chal.content = params[:basic][:content]
+    if !!chal.save
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
+  def content_edit
+    @chal = Basic.find_by(:id => params[:basic][:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params

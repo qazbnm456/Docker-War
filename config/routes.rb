@@ -4,11 +4,13 @@ DockerWar::Application.routes.draw do
 
   match '/home', to: 'pages#home', via: 'get'
   match '/chatroom', to: 'pages#chatroom', via: 'get'
+
   match '/qna', to: 'pages#qna', via: 'get'
   match '/new_q', to: 'pages#new_q', via: 'post'
   match '/qna_ans', to: 'pages#qna_ans', via: 'patch'
   match '/qna_edit', to: 'pages#qna_edit', via: 'patch'
   match '/qna_delete', to: 'pages#qna_delete', via: 'delete'
+
   match '/rule', to: 'pages#rule', via: 'get'
   match '/about', to: 'pages#about', via: 'get'
   match '/wargame', to: 'pages#wargame', via: 'get'
@@ -18,23 +20,28 @@ DockerWar::Application.routes.draw do
   match '/timeline', to: 'pages#timeline', via: ['get', 'options']
 
   match '/wargame/basic', to: 'basic#index', via: 'get'
+  match '/wargame/basic/save', to: 'basic#content_save', via: 'post'
+  match '/wargame/basic/edit', to: 'basic#content_edit', via: 'patch'
   match '/wargame/basic/level1', to: 'basic#level1', via: [ 'get', 'post' ]
   match '/wargame/basic/level2', to: 'basic#level2', via: [ 'get', 'post' ]
   match '/wargame/basic/level3', to: 'basic#level3', via: [ 'get', 'post' ]
   match '/wargame/basic/level4', to: 'basic#level4', via: [ 'get', 'post' ]
   match '/wargame/basic/level5', to: 'basic#level5', via: [ 'get', 'post' ]
+
   match '/wargame/web', to: 'web#index', via: 'get'
   match '/wargame/web/level1', to: 'web#level1', via: [ 'get', 'post' ]
   match '/wargame/web/level2', to: 'web#level2', via: [ 'get', 'post' ]
   match '/wargame/web/level3', to: 'web#level3', via: [ 'get', 'post' ]
   match '/wargame/web/level4', to: 'web#level4', via: [ 'get', 'post' ]
   match '/wargame/web/level5', to: 'web#level5', via: [ 'get', 'post' ]
+
   match '/wargame/reverse', to: 'reverse#index', via: 'get'
   match '/wargame/reverse/level1', to: 'reverse#level1', via: [ 'get', 'post' ]
   match '/wargame/reverse/level2', to: 'reverse#level2', via: [ 'get', 'post' ]
   match '/wargame/reverse/level3', to: 'reverse#level3', via: [ 'get', 'post' ]
   match '/wargame/reverse/level4', to: 'reverse#level4', via: [ 'get', 'post' ]
   match '/wargame/reverse/level5', to: 'reverse#level5', via: [ 'get', 'post' ]
+
   match '/wargame/crypto', to: 'crypto#index', via: 'get'
   match '/wargame/crypto/level1', to: 'crypto#level1', via: [ 'get', 'post' ]
   match '/wargame/crypto/level2', to: 'crypto#level2', via: [ 'get', 'post' ]

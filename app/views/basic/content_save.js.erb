@@ -1,0 +1,1 @@
+$("h4").html('<%= @chal.content %><%= form_for @chal, url: {action: "content_edit"}, :remote => "true" do |f| %><%= f.hidden_field :id, :value => @chal.id %><%= f.submit "Edit", :class => "btn btn-info" %><% end %>');

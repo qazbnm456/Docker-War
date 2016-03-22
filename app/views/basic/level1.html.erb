@@ -1,6 +1,10 @@
 <div class="columns-12">
   <h4 style="text-align: center">
-    In this game you can test your hacker's ability, enjoy!
+    <%= sanitize @chal.content %>
+    <%= form_for @chal, url: {action: 'content_edit'}, :remote => 'true' do |f| %>
+        <%= f.hidden_field :id, :value => @chal.id %>
+        <%= f.submit 'Edit', :class => "btn btn-info" %>
+    <% end %>
   </h4>
   <hr>
   <div class="col-6 col-offset-3">

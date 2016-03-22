@@ -31,11 +31,11 @@ Sex.create!( :name => "Female" )
 Sex.create!( :name => "Others" )
 
 #Basic
-Basic.create!( :title => "basic 1", :url => "#", :flag => "#" )
-Basic.create!( :title => "basic 2", :url => "#", :flag => "#" )
-Basic.create!( :title => "basic 3", :url => "#", :flag => "#" )
-Basic.create!( :title => "basic 4", :url => "#", :flag => "#" )
-Basic.create!( :title => "basic 5", :url => "#", :flag => "#" )
+Basic.create!( :title => "basic 1", :url => "#", :content => "", :flag => "#" )
+Basic.create!( :title => "basic 2", :url => "#", :content => "", :flag => "#" )
+Basic.create!( :title => "basic 3", :url => "#", :content => "", :flag => "#" )
+Basic.create!( :title => "basic 4", :url => "#", :content => "", :flag => "#" )
+Basic.create!( :title => "basic 5", :url => "#", :content => "", :flag => "#" )
 
 #Web
 Web.create!( :title => "web 1", :url => "http://subdomain.domain.com:[:port]/", :subdomain => "#", :db => "#"  )
