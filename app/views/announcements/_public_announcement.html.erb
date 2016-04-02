@@ -1,5 +1,5 @@
 <% if announcement_visible?(current_announcement) %>
     <div id="announcement">
-      <p class="alert alert-success" style="cursor: pointer" onclick="hideAnnouncement('#{current_announcement.to_cookie_key}')"><%= current_announcement.body.html_safe %></p>
+      <p class="alert alert-success tp" style="cursor: pointer" onclick="hideAnnouncement('#{current_announcement.to_cookie_key}')"><%= current_announcement.body.html_safe %></p>
     </div>
 <% end %>

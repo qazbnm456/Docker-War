@@ -11,25 +11,25 @@ This is the Git repo of the `Docker-War` images meant to serve as good bases for
 
 ---------------------------------------
 
-#**Table of contents**
+##**Table of contents**
 
-## [Notice](#notice)
+### [Notice](#notice)
 
-## [TODO](#todos)
+### [TODO](#todos)
 
-## [Prerequisites](#pre)
+### [Prerequisites](#pre)
 
-## [Setup](#setup)
+### [Setup](#setup)
 
-## [Known issues](#issues)
+### [Known issues](#issues)
 
-## [LICENSE](#license)
+### [LICENSE](#license)
 
 ---------------------------------------
 
 <a name="notice"></a>
 
-# Some notices you have to check out.
+## Some notices you have to check out.
 
 Sometimes you may confront services looping forever, and this [link](http://stackoverflow.com/questions/11583562/how-to-kill-a-process-running-on-particular-port-in-linux) might helps you. Besides, if you wanna re-add the host, just delete the files in /var/lib/rancher/state.
 
@@ -39,7 +39,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 <a name="todos"></a>
 
-# TODO
+## TODO
 
 * Modify [nginx-proxy](https://github.com/qazbnm456/nginx-proxy) to support managed IPs by [Rancher](https://github.com/rancher/rancher).
 * Covering Unit Test and Integration Test.
@@ -52,7 +52,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 <a name="pre"></a>
 
-# Prerequisites
+## Prerequisites
 
 * Git
 * Docker and Docker-Compose
@@ -62,7 +62,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 <a name="setup"></a>
 
-# Setup
+## Setup
 
 ### Installing Git
 
@@ -74,7 +74,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 1. `$ sudo curl -fsSL https://get.docker.com/ | sh`
 2. Verify if docker is installed correctly, `$ sudo docker run hello-world`
-3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
+3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.7.0-rc1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
 4. `$ sudo chmod +x /usr/local/bin/docker-compose`
 
 ### Pre Setup Env Variables and Build the Image
@@ -90,7 +90,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 <a name="issues"></a>
 
-# Known issues
+## Known issues
 
 1. Email sender do not work correctly.
 2. Change challenges on-the-fly is still unstable.
@@ -98,7 +98,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 <a name="license"></a>
 
-# License
+## License
 
 This project use [SATA License](LICENSE) (Star And Thank Author License), so you have to star this project before using. Read the [license](LICENSE) carefully.
   MARKDOWN

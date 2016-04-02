@@ -1,1 +1,1 @@
-$("h4").html('<%= sanitize @chal.content %><%= form_for @chal, url: {action: "content_edit"}, :remote => "true" do |f| %><%= f.hidden_field :id, :value => @chal.id %><%= f.submit "Edit", :class => "btn btn-info" %><% end %>');
+$("#editable").html('<%= @chal.content.html_safe %><%= form_for @chal, url: {action: "content_edit"}, :remote => "true" do |f| %><%= f.hidden_field :id, :value => @chal.id %><%= f.submit "Edit", :class => "btn btn-info" %><% end %>');

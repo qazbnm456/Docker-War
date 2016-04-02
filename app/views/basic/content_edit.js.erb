@@ -1,14 +1,11 @@
-$("h4").html('<%= (render "shared/challenge_content_form", :chal_instance => @chal, :url_instance => "content_save").gsub("\n",'').html_safe %>');
+$("#editable").html('<%= (render "shared/challenge_content_form", :chal_instance => @chal, :url_instance => "content_save").gsub("\n",'').html_safe %>');
 tinyMCE.remove();
 tinyMCE.init({
+  selector: 'textarea',
   force_br_newlines : true,
   force_p_newlines : false,
   forced_root_block : "",
-  plugins: [
-    'advlist autolink lists link image charmap print preview anchor',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table contextmenu paste code'
-  ],
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  selector: '#basic_content'
+  plugins: "table contextmenu paste code",
+  height: "100px",
+  toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 });

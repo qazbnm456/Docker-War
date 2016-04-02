@@ -1,24 +1,22 @@
 <div class="container">
-  <div class="span12" style="background-color: white">
-    <div class="row">
-      <div class="span3">
-        <%= image_tag @user.avatar.url(:medium), :class => 'circle' %>
-      </div>
-      <div class="span9">
-        <p style="font-size: 30px; border-bottom: 2px solid #e2e2e2; margin-right: 20px;"><%= @user.name %><span class="panel-segment-title3"><%= "(#{@user.email})" %></span></p>
-          <div style="align-content: center">
-            <% @user.badges.first(5).each do |b| %>
-                <%= image_tag b.custom_fields[:image], :class => "badge-pop-over-#{b.name}" %>
-                <script>
-                    $(".badge-pop-over-"+"<%= b.name %>").tooltip({
-                        container: 'body',
-                        trigger: 'hover',
-                        placement: 'bottom',
-                        title: "<%= b.custom_fields[:display_name] %>"
-                    })
-                </script>
-            <%end%>
-          </div>
+  <div class="columns-12" style="background-color: white">
+    <div class="col-3">
+      <%= image_tag @user.avatar.url(:medium), :class => 'circle' %>
+    </div>
+    <div class="col-9">
+      <p style="font-size: 30px; border-bottom: 2px solid #e2e2e2; margin-right: 20px;" class="tp"><%= @user.name %><span class="panel-segment-title3"><%= "(#{@user.email})" %></span></p>
+      <div style="align-content: center">
+        <% @user.badges.first(5).each do |b| %>
+            <%= image_tag b.custom_fields[:image], :class => "badge-pop-over-#{b.name}" %>
+            <script>
+              $(".badge-pop-over-"+"<%= b.name %>").tooltip({
+                container: 'body',
+                trigger: 'hover',
+                placement: 'bottom',
+                title: "<%= b.custom_fields[:display_name] %>"
+              })
+            </script>
+        <%end%>
       </div>
     </div>
   </div>

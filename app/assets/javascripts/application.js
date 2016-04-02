@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.parallax.min
+//= require parallax.min
+//= require highcharts
 //= require hammer.min
 //= require underscore-min
 //= require fastclick.js
@@ -28,7 +29,6 @@
 //= require announcements
 //= require jsapi
 //= require chartkick.js
-//= require highcharts
 //= require socket.io
 //= require sanitize
 //= require tinymce-jquery

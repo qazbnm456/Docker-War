@@ -9,11 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap-responsive
  *= require kule/kule-grid.min
  *= require kule/kule-hacks.min
+ *= require kule/kule-base.min
  *= require kule/kule-lazy.min
- *= require kule/kule-theme-default.min
+ *= require kule/kule-animates.min
+ *= require kule/kule-effects.min
+ *= require bootstrap-responsive
  *= require timelineJS/timeline
  *= require sweet-alert
  *= require_tree .

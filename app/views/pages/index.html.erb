@@ -23,10 +23,10 @@
     <div class="cables center accelerate">
       <div class="panel accelerate container" style="margin-top: 0px;">
         <header>
-          <h1><em>Docker-War</em></h1>
+          <h1 class="th1"><em>Docker-War</em></h1>
         </header>
-        <p>It's time for you.</p>
-        <p>A whole new experience playing CTF.</p>
+        <p class="tp">It's time for you.</p>
+        <p class="tp">A whole new experience playing CTF.</p>
         <ul class="links">
           <li><a class="download" href="/register">Registration</a></li>
           <li><a class="download" href="/home">Homepage</a></li>
@@ -56,7 +56,7 @@
   var $html = $('html'),
     $toggle = $('#toggle'),
     $about  = $('#about'),
-    $scene  = $('#scene')
+    $scene  = document.getElementById('scene')
 
   // Add touch functionality.
   if (Hammer.HAS_TOUCHEVENTS) {
@@ -67,8 +67,8 @@
   $html.addClass(Hammer.HAS_TOUCHEVENTS ? 'touch' : 'mouse');
   // Resize handler.
   (resize = function() {
-    $scene[0].style.width = window.innerWidth + 'px';
-    $scene[0].style.height = window.innerHeight + 'px';
+    $scene.style.width = window.innerWidth + 'px';
+    $scene.style.height = window.innerHeight + 'px';
   })();
   // Attach window listeners.
   window.onresize = _.debounce(resize, 200);
@@ -88,5 +88,6 @@
     $toggle.hasClass('i') ? showDetails() : hideDetails();
   });
 
-  $scene.parallax();
+  var parallax = new Parallax($scene);
+  parallax.enable();
 </script>

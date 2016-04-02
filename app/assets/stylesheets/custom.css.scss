@@ -39,10 +39,6 @@ textarea {
   }
 }
 
-.downalittle {
-  margin-top: 45px;
-}
-
 /* modify bootstrap's table css */
 
 .table {
@@ -145,18 +141,18 @@ td:nth-last-child(1) {
 
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
+.th1, .th2, .th3, .th4, .th5, .th6 {
   line-height: 1;
 }
 
-h1 {
+.th1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
 
-h2 {
+.th2 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
@@ -164,7 +160,7 @@ h2 {
   font-weight: normal;
 }
 
-p {
+.tp {
   font-size: 1.5em;
   line-height: 1em;
   text-align: center;
@@ -1845,4 +1841,208 @@ html {
 
 .divider:before {
   background-image: asset_data_url('kule/divider.jpg');
+}
+
+.contains {
+  max-width: 580px;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+}
+
+.chal {
+  background: #eee;
+  box-shadow: #999 1px 1px 3px;
+  margin: 30px 0;
+  padding-top: 40px;
+  min-height: 200px;
+  width: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.chal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  font-size: 1em;
+  font-style: italic;
+  color: #BF71D0;
+}
+
+.chal-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.chal-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.chal-body * {
+  box-sizing: border-box;
+}
+
+.chal-body h1, .chal-body h2, .chal-body h3, .chal-body h4, .chal-body h5, .chal-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.chal-body h1 {
+  font-size: 30px;
+}
+
+.chal-body h1, .chal-body h2, .chal-body h3, .chal-body h4, .chal-body h5, .chal-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.chal-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.chal-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+div[contenteditable="tinymce"] {
+  font-size: 1.2em;
+  font-family: 'Source Sans Pro', sans-serif;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  width: 100%;
+  padding: 10px 20px 10px;
+  min-height: 250px;
+  background: #ffffff;
+}
+
+// Inverted navbar
+// -------------------------
+
+.navbar-inverse {
+
+  .navbar-content {
+    @include gradient-vertical($navbarInverseBackgroundHighlight, $navbarInverseBackground);
+    border-color: $navbarInverseBorder;
+  }
+
+  .navbar-brand,
+  .navbar-nav > li > a {
+    color: $navbarInverseLinkColor;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+    &:hover,
+    &:focus {
+      color: $navbarInverseLinkColorHover;
+    }
+  }
+
+  .navbar-header {
+    color: $navbarInverseBrandColor;
+  }
+
+  .navbar-brand {
+    color: $navbarInverseText;
+  }
+
+  .navbar-nav > li > a:focus,
+  .navbar-nav > li > a:hover {
+    background-color: $navbarInverseLinkBackgroundHover;
+    color: $navbarInverseLinkColorHover;
+  }
+
+  .navbar-nav .active > a,
+  .navbar-nav .active > a:hover,
+  .navbar-nav .active > a:focus {
+    color: $navbarInverseLinkColorActive;
+    background-color: $navbarInverseLinkBackgroundActive;
+  }
+
+  // Inline text links
+  .navbar-nav-link {
+    color: $navbarInverseLinkColor;
+    &:hover,
+    &:focus {
+      color: $navbarInverseLinkColorHover;
+    }
+  }
+
+  // Dropdowns
+  .nav li.dropdown.open > .dropdown-toggle,
+  .nav li.dropdown.active > .dropdown-toggle,
+  .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: $navbarInverseLinkBackgroundActive;
+    color: $navbarInverseLinkColorActive;
+  }
+  .nav li.dropdown > a:hover .caret,
+  .nav li.dropdown > a:focus .caret {
+    border-top-color: $navbarInverseLinkColorActive;
+    color: $navbarInverseLinkColorActive;
+  }
+  .nav li.dropdown > .dropdown-toggle .caret {
+    border-top-color: $navbarInverseLinkColor;
+    border-bottom-color: $navbarInverseLinkColor;
+  }
+  .nav li.dropdown.open > .dropdown-toggle .caret,
+  .nav li.dropdown.active > .dropdown-toggle .caret,
+  .nav li.dropdown.open.active > .dropdown-toggle .caret {
+    border-top-color: $navbarInverseLinkColorActive;
+    border-bottom-color: $navbarInverseLinkColorActive;
+  }
+
+  // Navbar search
+  .navbar-search {
+    .search-query {
+      color: $white;
+      background-color: $navbarInverseSearchBackground;
+      border-color: $navbarInverseSearchBorder;
+      @include box-shadow(inset 0 1px 2px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.15));
+      @include transition(none);
+      @include placeholder($navbarInverseSearchPlaceholderColor);
+
+      // Focus states (we use .focused since IE7-8 and down doesn't support :focus)
+      &:focus,
+      &.focused {
+        padding: 5px 15px;
+        color: $grayDark;
+        text-shadow: 0 1px 0 $white;
+        background-color: $navbarInverseSearchBackgroundFocus;
+        border: 0;
+        @include box-shadow(0 0 3px rgba(0,0,0,.15));
+        outline: 0;
+      }
+    }
+  }
+
+  // Navbar collapse button
+  .btn-navbar {
+    @include buttonBackground(darken($navbarInverseBackgroundHighlight, 5%), darken($navbarInverseBackground, 5%));
+  }
+
+}
+
+.nav-fix {
+  margin: 4px 4px 0 0;
+}
+
+::selection {
+  text-shadow: none;
+  color: #fff;
+  background-color: #45a7b9;
 }
