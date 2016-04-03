@@ -99,7 +99,8 @@
 </div>
 
 <script>
-  $("#user_sex_sex_id_1").attr( 'checked', true )
+  $("#user_sex_sex_id_1").attr( 'checked', true );
+  $('select option:contains("Taipei")').prop('selected',true);
 
   var LoginModalController = {
     tabsElementName: ".logmod__tabs li",

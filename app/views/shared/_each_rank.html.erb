@@ -18,7 +18,7 @@
                 <% else %>
                     <td>Not Finished</td>
                 <% end %>
-                <td style="width: 40%;"><%= user.last_submit_time %></td>
+                <td style="width: 40%;"><%= user.last_submit_time.to_s(:long_ordinal) %></td>
               </tr>
           <% end %>
         </table>
