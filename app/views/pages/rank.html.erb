@@ -53,7 +53,7 @@
                         <td><div class="t0"></div></td>
                     <% end %>
                 <% end %>
-                <td><%= user.last_submit_time.to_s(:long_ordinal) %></td>
+                <td><%= user.last_submit_time.nil? ? "" : user.last_submit_time.to_s(:long_ordinal) %></td>
               </tr>
           <% end %>
         </table>
