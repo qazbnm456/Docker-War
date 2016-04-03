@@ -29,6 +29,8 @@ DockerWar::Application.routes.draw do
   match '/wargame/basic/level5', to: 'basic#level5', via: [ 'get', 'post' ]
 
   match '/wargame/web', to: 'web#index', via: 'get'
+  match '/wargame/web/save', to: 'web#content_save', via: 'patch'
+  match '/wargame/web/edit', to: 'web#content_edit', via: 'patch'
   match '/wargame/web/level1', to: 'web#level1', via: [ 'get', 'post' ]
   match '/wargame/web/level2', to: 'web#level2', via: [ 'get', 'post' ]
   match '/wargame/web/level3', to: 'web#level3', via: [ 'get', 'post' ]
@@ -36,6 +38,8 @@ DockerWar::Application.routes.draw do
   match '/wargame/web/level5', to: 'web#level5', via: [ 'get', 'post' ]
 
   match '/wargame/reverse', to: 'reverse#index', via: 'get'
+  match '/wargame/reverse/save', to: 'reverse#content_save', via: 'patch'
+  match '/wargame/reverse/edit', to: 'reverse#content_edit', via: 'patch'
   match '/wargame/reverse/level1', to: 'reverse#level1', via: [ 'get', 'post' ]
   match '/wargame/reverse/level2', to: 'reverse#level2', via: [ 'get', 'post' ]
   match '/wargame/reverse/level3', to: 'reverse#level3', via: [ 'get', 'post' ]
@@ -43,6 +47,8 @@ DockerWar::Application.routes.draw do
   match '/wargame/reverse/level5', to: 'reverse#level5', via: [ 'get', 'post' ]
 
   match '/wargame/crypto', to: 'crypto#index', via: 'get'
+  match '/wargame/crypto/save', to: 'crypto#content_save', via: 'patch'
+  match '/wargame/crypto/edit', to: 'crypto#content_edit', via: 'patch'
   match '/wargame/crypto/level1', to: 'crypto#level1', via: [ 'get', 'post' ]
   match '/wargame/crypto/level2', to: 'crypto#level2', via: [ 'get', 'post' ]
   match '/wargame/crypto/level3', to: 'crypto#level3', via: [ 'get', 'post' ]

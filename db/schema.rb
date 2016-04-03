@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322060337) do
+ActiveRecord::Schema.define(version: 20160403074123) do
 
   create_table "announcements", force: :cascade do |t|
     t.text     "body",       limit: 16777215
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160322060337) do
     t.string   "flag",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "content",    limit: 255
+    t.text     "content",    limit: 65535
   end
 
   create_table "cryptos", force: :cascade do |t|
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160322060337) do
     t.string   "flag",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content",    limit: 65535
   end
 
   create_table "forensics", force: :cascade do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160322060337) do
     t.string   "flag",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content",    limit: 65535
   end
 
   create_table "identities", force: :cascade do |t|
@@ -147,6 +149,7 @@ ActiveRecord::Schema.define(version: 20160322060337) do
     t.string   "flag",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content",    limit: 65535
   end
 
   create_table "sashes", force: :cascade do |t|
@@ -216,6 +219,7 @@ ActiveRecord::Schema.define(version: 20160322060337) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "db",         limit: 255
+    t.text     "content",    limit: 65535
   end
 
 end

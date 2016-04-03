@@ -1,18 +1,1 @@
-<div class="columns-12">
-  <h4 style="text-align: center">
-    <%= sanitize @chal.content %>
-    <% if !current_user.nil? && current_user.admin? %>
-        <%= render "shared/challenge_content_confirm", :chal_instance => @chal, :url_instance => "content_edit" %>
-    <% end %>
-  </h4>
-  <hr>
-  <div class="col-6 col-offset-3">
-    <%= form_tag "/wargame/basic/level2" do %>
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-        <%= submit_tag 'Submit', class: 'btn btn-success' %>
-    <% end %>
-    <!--Password: jU{=<nX|?+$G&oI#-->
-  </div>
-</div>
-<%= render 'shared/each_rank', ranked_players: @ranked_players, index: 1 %>
+<!--Password: jU{=<nX|?+$G&oI#--><%= render "shared/challenge", :ctl_name => controller_name, :act_name => action_name, :url => @url, :chal => @chal, :current_user => current_user, :ranked_players => @ranked_players, :index => 1 %>

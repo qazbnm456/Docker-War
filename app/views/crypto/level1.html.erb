@@ -1,14 +1,1 @@
-<div class="columns-12">
-  <h4 style="text-align: center">
-    Here: <%= link_to 'there', @url %>
-  </h4>
-  <hr>
-  <div class="col-6 col-offset-3">
-    <%= form_tag "/wargame/crypto/level1" do %>
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-        <%= submit_tag 'Submit', class: 'btn btn-success' %>
-    <% end %>
-  </div>
-</div>
-<%= render 'shared/each_rank', ranked_players: @ranked_players, index: 15 %>
+<%= render "shared/challenge", :ctl_name => controller_name, :act_name => action_name, :url => @url, :chal => @chal, :current_user => current_user, :ranked_players => @ranked_players, :index => 15 %>

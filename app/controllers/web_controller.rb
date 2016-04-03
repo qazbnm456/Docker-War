@@ -12,8 +12,9 @@ class WebController < ApplicationController
       end
     end
     @url = distribution Web.url(1)
+    @chal = Web.find_by_id(1)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @flag = session[:web][:level1]
     @pass = Digest::SHA1.hexdigest @flag
     get_container(controller_name, action_name, Web.subdomain(1), @flag, Web.db(1))
@@ -51,8 +52,9 @@ class WebController < ApplicationController
       end
     end
     @url = distribution Web.url(2)
+    @chal = Web.find_by_id(2)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @flag = session[:web][:level2]
     @pass = Digest::SHA1.hexdigest @flag
     get_container(controller_name, action_name, Web.subdomain(2), @flag, Web.db(2))
@@ -90,8 +92,9 @@ class WebController < ApplicationController
       end
     end
     @url = distribution Web.url(3)
+    @chal = Web.find_by_id(3)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @flag = session[:web][:level3]
     @pass = Digest::SHA1.hexdigest @flag
     get_container(controller_name, action_name, Web.subdomain(3), @flag, Web.db(3))
@@ -129,8 +132,9 @@ class WebController < ApplicationController
       end
     end
     @url = distribution Web.url(4)
+    @chal = Web.find_by_id(4)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @flag = session[:web][:level4]
     @pass = Digest::SHA1.hexdigest @flag
     get_container(controller_name, action_name, Web.subdomain(4), @flag, Web.db(4))
@@ -168,8 +172,9 @@ class WebController < ApplicationController
       end
     end
     @url = distribution Web.url(5)
+    @chal = Web.find_by_id(5)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @flag = session[:web][:level5]
     @pass = Digest::SHA1.hexdigest @flag
     get_container(controller_name, action_name, Web.subdomain(5), @flag, Web.db(5))
@@ -198,10 +203,28 @@ class WebController < ApplicationController
       end
     end
   end
+
+  def content_save
+    @chal = Web.find_by(:id => params[:web][:id])
+    @chal.content = params[:web][:content].gsub(/\'/, "&#39;").gsub(/(\r)+\n/, "")
+    if !!@chal.save
+      respond_to do |format|
+        format.js { render partial: "shared/challenge_content_save" }
+      end
+    end
+  end
+
+  def content_edit
+    @chal = Web.find_by(:id => params[:web][:id])
+    respond_to do |format|
+      format.js { render partial: "shared/challenge_content_edit" }
+    end
+  end
+
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.permit(:password)
+    params.permit(:flag)
   end
 
   def distribution(url)

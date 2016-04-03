@@ -1933,6 +1933,10 @@ div[contenteditable="tinymce"] {
   background: #ffffff;
 }
 
+.navbar {
+  margin-bottom: 0px;
+}
+
 // Inverted navbar
 // -------------------------
 
@@ -2045,4 +2049,8 @@ div[contenteditable="tinymce"] {
   text-shadow: none;
   color: #fff;
   background-color: #45a7b9;
+}
+
+ol {
+  list-style: decimal !important;
 }

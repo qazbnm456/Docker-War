@@ -12,8 +12,9 @@ class ReverseController < ApplicationController
       end
     end
     @url = Reverse.url(1).first.url
+    @chal = Reverse.find_by_id(1)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(1).first.flag)
     if !@userpass.nil?
       @userpass = Digest::SHA1.hexdigest @userpass
@@ -49,8 +50,9 @@ class ReverseController < ApplicationController
       end
     end
     @url = Reverse.url(2).first.url
+    @chal = Reverse.find_by_id(2)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(2).first.flag)
     if !@userpass.nil?
       @userpass = Digest::SHA1.hexdigest @userpass
@@ -85,8 +87,10 @@ class ReverseController < ApplicationController
         @ranked_players << r.user
       end
     end
+    @url = Reverse.url(3).first.url
+    @chal = Reverse.find_by_id(3)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(3).first.flag)
     if !@userpass.nil?
       @userpass = Digest::SHA1.hexdigest @userpass
@@ -121,8 +125,10 @@ class ReverseController < ApplicationController
         @ranked_players << r.user
       end
     end
+    @url = Reverse.url(4).first.url
+    @chal = Reverse.find_by_id(4)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(4).first.flag)
     if !@userpass.nil?
       @userpass = Digest::SHA1.hexdigest @userpass
@@ -157,8 +163,10 @@ class ReverseController < ApplicationController
         @ranked_players << r.user
       end
     end
+    @url = Reverse.url(5).first.url
+    @chal = Reverse.find_by_id(5)
     @user = current_user
-    @userpass = user_params[:password]
+    @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(5).first.flag)
     if !@userpass.nil?
       @userpass = Digest::SHA1.hexdigest @userpass
@@ -185,9 +193,27 @@ class ReverseController < ApplicationController
       end
     end
   end
+
+  def content_save
+    @chal = Reverse.find_by(:id => params[:reverse][:id])
+    @chal.content = params[:reverse][:content].gsub(/\'/, "&#39;").gsub(/(\r)+\n/, "")
+    if !!@chal.save
+      respond_to do |format|
+        format.js { render partial: "shared/challenge_content_save" }
+      end
+    end
+  end
+
+  def content_edit
+    @chal = Reverse.find_by(:id => params[:reverse][:id])
+    respond_to do |format|
+      format.js { render partial: "shared/challenge_content_edit" }
+    end
+  end
+
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.permit(:password)
+    params.permit(:flag)
   end
 end
