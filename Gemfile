@@ -38,6 +38,7 @@ gem 'kramdown'
 gem 'rest-client'
 gem 'diuitauth'
 gem 'tinymce-rails'
+gem 'secure_headers', github: 'twitter/secureheaders'
 
 group :development do
   gem 'better_errors'

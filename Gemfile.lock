@@ -27,6 +27,13 @@ GIT
       reek (= 3.8.1)
       virtus (~> 1.0)
 
+GIT
+  remote: git://github.com/twitter/secureheaders.git
+  revision: ede35f914fe5539f50bf87d3720769fd9c74825a
+  specs:
+    secure_headers (3.2.0)
+      useragent
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -428,6 +435,7 @@ GEM
       equalizer (~> 0.0.9)
       parser (~> 2.3.0)
       procto (~> 0.0.2)
+    useragent (0.16.7)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -489,6 +497,7 @@ DEPENDENCIES
   rubycritic!
   sass-rails
   sdoc (= 0.3.20)
+  secure_headers!
   selenium-webdriver (~> 2.35.1)
   spring
   sprockets (~> 2.0)
