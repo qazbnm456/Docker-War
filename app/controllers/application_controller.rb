@@ -40,9 +40,18 @@ class ApplicationController < ActionController::Base
         plugin_types: %w(application/x-shockwave-flash),
         block_all_mixed_content: true, # see [http://www.w3.org/TR/mixed-content/](http://www.w3.org/TR/mixed-content/)
         upgrade_insecure_requests: true, # see https://www.w3.org/TR/upgrade-insecure-requests/
-        report_uri: %w(https://report-uri.io/example-csp)
+        report_uri: %w(https://331f16c75888d350134a58be3b017b7a.report-uri.io/r/default/csp/enforce)
     }
-    config.hpkp = OPT_OUT
+    config.hpkp = {
+        report_only: false,
+        max_age: 270.days.to_i,
+        include_subdomains: true,
+        report_uri: "https://331f16c75888d350134a58be3b017b7a.report-uri.io/r/default/hpkp/enforce",
+        pins: [
+            {sha256: "CYGFpDKIH2YoOm4jPvWZt6uWt/33dO4ReDBUQdhbTJs="},
+            {sha256: "+jZrZTw2Qn84hZSEHdg1EbpcSpj7HDgV0iw+gB+U3As="}
+        ]
+    }
   end
 
   protected
