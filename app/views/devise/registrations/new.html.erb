@@ -1,16 +1,16 @@
-<h1 class="th1">Sign up</h1>
+<h1 class="th1"><%= t("devise_related_custom_views.registration") %></h1>
 <div class="columns-12">
   <div class="col-6 col-offset-3">
     <div class="logmod__wrapper">
       <div class="logmod__container">
         <div class="logmod__tab-wrapper">
           <ul class="logmod__tabs">
-            <li data-tabtar="lgm-1"><a href="#">Login</a></li>
-            <li data-tabtar="lgm-2"><a href="#">Sign Up</a></li>
+            <li data-tabtar="lgm-1"><a href="#"><%= t("devise_related_custom_views.login") %></a></li>
+            <li data-tabtar="lgm-2"><a href="#"><%= t("devise_related_custom_views.registration") %></a></li>
           </ul>
           <div class="logmod__tab lgm-2">
             <div class="logmod__heading">
-              <span class="logmod__heading-subtitle">Enter your personal details <strong>to create an acount</strong></span>
+              <span class="logmod__heading-subtitle"><%= raw t("devise_related_custom_views.registration_notice") %></span>
             </div>
             <div class="logmod__form">
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -18,7 +18,7 @@
 
                   <div class="sminputs">
                     <div class="input full">
-                      <%= f.label :name, :class => 'string optional' %>
+                      <%= f.label t("devise_related_custom_views.registration_and_edit_details.name"), :class => 'string optional' %>
                       <%= f.text_field :name, autofocus: true, :class => 'string optional', :id => 'user-name', :placeholder => 'Name' %>
                     </div>
                   </div>
@@ -27,7 +27,7 @@
                     <div class="full" style="padding: 11px 24px;">
                       <div class='control-group'>
                         <%= f.fields_for :sex do |s| %>
-                          <%= s.label "Sex", :class => 'string optional', :style => "text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-size: 12px; line-height: 24px;" %>
+                          <%= s.label t("devise_related_custom_views.registration_and_edit_details.sex"), :class => 'string optional', :style => "text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-size: 12px; line-height: 24px;" %>
                           <%= s.collection_radio_buttons :sex_id, Sex.all, :id, :name do |cb| %>
                             <% cb.label(class: "radio inline") {cb.radio_button(class: "radio") + cb.text} %>
                           <% end %>
@@ -40,7 +40,7 @@
                     <div class="input full">
                       <div class='control-group'>
                         <%= f.fields_for :major do |m| %>
-                            <%= m.label "Majors", :class => 'string optional' %>
+                            <%= m.label t("devise_related_custom_views.registration_and_edit_details.major"), :class => 'string optional' %>
                             <%= m.collection_select :major_id, Major.all, :id, :name, prompt: true %>
                         <% end %>
                       </div>
@@ -56,7 +56,7 @@
 
                   <div class="sminputs">
                     <div class="input full">
-                      <%= f.label :time_zone, :class => 'string optional' %>
+                      <%= f.label t("devise_related_custom_views.registration_and_edit_details.time_zone"), :class => 'string optional' %>
                       <%= f.time_zone_select :time_zone %>
                     </div>
                   </div>
@@ -74,7 +74,7 @@
 
                   <div class="simform__actions">
                     <div style="text-align: center; margin: 9px;">
-                      <%= f.submit 'Register', class: "btn btn-large btn-primary" %>
+                      <%= f.submit t("devise_related_custom_views.registration"), class: "btn btn-large btn-primary" %>
                     </div>
                   </div>
               <% end %>
@@ -86,7 +86,7 @@
                     <i class="fa fa-facebook"></i>
                   </div>
                   <div class="connect__context">
-                    <span>Create an account with <strong>Facebook</strong></span>
+                    <span><%= raw t("devise_related_custom_views.facebook.register") %></span>
                   </div>
                 </a>
               </div>

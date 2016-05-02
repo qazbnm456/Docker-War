@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :set_timezone, :current_ability
+  before_action :set_timezone, :set_locale, :current_ability
 
   SecureHeaders::Configuration.default do |config|
     config.cookies = {
@@ -83,6 +83,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_locale
+    @req_lang = extract_locale_from_accept_language_header
+    @req_lang = @req_lang.nil? ? nil : @req_lang.scan(/^[a-z]{2}/).first
+
+    session[:locale] = case
+             when DockerWar::Application::VALID_LANG.include?( params[:locale] ) then params[:locale]
+             when session[:locale] then session[:locale]
+             when DockerWar::Application::VALID_LANG.include?( @req_lang ) then @req_lang
+             end
+
+    I18n.locale = session[:locale] || I18n.default_locale
+  end
+
   def current_ability
     @current_ability ||= Ability.new(current_user)
   end
@@ -130,5 +143,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to main_app.root_path, :alert => exception.message
+  end
+
+  private
+  def extract_locale_from_accept_language_header
+    request.env['HTTP_ACCEPT_LANGUAGE']
   end
 end

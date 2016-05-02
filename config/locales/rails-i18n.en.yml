@@ -1,0 +1,287 @@
+---
+en:
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    - 
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+    - 
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      present: must be blank
+      confirmation: doesn't match %{attribute}
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      record_invalid: 'Validation failed: %{errors}'
+      restrict_dependent_destroy:
+        one: Cannot delete record because a dependent %{record} exists
+        many: Cannot delete record because dependent %{record} exist
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+      other_than: must be other than %{count}
+    template:
+      body: 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: "%{count} errors prohibited this %{model} from being saved"
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+        format: "%n%"
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", and "
+      two_words_connector: " and "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm
+  index_board:
+    intro_one: It's time for you.
+    intro_two: A whole new experience playing CTF.
+    registration: REGISTRATION
+    homepage: HOMEPAGE
+  QA:
+    placeholder: Got any questions? Send any questions anytime, and it's will be added into Q&A page.
+    submit: "Submit (Max: 50 chars)"
+    submitted: Submitted
+    words_deal: Question will be truncated to fit to maximum length.
+    empty_warning: No empty!
+  bulletin_board:
+    date: Date
+    messages: Messages
+  home_nav:
+    notice: Notice
+    ranking: Ranking
+    irc: IRC
+    contest: Contest
+    none: None
+  page_partial:
+    title:
+      challenge: Take Challenges!
+      registration: Sign up now!!
+  page_ranking:
+    ranking: Ranking
+    chart: Chart
+    live: Live
+    name: Name
+    score: Score
+    last_submission_time: Last submission time
+  each_rank:
+    name: Name
+    score: Score
+    finished_or_not: Finished or Not
+    finished: Finished
+    not_finished: Not Finished
+    last_submission_time: Last submission time
+  page_rule:
+    title: Play fair, have fun.  Don't be a jerk.
+    infrastructure:
+      name: infrastructure
+      rule_one: Please do not attack any infrastructure or related domains. Perhaps We can give out points to players who come forward about potential mistakes we've made.
+      rule_two: Denial of service attacks on any challenge will not be tolerated, unless the challenge calls for such an attack.
+      rule_three: Guessing flags will not be tolerated.
+  layout_header:
+    navbar:
+      chatroom: Chatroom(Beta)
+      qa: Q&A
+      rule: Rule
+      dropdown:
+        profile: My profile
+        edit_profile: Edit profile
+        admin: Admin Panel
+        login: Log in
+        logout: Log out
+  layout_footer:
+    about: About
+  devise_related_custom_views:
+    facebook:
+      tooltip: If you logged in with FB, declaring you password with
+      login: Log in with <strong>Facebook</strong>
+      register: Create an account with <strong>Facebook</strong>
+    login: Log in
+    logout: Log out
+    edit: Edit
+    login_notice: Enter your email and password <strong>to sign in</strong>
+    registration_notice: Enter your personal details <strong>to create an acount</strong>
+    confirmation_notice: Didn't receive confirmation instructions?
+    unlock_notice: Didn't receive unlock instructions?
+    registration: Register
+    forgot_password: Forgot your password?
+    show: Show
+    hide: Hide
+    registration_and_edit_details:
+      avatar: Avatar
+      name: NAME
+      sex: SEX
+      major: MAJOR
+      time_zone: TIME ZONE
+      choose_file: Choose file
+      currently_waiting_confirmation_for: Currently waiting confirmation for

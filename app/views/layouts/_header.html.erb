@@ -5,9 +5,9 @@
   </div>
   <div class="navbar-content">
     <ul class="navbar-nav right nav-fix">
-      <li class="navbar-nav-item"><%= link_to "Chatroom(BETA)", chatroom_path, class: "navbar-nav-link" %></li>
-      <li class="navbar-nav-item"><%= link_to "Q&A", qna_path, class: "navbar-nav-link" %></li>
-      <li class="navbar-nav-item"><%= link_to "Rule", rule_path, class: "navbar-nav-link" %></li>
+      <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.chatroom"), chatroom_path, class: "navbar-nav-link" %></li>
+      <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.qa"), qna_path, class: "navbar-nav-link" %></li>
+      <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.rule"), rule_path, class: "navbar-nav-link" %></li>
       <% if user_signed_in? %>
           <li id="fat-menu" class="navbar-nav-item drop drop-hover">
             <a class="navbar-nav-link drop-btn">
@@ -16,28 +16,28 @@
             <ul class="drop-box drop-down-right menu">
               <li class="menu-item"><%= link_to show_user_path(current_user), class: "menu-link" do %>
                     <%= image_tag "icon/home.png", :width => '14px', :height => '14px' %>
-                    My profile
+                    <%= t("layout_header.navbar.dropdown.profile") %>
                 <% end %></li>
               <li class="menu-item"><%= link_to edit_user_registration_path, class: "menu-link" do %>
                     <%= image_tag "icon/edit.png", :width => '14px', :height => '14px' %>
-                    Edit profile
+                    <%= t("layout_header.navbar.dropdown.edit_profile") %>
                 <% end %></li>
               <% if current_user.admin? %>
                   <% if can? :access, :rails_admin %>
                       <li class="menu-item"><%= link_to rails_admin_path, class: "menu-link" do %>
                             <i class="icon-pencil"></i>
-                            Admin
+                            <%= t("layout_header.navbar.dropdown.admin") %>
                         <% end %></li>
                   <% end %>
               <% end %>
               <li class="menu-item"><%= link_to logout_path, class: "menu-link" do %>
                     <i class="icon-off"></i>
-                    Log out
+                    <%= t("layout_header.navbar.dropdown.logout") %>
                 <% end %></li>
             </ul>
           </li>
       <% else %>
-          <li class="navbar-nav-item"><%= link_to "Log in", login_path, class: "navbar-nav-link" %></li>
+          <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.dropdown.login"), login_path, class: "navbar-nav-link" %></li>
       <% end %>
     </ul>
   </div>

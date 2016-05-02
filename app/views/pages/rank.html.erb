@@ -2,13 +2,13 @@
 <%= render 'title' %>
 <ul class='nav nav-tabs'>
   <li class='<%= 'active' if params[:tab].nil? %>'>
-    <%= link_to "Ranking (#{@ranked_players.size})", rank_path %>
+    <%= link_to "#{t("page_ranking.ranking")} (#{@ranked_players.size})", rank_path %>
   </li>
   <li class='<%= 'active' if params[:tab] == 'Pie Chart' %>'>
-    <%= link_to "Chart", rank_path(tab: 'Pie Chart') %>
+    <%= link_to t("page_ranking.chart"), rank_path(tab: 'Pie Chart') %>
   </li>
   <li class='<%= 'active' if params[:tab] == 'live_submission' %>'>
-    <%= link_to "Live", rank_path(tab: 'live_submission') %>
+    <%= link_to t("page_ranking.live"), rank_path(tab: 'live_submission') %>
   </li>
 </ul>
 <div class="columns-12">
@@ -17,8 +17,8 @@
         <table width="100%" class="table table-striped table-condensed">
           <tr>
             <th><%= link_to '#', rank_path %></th>
-            <th>Name</th>
-            <th>Score</th>
+            <th><%= t("page_ranking.name") %></th>
+            <th><%= t("page_ranking.score") %></th>
             <th class="basic-pop-over-1"><%= link_to image_tag("order.png"), sort: :b1 %></th>
             <th class="basic-pop-over-2"><%= link_to image_tag("order.png"), sort: :b2 %></th>
             <th class="basic-pop-over-3"><%= link_to image_tag("order.png"), sort: :b3 %></th>
@@ -39,7 +39,7 @@
             <th class="crypto-pop-over-3"><%= link_to image_tag("order.png"), sort: :c3 %></th>
             <th class="crypto-pop-over-4"><%= link_to image_tag("order.png"), sort: :c4 %></th>
             <th class="crypto-pop-over-5"><%= link_to image_tag("order.png"), sort: :c5 %></th>
-            <th>Last submission time</th>
+            <th><%= t("page_ranking.last_submission_time") %></th>
           </tr>
           <% @ranked_players.each_with_index do |user, index| %>
               <tr>

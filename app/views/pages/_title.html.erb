@@ -2,9 +2,9 @@
   <div class="columns-12">
   <p id="war" class="tp">Do<span>c</span>k<span>er</span></p><p id="sub" class="tp"><span>W</span><span>ar</span></p>
   <% if user_signed_in? %>
-    <%= link_to "Take Challenges!", wargame_path, class: "btn btn-large btn-danger" %>
+    <%= link_to t("page_partial.title.challenge"), wargame_path, class: "btn btn-large btn-danger" %>
   <% else %>
-    <%= link_to "Sign up now!!", register_path, class: "btn btn-large btn-primary" %>
+    <%= link_to t("page_partial.title.registration"), register_path, class: "btn btn-large btn-primary" %>
   <% end %>
   </div>
 </div>

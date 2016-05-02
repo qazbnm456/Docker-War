@@ -1,16 +1,16 @@
-<h1 class="th1">Log in</h1>
+<h1 class="th1"><%= t("devise_related_custom_views.login") %></h1>
 <div class="columns-12">
   <div class="col-6 col-offset-3">
     <div class="logmod__wrapper">
       <div class="logmod__container">
         <div class="logmod__tab-wrapper">
           <ul class="logmod__tabs">
-            <li data-tabtar="lgm-1"><a href="#">Login</a></li>
-            <li data-tabtar="lgm-2"><a href="#">Sign Up</a></li>
+            <li data-tabtar="lgm-1"><a href="#"><%= t("devise_related_custom_views.login") %></a></li>
+            <li data-tabtar="lgm-2"><a href="#"><%= t("devise_related_custom_views.registration") %></a></li>
           </ul>
           <div class="logmod__tab lgm-1">
             <div class="logmod__heading">
-              <span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>
+              <span class="logmod__heading-subtitle"><%= raw t("devise_related_custom_views.registration_notice") %></span>
             </div>
             <div class="logmod__form">
               <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'simform' }) do |f| %>
@@ -26,16 +26,16 @@
                     <div class="input full">
                       <%= f.label :password, :class => 'string optional' %>
                       <%= f.password_field :password, autocomplete: "off", :class => 'string optional', :id => 'user-pw', :placeholder => 'Password' %>
-                      <span class="hide-password">Show</span>
+                      <span class="hide-password"><%= t("devise_related_custom_views.show") %></span>
                     </div>
                   </div>
 
                   <div class="simform__actions">
-                    <div style="float: right; width: 30%; margin: 9px;">
-                      <%= f.submit "Log in", class: "btn btn-large btn-primary submit" %>
+                    <div style="float: right; margin: 9px 70px;">
+                      <%= f.submit t("devise_related_custom_views.login"), class: "btn btn-large btn-primary submit" %>
                       <% if devise_mapping.rememberable? -%>
                           <div>
-                            <%= f.check_box :remember_me %><%= f.label :remember_me, :style => "float: left;" %>
+                            <%= f.check_box :remember_me, :style => "float: right;" %><%= f.label :remember_me, :style => "float: left;" %>
                           </div>
                       <% end -%>
                     </div>
@@ -52,7 +52,7 @@
                             <i class="fa fa-facebook"></i>
                           </div>
                           <div class="connect__context">
-                            <span>Sign in with <strong>Facebook</strong></span>
+                            <span><%= raw t("devise_related_custom_views.facebook.login") %></span>
                           </div>
                         </a>
                     <% end -%>
@@ -71,7 +71,7 @@
     container: 'body',
     trigger: 'hover',
     placement: 'right',
-    title: "If you are loging with FB, declaring you password with 'Forgot your password?'."
+    title: '<%= t("devise_related_custom_views.facebook.tooltip") %> <%= t("devise_related_custom_views.forgot_password") %>'
   })
 
   var LoginModalController = {
@@ -137,10 +137,10 @@
 
         if ($pwInput.attr("type") == "password") {
           $pwInput.attr("type", "text");
-          $this.text("Hide");
+          $this.text('<%= t("devise_related_custom_views.hide") %>');
         } else {
           $pwInput.attr("type", "password");
-          $this.text("Show");
+          $this.text('<%= t("devise_related_custom_views.show") %>');
         }
       });
 

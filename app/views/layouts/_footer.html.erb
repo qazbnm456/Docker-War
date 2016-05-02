@@ -4,7 +4,9 @@
   </small>
   <nav>
     <ul>
-      <li><%= link_to "About", about_path %></li>
+      <li><%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %></li>
+      <li><%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %></li>
+      <li><%= link_to t("layout_footer.about"), about_path %></li>
     </ul>
   </nav>
 </footer>

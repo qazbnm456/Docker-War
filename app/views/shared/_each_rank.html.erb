@@ -3,10 +3,10 @@
         <table width="100%" class="table table-striped table-condensed">
           <tr>
             <th><%= link_to '#' %></th>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Finished or Not</th>
-            <th>Last submission time</th>
+            <th><%= t("each_rank.name") %></th>
+            <th><%= t("each_rank.score") %></th>
+            <th><%= t("each_rank.finished_or_not") %></th>
+            <th><%= t("each_rank.last_submission_time") %></th>
           </tr>
           <% ranked_players.each_with_index do |user, seq| %>
               <tr>
@@ -14,9 +14,9 @@
                 <td style="width: 20%;"><%= link_to user.name, show_user_path(user) %></td>
                 <td><%= user.score %></td>
                 <% if user.record[index].solved %>
-                    <td>Finished</td>
+                    <td><%= t("each_rank.finished") %></td>
                 <% else %>
-                    <td>Not Finished</td>
+                    <td><%= t("each_rank.not_finished") %></td>
                 <% end %>
                 <td style="width: 40%;"><%= user.last_submit_time.nil? ? "" : user.last_submit_time.to_s(:long_ordinal) %></td>
               </tr>

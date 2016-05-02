@@ -39,6 +39,8 @@ gem 'rest-client'
 gem 'diuitauth'
 gem 'tinymce-rails'
 gem 'secure_headers', github: 'twitter/secureheaders'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
+gem 'devise-i18n'
 
 group :development do
   gem 'better_errors'
