@@ -3,7 +3,6 @@ class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:chatroom, :wargame, :new_q, :qna_ans, :qna_edit, :qna_delete]
   before_action :load_data, only: :timeline
   before_action :disable_nav, only: :index
-  after_action :save_data, only: :timeline
 
   def index
   end
@@ -72,7 +71,7 @@ class PagesController < ApplicationController
   def timeline
     Record.all.order(last_try_time: :desc).where('last_try_time > ?', @@time).each do |r|
       if !r.last_try_time.nil?
-        @@data["timeline"]["date"] << { "startDate" => r.last_try_time.strftime("%Y,%m,%d,%H,%M,%S"), "headline" => "#{r.user.name} is playing #{r.cate}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solved: #{r.solved} " }
+        @@data["timeline"]["date"] << { "startDate" => r.last_try_time.strftime("%Y,%m,%d,%H,%M,%S"), "headline" => "#{I18n.t("page_ranking.description", :name => r.user.name, :cate => r.cate, :solved => r.solved)}" }
             #@@data["timeline"]["date"].inject({}) do |h, k|
               #(h[k["timeline"]["date"]["startDate"]] ||= {}).merge!(k){ |key, old, new| old || new }
               #h
@@ -123,17 +122,8 @@ class PagesController < ApplicationController
 
   private
     def load_data
-      @@data = session[:data] || { "timeline" => { "headline" => "Live Submittion", "type" => "default", "text" => "Docker-War", "date" => [] } }
-      @@time = session[:time] || DateTime.new(2014, 1, 1, 0, 0, 0)
-    end
-
-    def save_data
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-      headers['Access-Control-Request-Method'] = '*'
-      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-      session[:time] = DateTime.current
-      session[:data] = @@data
+      @@data = { "timeline" => { "headline" => "#{I18n.t("page_ranking.live_submission")}", "type" => "default", "text" => "Docker-War", "date" => [] } }
+      @@time = DateTime.new(2014, 1, 1, 0, 0, 0)
     end
 
     def getToken

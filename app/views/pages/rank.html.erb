@@ -59,7 +59,7 @@
         </table>
     <% elsif params[:tab] == 'live_submission' %>
         <div id="time_line"></div>
-        <a class="btn btn-info btn-large" href="#" onclick="Push()">Refresh</a>
+        <a class="btn btn-info btn-large" href="#" onclick="Push()"><%= t("page_ranking.refresh") %></a>
         <script>
           function Push() {
             $('#time_line').empty();
@@ -126,23 +126,23 @@
                     zoomType: 'x'
                 },
                 title: {
-                    text: 'Ranking',
+                    text: '<%= t("page_ranking.ranking") %>',
                     x: -20 //center
                 },
                 xAxis: {
                     title: {
-                        text: 'Date'
+                        text: '<%= t("page_ranking.date") %>'
                     },
                     type: 'datetime'
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Score'
+                        text: '<%= t("page_ranking.score") %>'
                     }
                 },
                 tooltip: {
-                    valueSuffix: ' pts',
+                    valueSuffix: ' <%= t("page_ranking.pts") %>',
                     shared: true,
                     crosshairs: true
                 },

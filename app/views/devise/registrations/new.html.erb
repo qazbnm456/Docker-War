@@ -18,7 +18,7 @@
 
                   <div class="sminputs">
                     <div class="input full">
-                      <%= f.label t("devise_related_custom_views.registration_and_edit_details.name"), :class => 'string optional' %>
+                      <%= f.label :name, :class => 'string optional' %>
                       <%= f.text_field :name, autofocus: true, :class => 'string optional', :id => 'user-name', :placeholder => 'Name' %>
                     </div>
                   </div>
@@ -56,7 +56,7 @@
 
                   <div class="sminputs">
                     <div class="input full">
-                      <%= f.label t("devise_related_custom_views.registration_and_edit_details.time_zone"), :class => 'string optional' %>
+                      <%= f.label :time_zone, :class => 'string optional' %>
                       <%= f.time_zone_select :time_zone %>
                     </div>
                   </div>

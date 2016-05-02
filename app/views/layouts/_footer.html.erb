@@ -4,8 +4,8 @@
   </small>
   <nav>
     <ul>
-      <li><%= link_to "中文版", :controller => controller_name, :action => action_name, :locale => "zh-TW" %></li>
-      <li><%= link_to "English", :controller => controller_name, :action => action_name, :locale => "en" %></li>
+      <li><%= link_to "中文版", params.merge(:locale => "zh-TW"), :controller => controller_name, :action => action_name %></li>
+      <li><%= link_to "English", params.merge(:locale => "en"), :controller => controller_name, :action => action_name %></li>
       <li><%= link_to t("layout_footer.about"), about_path %></li>
     </ul>
   </nav>

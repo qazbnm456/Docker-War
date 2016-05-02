@@ -233,7 +233,12 @@ en:
     live: Live
     name: Name
     score: Score
+    date: Date
+    pts: pts
+    refresh: Refresh
+    description: "%{name} is playing %{cate}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solved: %{solved} "
     last_submission_time: Last submission time
+    live_submission: Live Submittion
   each_rank:
     name: Name
     score: Score
@@ -278,10 +283,7 @@ en:
     show: Show
     hide: Hide
     registration_and_edit_details:
-      avatar: Avatar
-      name: NAME
       sex: SEX
       major: MAJOR
-      time_zone: TIME ZONE
       choose_file: Choose file
       currently_waiting_confirmation_for: Currently waiting confirmation for

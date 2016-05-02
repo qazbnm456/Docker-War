@@ -233,7 +233,12 @@ zh-TW:
     live: 即時情況
     name: 名稱
     score: 得分
+    date: 日期
+    pts: 分
+    refresh: 重整
+    description: "%{name} 正在解 %{cate}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否解開: %{solved} "
     last_submission_time: 最後提交時間
+    live_submission: 即時提交情況
   each_rank:
     name: 名稱
     score: 得分
@@ -278,10 +283,7 @@ zh-TW:
     show: 顯示
     hide: 隱藏
     registration_and_edit_details:
-      avatar: 大頭貼
-      name: 名稱
       sex: 性別
       major: 主修
-      time_zone: 時區
       choose_file: 選擇檔案
       currently_waiting_confirmation_for: 等待以下電子信箱驗證

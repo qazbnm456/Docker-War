@@ -1997,3 +1997,8 @@ div[contenteditable="tinymce"] {
 ol {
   list-style: decimal !important;
 }
+
+// sweetalert: https://github.com/t4t5/sweetalert/issues/351
+.sweet-alert fieldset input {
+  display: none;
+}

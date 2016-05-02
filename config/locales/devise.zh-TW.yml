@@ -7,6 +7,9 @@ zh-TW:
         password: "密碼"
         password_confirmation: "密碼確認"
         remember_me: "記住我"
+        avatar: "大頭貼"
+        name: "名稱"
+        time_zone: "時區"
     models:
       user: "使用者"
   devise:
