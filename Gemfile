@@ -41,6 +41,7 @@ gem 'tinymce-rails'
 gem 'secure_headers', github: 'twitter/secureheaders'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 gem 'devise-i18n'
+gem 'status-page', github: 'qazbnm456/status-page'
 
 group :development do
   gem 'better_errors'

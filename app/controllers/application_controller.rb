@@ -85,7 +85,6 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     @req_lang = extract_locale_from_accept_language_header
-    @req_lang = @req_lang.nil? ? nil : @req_lang.scan(/^[a-z]{2}/).first
 
     session[:locale] = case
              when DockerWar::Application::VALID_LANG.include?( params[:locale] ) then params[:locale]
@@ -147,6 +146,7 @@ class ApplicationController < ActionController::Base
 
   private
   def extract_locale_from_accept_language_header
-    request.env['HTTP_ACCEPT_LANGUAGE']
+    @lang = request.env['HTTP_ACCEPT_LANGUAGE']
+    @lang = @lang.nil? ? nil : @lang[/[^,;]+/]
   end
 end

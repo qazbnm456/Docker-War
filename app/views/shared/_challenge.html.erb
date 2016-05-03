@@ -16,7 +16,7 @@
         <div>
           <%= form_tag "/wargame/#{ctl_name}/#{act_name}" do %>
               <%= label_tag :flag %>
-              <%= password_field_tag :flag %>
+              <%= text_field_tag :flag %>
               <%= submit_tag 'Submit', class: 'btn btn-success' %>
           <% end %>
         </div>

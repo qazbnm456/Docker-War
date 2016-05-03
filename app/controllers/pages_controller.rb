@@ -86,7 +86,7 @@ class PagesController < ApplicationController
 
   def rank
     @s = Setting.find_by_active(true)
-    @t = (@s.nil?) ? (Rails.env.production?) ? ENV['DATABASE_NAME'] : Rails.env : @s.tag
+    @t = (@s.nil?) ? (Rails.env.production?) ? ENV['PD_DATABASE_NAME'] : Rails.env : @s.tag
     @ranked_players = Array.new
     if(params[:sort].blank?)
       User.all.where('id != 1').order(score: :desc, last_submit_time: :asc).includes(:record).each do |user|

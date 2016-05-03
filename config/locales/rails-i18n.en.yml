@@ -266,6 +266,7 @@ en:
         logout: Log out
   layout_footer:
     about: About
+    status: Status
   devise_related_custom_views:
     facebook:
       tooltip: If you logged in with FB, declaring you password with

@@ -266,6 +266,7 @@ zh-TW:
         logout: 登出
   layout_footer:
     about: 關於
+    status: 狀態
   devise_related_custom_views:
     facebook:
       tooltip: 如果您使用FB作為登入媒介，要取得暫時密碼請點擊
