@@ -4,7 +4,7 @@ class DockerException < StandardError; end
 
 class Docker < StatusPage::Services::Base
   class Configuration
-    DEFAULT_SERVER_HOST = 'unix://var/run/docker.sock'
+    DEFAULT_SERVER_HOST = 'unix:///var/run/docker.sock'
 
     attr_accessor :host
 

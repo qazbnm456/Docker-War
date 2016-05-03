@@ -4,7 +4,7 @@
       <span class="chal-header"><%= "#{ctl_name}_#{act_name}" %></span>
       <div class="chal-body" contenteditable="tinymce">
         <h1 class="th1"><%= "#{act_name}" %></h1>
-        <h2 class="th2"><%= link_to url, url %></h2>
+        <h2 class="th2"><%= link_to url, url, :target => "_blank" %></h2>
         <hr>
         <div id="editable">
           <%= chal.content.html_safe %>
