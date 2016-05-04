@@ -220,7 +220,6 @@ zh-TW:
   home_nav:
     notice: 消息
     ranking: 排名
-    irc: IRC
     contest: 競賽
     none: None
   page_partial:
@@ -255,6 +254,7 @@ zh-TW:
       rule_three: 猜測flags是無濟於事的。
   layout_header:
     navbar:
+      slack: 討論區(Slack)
       chatroom: 聊天室(測試版)
       qa: 問與答
       rule: 規則

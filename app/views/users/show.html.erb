@@ -20,4 +20,76 @@
       </div>
     </div>
   </div>
+  <div class="columns-12" style="background-coloe: white">
+    <div class="col-5">
+      <%= pie_chart Record.solved(current_user.id) %>
+    </div>
+    <div class="col-7" id="chart">
+    </div>
+  </div>
 </div>
+<script>
+  $(function () {
+    $.getJSON('/trend.json?id=<%= @id %>', function (data) {
+      Highcharts.setOptions({
+        global: {
+          useUTC: false
+        }
+      });
+
+      $('#chart').highcharts({
+        chart: {
+          zoomType: 'x'
+        },
+        title: {
+          text: '',
+        },
+        xAxis: {
+          title: {
+            text: '<%= t("page_ranking.date") %>'
+          },
+          type: 'datetime'
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: '<%= t("page_ranking.score") %>'
+          }
+        },
+        tooltip: {
+          valueSuffix: ' <%= t("page_ranking.pts") %>',
+          shared: true,
+          crosshairs: true
+        },
+        plotOptions: {
+          series: {
+            cursor: 'pointer',
+            point: {
+              events: {
+                click: function (e) {
+                  hs.htmlExpand(null, {
+                    pageOrigin: {
+                      x: e.pageX || e.clientX,
+                      y: e.pageY || e.clientY
+                    },
+                    headingText: this.series.name,
+                    maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
+                    this.series.cate + ' solved',
+                    width: 200
+                  });
+                }
+              }
+            },
+            marker: {
+              lineWidth: 1
+            }
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        series: data
+      });
+    });
+  });
+</script>

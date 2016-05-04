@@ -3,7 +3,7 @@
   <div class="col-6 col-offset-3">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { :multipart => true, method: :put }) do |f| %>
       <%= devise_error_messages! %>
-      <%= f.label t("devise_related_custom_views.registration_and_edit_details.avatar") %>
+      <%= f.label :avatar %>
       <%= image_tag @user.avatar.url(:thumb), :class => 'circle' %>
         <div class="file-upload-container">
           <div class="file-upload-override-button  btn btn-small btn-success left">
@@ -14,7 +14,7 @@
           <div class="both"></div>
         </div>
 
-      <%= f.label t("devise_related_custom_views.registration_and_edit_details.name") %>
+      <%= f.label :name %>
       <%= f.text_field :name, autofocus: true %>
 
       <%= f.label :email %>
@@ -40,7 +40,7 @@
         <%= t("devise_related_custom_views.registration_and_edit_details.currently_waiting_confirmation_for") %>: <%= resource.unconfirmed_email %>
       <% end %>
 
-      <%= f.label t("devise_related_custom_views.registration_and_edit_details.time_zone") %>
+      <%= f.label :time_zone %>
       <%= f.time_zone_select :time_zone %>
 
       <%= f.label :password %> <i>(<%= t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it") %>)</i>
@@ -58,7 +58,6 @@
   </div>
 </div>
 
-<%= link_to "Back", :back %>
 <script>
   $("#user_sex_sex_id_<%= @current_user.sex_id %>").attr( 'checked', true )
   $("option[value|='<%= @current_user.major_id %>']").attr( 'selected', true )

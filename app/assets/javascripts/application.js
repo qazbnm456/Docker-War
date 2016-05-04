@@ -32,4 +32,5 @@
 //= require socket.io
 //= require sanitize
 //= require tinymce-jquery
+//= require mfb.min
 //= require_tree .

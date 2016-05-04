@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require ionic/css/ionic.min
  *= require kule/kule-grid.min
  *= require kule/kule-hacks.min
  *= require kule/kule-base.min
@@ -18,5 +19,6 @@
  *= require bootstrap-responsive
  *= require timelineJS/timeline
  *= require sweet-alert
+ *= require mfb.min
  *= require_tree .
  */

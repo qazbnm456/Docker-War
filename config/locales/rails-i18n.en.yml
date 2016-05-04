@@ -220,7 +220,6 @@ en:
   home_nav:
     notice: Notice
     ranking: Ranking
-    irc: IRC
     contest: Contest
     none: None
   page_partial:
@@ -255,6 +254,8 @@ en:
       rule_three: Guessing flags will not be tolerated.
   layout_header:
     navbar:
+      slack: Slack
+      irc: IRC
       chatroom: Chatroom(Beta)
       qa: Q&A
       rule: Rule

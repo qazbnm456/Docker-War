@@ -13,6 +13,10 @@ class PagesController < ApplicationController
   end
 
   def chatroom
+    if not current_user.admin?
+      flash[:alert] = 'Not yet opened!'
+      redirect_to (request.referer or home_path)
+    end
     @token = getToken
   end
 
@@ -109,10 +113,18 @@ class PagesController < ApplicationController
     @s = Setting.find_by_active(true)
     @t = (@s.nil?) ? (Rails.env.production?) ? ENV['PD_DATABASE_NAME'] : Rails.env : @s.tag
     @scores = Array.new
-    User.all.where('id != 1').each_with_index do |user, index|
-      @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
-      @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
-      @scores[index][:data].sort_by! { |d| d[1]}
+    if(params[:id].blank?)
+      User.all.where('id != 1').each_with_index do |user, index|
+        @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
+        @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
+        @scores[index][:data].sort_by! { |d| d[1]}
+      end
+    else
+      User.where('id = ?', params[:id]).each_with_index do |user, index|
+        @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
+        @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
+        @scores[index][:data].sort_by! { |d| d[1]}
+      end
     end
     respond_to do |format|
       format.html

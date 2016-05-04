@@ -4,9 +4,8 @@
     <div class="nav nav-list">
       <li class="nav-header"><%= t("home_nav.notice") %></li>
       <li><%= link_to t("home_nav.ranking"), rank_path %></li>
-      <li><a href="http://widget.mibbit.com/?settings=b813ef50387d6ac72ea630754e59d291&server=irc.Mibbit.Net&channel=%23Docker-War" target="_blank"><%= t("home_nav.irc") %></a></li>
       <li class="nav-header"><%= t("home_nav.contest") %></li>
-      <li><a href="#"><%= t("home_nav.none") %></a></li>
+      <li><a href="#">MUCTF</a></li>
     </div>
     </br>
     <%= form_for @qna, url: {action: 'new_q'}, :remote => 'true' do |f| %>

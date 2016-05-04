@@ -1,3 +1,36 @@
+<ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
+  <li class="mfb-component__wrap">
+    <a href="#" class="mfb-component__button--main">
+      <i class="mfb-component__main-icon--resting ion-plus-round"></i>
+      <i class="mfb-component__main-icon--active ion-close-round"></i>
+    </a>
+    <ul class="mfb-component__list">
+      <li>
+        <a href="#" onclick="concentrate()" data-mfb-label="Concentration Mode" class="mfb-component__button--child">
+          <i id="eyes" class="mfb-component__child-icon ion-eye"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" onclick="hint()" data-mfb-label="Hint(s) if any" class="mfb-component__button--child">
+          <i class="mfb-component__child-icon ion-alert"></i>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" data-mfb-label="shell" class="mfb-component__button--child">
+          <i class="mfb-component__child-icon ion-social-tux"></i>
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="sp-container">
+  <div id="hint">
+    <h2>Hint notification still under development!</h2>
+  </div>
+</div>
+
 <div class="columns-12">
   <div class="contains">
     <div class="chal">
@@ -25,3 +58,61 @@
   </div>
 </div>
 <%= render 'shared/each_rank', ranked_players: ranked_players, index: index %>
+<script>
+
+    c = $(".sp-container");
+    cc = $("#hint");
+    ccc = $("#eyes");
+    prev = "";
+
+    function whichAnimationEvent(){
+        var t;
+        var el = document.createElement('fakeelement');
+        var animations = {
+            'animation':'animationend',
+            '-moz-animation':'animationend',
+            '-webkit-animation':'webkitAnimationEnd'
+        }
+
+        for(a in animations){
+            if( el.style[a] !== undefined ){
+              return animations[a];
+            }
+        }
+    }
+
+    var animationEnd = whichAnimationEvent();
+
+    function concentrate() {
+        if(c.css("display") == "none") {
+            c.css("display", "block");
+            ccc.removeClass("ion-eye");
+            ccc.addClass("ion-eye-disabled");
+        } else {
+            c.css("display", "none");
+            ccc.removeClass("ion-eye-disabled");
+            ccc.addClass("ion-eye");
+        }
+    }
+
+    function hint() {
+        prev = c.css("display");
+        c.css("z-index",500);
+        if(c.css("display") == "none") {
+            c.css("display", "block");
+        }
+        cc.addClass("sp-content");
+        document.getElementsByClassName("sp-content")[0].addEventListener(animationEnd, closeHint, false);
+        $(".sp-content h2").css("display", "block");
+        $(".sp-content h2").addClass("hint");
+    }
+
+    function closeHint() {
+        document.getElementsByClassName("sp-content")[0].addEventListener(animationEnd, closeHint, false);
+        $(".sp-content h2").removeClass("hint");
+        $(".sp-content h2").css("display", "none");
+        cc.removeClass("sp-content");
+        c.css("z-index", 1);
+        c.css("display", prev);
+    }
+</script>
