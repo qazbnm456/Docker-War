@@ -1,4 +1,4 @@
-class Forensic < ActiveRecord::Base
+class Pwn < ActiveRecord::Base
   def self.flag(id)
     select(:flag).where("id = ?", id)
   end

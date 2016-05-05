@@ -119,6 +119,12 @@ class CryptoController < ApplicationController
   end
 
   def level4
+
+    if not current_user.admin?
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
+
     @ranked_players = Array.new
     Record.all.where(cate: 'c4').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1
@@ -157,6 +163,12 @@ class CryptoController < ApplicationController
   end
 
   def level5
+
+    if not current_user.admin?
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
+
     @ranked_players = Array.new
     Record.all.where(cate: 'c5').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1

@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 
   def chatroom
     if not current_user.admin?
-      flash[:alert] = 'Not yet opened!'
+      flash[:alert] = 'Not yet ready!'
       redirect_to (request.referer or home_path)
     end
     @token = getToken

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403074123) do
+ActiveRecord::Schema.define(version: 20160505031130) do
 
   create_table "announcements", force: :cascade do |t|
     t.text     "body",       limit: 16777215
@@ -40,15 +40,6 @@ ActiveRecord::Schema.define(version: 20160403074123) do
   end
 
   create_table "cryptos", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "url",        limit: 255
-    t.string   "flag",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "content",    limit: 65535
-  end
-
-  create_table "forensics", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.string   "url",        limit: 255
     t.string   "flag",       limit: 255
@@ -121,6 +112,15 @@ ActiveRecord::Schema.define(version: 20160403074123) do
   create_table "news", force: :cascade do |t|
     t.string   "messages", limit: 255
     t.datetime "date"
+  end
+
+  create_table "pwns", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "url",        limit: 255
+    t.string   "flag",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "content",    limit: 65535
   end
 
   create_table "qnas", force: :cascade do |t|

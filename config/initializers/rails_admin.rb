@@ -32,7 +32,7 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  ['Basic', 'Web', 'Reverse', 'Crypto', 'Reverse', 'Forensic'].each do |type|
+  ['Basic', 'Web', 'Reverse', 'Crypto', 'Reverse', 'Pwn'].each do |type|
     config.model type do
       navigation_label 'Wargame'
       weight -1

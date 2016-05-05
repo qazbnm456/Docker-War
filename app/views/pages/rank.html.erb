@@ -39,6 +39,11 @@
             <th class="crypto-pop-over-3"><%= link_to image_tag("order.png"), sort: :c3 %></th>
             <th class="crypto-pop-over-4"><%= link_to image_tag("order.png"), sort: :c4 %></th>
             <th class="crypto-pop-over-5"><%= link_to image_tag("order.png"), sort: :c5 %></th>
+            <th class="pwn-pop-over-1"><%= link_to image_tag("order.png"), sort: :p1 %></th>
+            <th class="pwn-pop-over-2"><%= link_to image_tag("order.png"), sort: :p2 %></th>
+            <th class="pwn-pop-over-3"><%= link_to image_tag("order.png"), sort: :p3 %></th>
+            <th class="pwn-pop-over-4"><%= link_to image_tag("order.png"), sort: :p4 %></th>
+            <th class="pwn-pop-over-5"><%= link_to image_tag("order.png"), sort: :p5 %></th>
             <th><%= t("page_ranking.last_submission_time") %></th>
           </tr>
           <% @ranked_players.each_with_index do |user, index| %>
@@ -46,8 +51,8 @@
                 <td><%= index+1 %></td>
                 <td><%= link_to user.name, show_user_path(user) %></td>
                 <td><%= user.score %></td>
-                <% (0...20).each do |i| %>
-                    <% if user.record[i].solved %>
+                <% (0...25).each do |i| %>
+                    <% if user.record[i] && user.record[i].solved %>
                         <td><div class="t1"></div></td>
                     <% else %>
                         <td><div class="t0"></div></td>
@@ -110,6 +115,13 @@
           trigger: 'hover',
           placement: 'top',
           title: "crypto "+i+": "+i*100
+      })
+  for(i = 1; i<= 5; i++)
+      $(".pwn-pop-over-"+i).tooltip({
+        container: 'body',
+        trigger: 'hover',
+        placement: 'top',
+        title: "pwn "+i+": "+i*100
       })
 </script>
 <script>

@@ -56,6 +56,15 @@ DockerWar::Application.routes.draw do
   match '/wargame/crypto/level4', to: 'crypto#level4', via: [ 'get', 'post' ]
   match '/wargame/crypto/level5', to: 'crypto#level5', via: [ 'get', 'post' ]
 
+  match '/wargame/pwn', to: 'pwn#index', via: 'get'
+  match '/wargame/pwn/save', to: 'pwn#content_save', via: 'patch'
+  match '/wargame/pwn/edit', to: 'pwn#content_edit', via: 'patch'
+  match '/wargame/pwn/level1', to: 'pwn#level1', via: [ 'get', 'post' ]
+  match '/wargame/pwn/level2', to: 'pwn#level2', via: [ 'get', 'post' ]
+  match '/wargame/pwn/level3', to: 'pwn#level3', via: [ 'get', 'post' ]
+  match '/wargame/pwn/level4', to: 'pwn#level4', via: [ 'get', 'post' ]
+  match '/wargame/pwn/level5', to: 'pwn#level5', via: [ 'get', 'post' ]
+
   match '/user/:id', to: 'users#show', via: 'get', as: :show_user
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', sessions: 'sessions' }
