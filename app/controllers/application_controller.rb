@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         # directive values: these values will directly translate into source directives
         default_src: %w(https: 'self'),
         frame_src: %w('self'),
-        connect_src: %w('self' ws: wss: 'wargame.cse.nsysu.edu.tw:83'),
+        connect_src: %w('self' wss://wargame.cse.nsysu.edu.tw:83),
         font_src: %w('self' fonts.gstatic.com data:),
         img_src: %w('self' data:),
         media_src: %w('self'),

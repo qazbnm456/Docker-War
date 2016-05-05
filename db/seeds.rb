@@ -59,3 +59,8 @@ Crypto.create!( :title => "crypto 4", :url => "#", :content => "", :flag => "#" 
 Crypto.create!( :title => "crypto 5", :url => "#", :content => "", :flag => "#" )
 
 #Pwn
+Pwn.create!( :title => "pwn 1", :url => "#", :content => "", :flag => "#" )
+Pwn.create!( :title => "pwn 2", :url => "#", :content => "", :flag => "#" )
+Pwn.create!( :title => "pwn 3", :url => "#", :content => "", :flag => "#" )
+Pwn.create!( :title => "pwn 4", :url => "#", :content => "", :flag => "#" )
+Pwn.create!( :title => "pwn 5", :url => "#", :content => "", :flag => "#" )
