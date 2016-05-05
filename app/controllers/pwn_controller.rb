@@ -1,10 +1,17 @@
 class PwnController < ApplicationController
   before_action :authenticate_user!
+  before_action :get_agent, :get_notice, :except => [:index]
 
   def index
   end
 
   def level1
+
+    if not current_user.admin?
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
+
     @ranked_players = Array.new
     Record.all.where(cate: 'p1').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1
@@ -43,6 +50,12 @@ class PwnController < ApplicationController
   end
 
   def level2
+
+    if not current_user.admin?
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
+
     @ranked_players = Array.new
     Record.all.where(cate: 'p2').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1
@@ -81,6 +94,12 @@ class PwnController < ApplicationController
   end
 
   def level3
+
+    if not current_user.admin?
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
+
     @ranked_players = Array.new
     Record.all.where(cate: 'p3').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1

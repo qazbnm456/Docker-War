@@ -53,6 +53,7 @@ DOMAIN="domain.com"
 DB_DIR="/home/app/db"
 NGINX_PROXY="lobsiinvok_nginx-proxy"
 MYSQL="lobsiinvok_mysql"
+VPS="ctf-tools" # https://github.com/zardus/ctf-tools
 
 while getopts "n:s:f:b:i:p:d" OPTION; do
     case $OPTION in
@@ -69,6 +70,8 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
             NUM=$OPTARG
             echo "[*] Passing PORT: "$NUM
             docker run -d -p $NUM:80 --name $NAME -e IDENTITY_NAME=$DOMAIN -e IDENTITY_REGEX="^"+$NAME+"$" -v /var/run/docker.sock:/tmp/docker.sock:ro $NGINX_PROXY
+            echo "[*] Creating VPS..."
+            docker run -d -it --label $DOMAIN="$NAME" --name "VPS"_"$NAME" $VPS
             ;;
         b)
             DB=$OPTARG
@@ -77,7 +80,7 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
         i)
             IMAGE=$OPTARG
             echo "[*] Passing IMAGE: "$IMAGE
-            OUT="$(docker ps | grep "$SUBDOMAIN"_"$NAME" | wc -l | awk '{print $1}' ORS='')"
+            OUT="$(docker ps | grep "^$SUBDOMAIN"_"$NAME$" | wc -l | awk '{print $1}' ORS='')"
             if [[ "$OUT" == "0" ]]; then
                 if [[ "$DB" == "" ]]; then
                     docker run \
@@ -119,7 +122,7 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
             ;;
         d)
             echo "[*] Deleting..."
-            docker rm -f `docker ps -a | grep "$NAME" | awk '{print $1}' ORS=' '`
+            docker rm -f `docker ps -a | grep "$NAME$" | awk '{print $1}' ORS=' '`
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2

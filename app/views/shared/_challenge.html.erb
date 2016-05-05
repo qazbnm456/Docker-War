@@ -1,3 +1,24 @@
+<style>
+  h1 {
+    margin-bottom: 20px;
+    font: 20px/1.5 sans-serif;
+  }
+
+  .terminal {
+    border: #000 solid 5px;
+    font-family: "DejaVu Sans Mono", "Liberation Mono", monospace;
+    font-size: 11px;
+    color: #f0f0f0;
+    background: #000;
+  }
+
+  .reverse-video {
+    color: #000;
+    background: #f0f0f0;
+  }
+</style>
+<%= javascript_include_tag :term %>
+
 <ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
   <li class="mfb-component__wrap">
     <a href="#" class="mfb-component__button--main">
@@ -17,7 +38,7 @@
       </li>
 
       <li>
-        <a href="#" data-mfb-label="shell" class="mfb-component__button--child">
+        <a href="#" onclick="shell()" data-mfb-label="shell" class="mfb-component__button--child">
           <i class="mfb-component__child-icon ion-social-tux"></i>
         </a>
       </li>
@@ -32,32 +53,41 @@
 </div>
 
 <div class="columns-12">
-  <div class="contains">
-    <div class="chal">
-      <span class="chal-header"><%= "#{ctl_name}_#{act_name}" %></span>
-      <div class="chal-body" contenteditable="tinymce">
-        <h1 class="th1"><%= "#{act_name}" %></h1>
-        <h2 class="th2"><%= link_to url, url, :target => "_blank" %></h2>
-        <hr>
-        <div id="editable">
-          <%= chal.content.html_safe %>
-          <% if !current_user.nil? && current_user.admin? %>
-              <%= render "shared/challenge_content_confirm", :chal_instance => chal, :url_instance => "content_edit" %>
-          <% end %>
+  <div class="col-12">
+    <div class="contains">
+      <div class="chal">
+        <span class="chal-header"><%= "#{ctl_name}_#{act_name}" %></span>
+        <div id="description" class="chal-body" contenteditable="tinymce">
+          <h1 class="th1"><%= "#{act_name}" %></h1>
+          <h2 class="th2"><%= link_to url, url, :target => "_blank" %></h2>
+          <hr>
+          <div id="editable">
+            <%= chal.content.html_safe %>
+            <% if !current_user.nil? && current_user.admin? %>
+                <%= render "shared/challenge_content_confirm", :chal_instance => chal, :url_instance => "content_edit" %>
+            <% end %>
+          </div>
+          <hr>
+          <div>
+            <%= form_tag "/wargame/#{ctl_name}/#{act_name}" do %>
+                <%= label_tag :flag %>
+                <%= text_field_tag :flag %>
+                <%= submit_tag 'Submit', class: 'btn btn-success' %>
+            <% end %>
+          </div>
         </div>
-        <hr>
-        <div>
-          <%= form_tag "/wargame/#{ctl_name}/#{act_name}" do %>
-              <%= label_tag :flag %>
-              <%= text_field_tag :flag %>
-              <%= submit_tag 'Submit', class: 'btn btn-success' %>
-          <% end %>
+        <div class="chal-body">
+          <div id="terminal"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <%= render 'shared/each_rank', ranked_players: ranked_players, index: index %>
+
+<div data-docker-terminal-token="<%= @agent.get_token %>"
+     data-docker-terminal-host="<%= @agent.rancher_host %>:<%= @agent.rancher_port %>"></div>
+
 <script>
 
     c = $(".sp-container");
@@ -115,4 +145,83 @@
         c.css("z-index", 1);
         c.css("display", prev);
     }
+
+    function shell() {
+        $(".contains").css("max-width", '100%');
+        $(".chal-body").css("max-width", "50%");
+        $(".chal-body").css("float", "left");
+        $(".chal-body").css("width", "50%");
+        $("[data-docker-terminal-token]").each(function(i, el) {
+          var token = $(el).data('docker-terminal-token');
+          var host = $(el).data('docker-terminal-host');
+          docker.terminal.startTerminalForContainer(host, token);
+        });
+    }
+</script>
+<script>
+  textSize = function () {
+    function getCharSize() {
+      var $span = $("<span>", {text: "qwertyuiopasdfghjklzxcvbnm"});
+      $('#terminal').append($span);
+      var size = {
+        width: $span.outerWidth()/26
+        , height: $span.outerHeight()
+      };
+      $span.remove();
+      return size;
+    }
+    var charSize = getCharSize();
+    var descriptionSize = document.getElementById('description').offsetHeight;
+    return {
+      result: Math.floor(descriptionSize / charSize.height)
+    };
+  };
+  var rc = textSize();
+  window.docker = (function(docker) {
+      var div = $('#terminal').empty()[0];
+      docker.terminal = {
+          startTerminalForContainer: function(host, token) {
+              var term = new Terminal({
+                rows: rc.result,
+                useStyle: true,
+                screenKeys: true,
+                cursorBlink: false
+              });
+              term.open(div);
+
+              var wsUri = "ws://" +
+                  host +
+                  "/v1/exec/?token=" +
+                  token;
+
+              var websocket = new WebSocket(wsUri);
+              websocket.onopen = function(evt) { onOpen(evt) };
+              websocket.onclose = function(evt) { onClose(evt) };
+              websocket.onmessage = function(evt) { onMessage(evt) };
+              websocket.onerror = function(evt) { onError(evt) };
+
+              term.on('data', function(data) {
+                  websocket.send(btoa(data));
+              });
+
+              function onOpen(evt) {
+                  term.write(
+                      "<%= @notice %>"
+                  );
+              }
+
+              function onClose(evt) {
+                  term.write("Session terminated");
+              }
+
+              function onMessage(evt) {
+                  term.write(atob(evt.data));
+              }
+
+              function onError(evt) {
+              }
+          }
+      };
+      return docker;
+  })(window.docker || {});
 </script>

@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         # directive values: these values will directly translate into source directives
         default_src: %w(https: 'self'),
         frame_src: %w('self'),
-        connect_src: %w('self' wws:),
+        connect_src: %w('self' ws: wss: 'wargame.cse.nsysu.edu.tw:83'),
         font_src: %w('self' fonts.gstatic.com data:),
         img_src: %w('self' data:),
         media_src: %w('self'),
@@ -140,6 +140,20 @@ class ApplicationController < ActionController::Base
     Rails.logger.error stderr
   end
 
+  def get_agent
+    @agent = DockerShellHelper::Rancher.new
+    @agent.rancher_host = 'wargame.cse.nsysu.edu.tw'
+    @agent.rancher_port = '83'
+    @agent.access_key = ENV['RANCHER_ACCESS_KEY']
+    @agent.secret_key = ENV['RANCHER_SECRET_KEY']
+    @agent.container_name = "VPS_#{current_user.email.gsub("@", "_0_")}"
+    @agent
+  end
+
+  def get_notice
+    @notice = vps_notice
+  end
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to main_app.root_path, :alert => exception.message
   end
@@ -148,5 +162,29 @@ class ApplicationController < ActionController::Base
   def extract_locale_from_accept_language_header
     @lang = request.env['HTTP_ACCEPT_LANGUAGE']
     @lang = @lang.nil? ? nil : @lang[/[^,;]+/]
+  end
+
+  def vps_notice
+    "# set up the path\\r\\n"\
+    "/path/to/ctf-tools/bin/manage-tools setup\\r\\n"\
+    "source ~/.bashrc\\r\\n"\
+    "\\r\\n"\
+    "# list the available tools\\r\\n"\
+    "manage-tools list\\r\\n"\
+    "\\r\\n"\
+    "# install gdb, allowing it to try to sudo install dependencies\\r\\n"\
+    "manage-tools -s install gdb\\r\\n"\
+    "\\r\\n"\
+    "# install pwntools, but don't let it sudo install dependencies\\r\\n"\
+    "manage-tools install pwntools\\r\\n"\
+    "\\r\\n"\
+    "# uninstall gdb\\r\\n"\
+    "manage-tools uninstall gdb\\r\\n"\
+    "\\r\\n"\
+    "# uninstall all tools\\r\\n"\
+    "manage-tools uninstall all\\r\\n"\
+    "\\r\\n"\
+    "# search for a tool\\r\\n"\
+    "manage-tools search preload\\r\\n"
   end
 end
