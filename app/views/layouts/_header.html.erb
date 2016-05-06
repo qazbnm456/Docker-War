@@ -25,7 +25,7 @@
                 <% end %></li>
               <% if current_user.admin? %>
                   <% if can? :access, :rails_admin %>
-                      <li class="menu-item"><%= link_to rails_admin_path, :class => "menu-link" do %>
+                      <li class="menu-item"><%= link_to rails_admin_path, :class => "menu-link", :target => "_blank" do %>
                             <i class="icon-pencil"></i>
                             <%= t("layout_header.navbar.dropdown.admin") %>
                         <% end %></li>

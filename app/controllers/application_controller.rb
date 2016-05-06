@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         # directive values: these values will directly translate into source directives
         default_src: %w(https: 'self'),
         frame_src: %w('self'),
-        connect_src: %w('self' wss://wargame.cse.nsysu.edu.tw:83),
+        connect_src: %w('self' wss://wargame.cse.nsysu.edu.tw:444),
         font_src: %w('self' fonts.gstatic.com data:),
         img_src: %w('self' data:),
         media_src: %w('self'),
@@ -142,8 +142,9 @@ class ApplicationController < ActionController::Base
 
   def get_agent
     @agent = DockerShellHelper::Rancher.new
+    @agent.rancher_scheme = 'https'
     @agent.rancher_host = 'wargame.cse.nsysu.edu.tw'
-    @agent.rancher_port = '83'
+    @agent.rancher_port = '444'
     @agent.access_key = ENV['RANCHER_ACCESS_KEY']
     @agent.secret_key = ENV['RANCHER_SECRET_KEY']
     @agent.container_name = "VPS_#{current_user.email.gsub("@", "_0_")}"
