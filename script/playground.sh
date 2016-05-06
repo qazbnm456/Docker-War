@@ -71,7 +71,7 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
             echo "[*] Passing PORT: "$NUM
             docker run -d -p $NUM:80 --name $NAME -e IDENTITY_NAME=$DOMAIN -e IDENTITY_REGEX="^"+$NAME+"$" -v /var/run/docker.sock:/tmp/docker.sock:ro $NGINX_PROXY
             echo "[*] Creating VPS..."
-            docker run -d -it --label $DOMAIN="$NAME" --name "VPS"_"$NAME" $VPS
+            docker run -d -it --cpu-shares=256 --cpuset-cpus="3" -m 300M --oom-kill-disable --label $DOMAIN="$NAME" --name "VPS"_"$NAME" $VPS
             ;;
         b)
             DB=$OPTARG
