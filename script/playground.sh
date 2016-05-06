@@ -122,7 +122,7 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
             ;;
         d)
             echo "[*] Deleting..."
-            docker rm -f `docker ps -a | grep "$NAME$" | awk '{print $1}' ORS=' '`
+            docker rm -f `docker ps -a | grep "$NAME" | awk '{print $1}' ORS=' '`
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
