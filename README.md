@@ -62,7 +62,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 1. `$ sudo curl -fsSL https://get.docker.com/ | sh`
 2. Verify if docker is installed correctly, `$ sudo docker run hello-world`
-3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.7.0-rc1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
+3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
 4. `$ sudo chmod +x /usr/local/bin/docker-compose`
 
 ### Pre Setup Env Variables and Build the Image

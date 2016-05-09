@@ -134,7 +134,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_container(controller_name, action_name, subdomain, flag, db)
-    cmd = Rails.root.join('script', 'playground.sh').to_s + " -n #{current_user.email.gsub("@", "_0_")} -s #{subdomain} -f #{flag.inspect} -b #{(db.nil? || db.empty?) ? ''.inspect : db} -i #{controller_name+"_"+action_name}"
+    cmd = Rails.root.join('script', 'playground.sh').to_s + " -n U_-#{current_user.email.gsub("@", "_0_")}- -s #{subdomain} -f #{flag.inspect} -b #{(db.nil? || db.empty?) ? ''.inspect : db} -i #{controller_name+"_"+action_name}"
     stdout, stderr, status = Open3.capture3(cmd)
     Rails.logger.info stdout
     Rails.logger.error stderr

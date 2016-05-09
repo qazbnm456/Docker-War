@@ -136,7 +136,7 @@ class RegistrationsController < Devise::RegistrationsController
         end
       end
       flag_initialization
-      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n #{current_user.email.gsub("@", "_0_")} -p #{@port}"
+      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n U_-#{current_user.email.gsub("@", "_0_")}- -p #{@port}"
       stdout, stderr, status = Open3.capture3(cmd)
       Rails.logger.info stdout
       Rails.logger.error stderr
@@ -145,7 +145,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def port_destroy
     if current_user
-      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n #{current_user.email.gsub("@", "_0_")} -d"
+      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n U_-#{current_user.email.gsub("@", "_0_")}- -d"
       stdout, stderr, status = Open3.capture3(cmd)
       Rails.logger.info stdout
       Rails.logger.error stderr

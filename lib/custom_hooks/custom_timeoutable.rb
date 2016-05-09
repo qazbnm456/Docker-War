@@ -23,7 +23,7 @@ Warden::Manager.after_set_user do |record, warden, options|
     proxy = Devise::Hooks::Proxy.new(warden)
 
     if record.timedout?(last_request_at) && !env['devise.skip_timeout']
-      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n #{record.email.gsub("@", "_0_")} -d"
+      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n U_-#{record.email.gsub("@", "_0_")}- -d"
       stdout, stderr, status = Open3.capture3(cmd)
       p stdout
       p stderr

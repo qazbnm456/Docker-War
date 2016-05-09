@@ -288,3 +288,7 @@ zh-TW:
       major: 主修
       choose_file: 選擇檔案
       currently_waiting_confirmation_for: 等待以下電子信箱驗證
+  challenge_menu:
+    concentration_mode: 專注模式
+    hint: 提示(如果有的話)
+    terminal: 終端機
