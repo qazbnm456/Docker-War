@@ -52,6 +52,7 @@ group :development do
   gem 'rubycritic', github: 'superiorlu/rubycritic', branch: 'open_with_browser', :require => false
   gem 'rails-footnotes'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 
   # The following optional lines are part of the advanced setup.
   # gem 'guard-rspec', '2.5.0'

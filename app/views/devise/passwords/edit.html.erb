@@ -1,16 +1,37 @@
-<h2 class="th2">Change your password</h2>
+<h2 class="th1"><%= t("devise_related_custom_views.change_password") %></h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+<div class="panel">
+  <div class="panel-box">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: :"form-horizontal" }) do |f| %>
 
-  <div><%= f.label :password, "New password" %><br />
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %></div>
+        <div class="ctrl-grp columns-12">
+          <div class="ctrls col-12">
+            <%= devise_error_messages! %>
+          </div>
+        </div>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+        <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
+        <div class="ctrl-grp required-field columns-12">
+          <%= f.label :password, t("devise_related_custom_views.new_password"), :class => 'ctrl-label col-2' %>
+          <div class="ctrls col-10" style="max-width: initial">
+            <%= f.password_field :password, autofocus: true, autocomplete: "off", :class => 'ctrl-input' %>
+          </div>
+        </div>
 
-<%= render "devise/shared/links" %>
+        <div class="ctrl-grp required-field columns-12">
+          <%= f.label :password_confirmation, t("devise_related_custom_views.new_password_confirm"), :class => 'ctrl-label col-2' %>
+          <div class="ctrls col-10" style="max-width: initial">
+            <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'ctrl-input' %>
+          </div>
+        </div>
+
+        <div class="ctrl-grp columns-12">
+          <div class="ctrls col-10 col-offset-2">
+            <%= f.submit t("devise_related_custom_views.change_password"), :class => 'btn-outline' %>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+</div>

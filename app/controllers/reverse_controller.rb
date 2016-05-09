@@ -14,6 +14,7 @@ class ReverseController < ApplicationController
     end
     @url = Reverse.url(1).first.url
     @chal = Reverse.find_by_id(1)
+    @hint = Hint.hint('r1').empty? ? "Empty here!" : Hint.hint('r1').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(1).first.flag)
@@ -52,6 +53,7 @@ class ReverseController < ApplicationController
     end
     @url = Reverse.url(2).first.url
     @chal = Reverse.find_by_id(2)
+    @hint = Hint.hint('r2').empty? ? "Empty here!" : Hint.hint('r2').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(2).first.flag)
@@ -96,6 +98,7 @@ class ReverseController < ApplicationController
     end
     @url = Reverse.url(3).first.url
     @chal = Reverse.find_by_id(3)
+    @hint = Hint.hint('r3').empty? ? "Empty here!" : Hint.hint('r3').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(3).first.flag)
@@ -140,6 +143,7 @@ class ReverseController < ApplicationController
     end
     @url = Reverse.url(4).first.url
     @chal = Reverse.find_by_id(4)
+    @hint = Hint.hint('r4').empty? ? "Empty here!" : Hint.hint('r4').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(4).first.flag)
@@ -184,6 +188,7 @@ class ReverseController < ApplicationController
     end
     @url = Reverse.url(5).first.url
     @chal = Reverse.find_by_id(5)
+    @hint = Hint.hint('r5').empty? ? "Empty here!" : Hint.hint('r5').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Reverse.flag(5).first.flag)

@@ -79,6 +79,7 @@ sed -i 's/domain.com/'${domain}'/g' http_nginx.conf;
 sed -i 's/project_name/'${project}'/g' https_nginx.conf;
 sed -i 's/domain.com/'${domain}'/g' https_nginx.conf;
 
+sed -i 's/domain.com/'${domain}'/g' config/email.yml
 sed -i 's/domain.com/'${domain}'/g' config/environments/production.rb
 
 test -e .env && echo "The file '.env' exist, now exit." && exit 0

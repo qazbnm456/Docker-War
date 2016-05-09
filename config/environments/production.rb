@@ -83,13 +83,5 @@ DockerWar::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.default_url_options = { host: 'domain.com' }
-  config.action_mailer.smtp_settings = {
-      :address => "smtp.gmail.com",
-      :port => "587",
-      :domain => "gmail.com",
-      :authentication => "plain",
-      enable_starttls_auto: true,
-      user_name: 'YOUR_USERNAME',
-      password: 'YOUR_PASSWORD'
-  }
+  config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
 end

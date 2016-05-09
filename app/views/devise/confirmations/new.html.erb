@@ -1,12 +1,28 @@
-<h2 class="th2">Resend confirmation instructions</h2>
+<h2 class="th1"><%= t("devise_related_custom_views.resend_confirmation") %></h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="panel">
+  <div class="panel-box">
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: :"form-horizontal" }) do |f| %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+        <div class="ctrl-grp columns-12">
+          <div class="ctrls col-12">
+            <%= devise_error_messages! %>
+          </div>
+        </div>
 
-  <div><%= f.submit "Resend confirmation instructions" %></div>
-<% end %>
+        <div class="ctrl-grp required-field columns-12">
+          <%= f.label :email, :class => 'ctrl-label col-2' %>
+          <div class="ctrls col-10" style="max-width: initial">
+            <%= f.email_field :email, autofocus: true, :class => 'ctrl-input' %>
+          </div>
+        </div>
 
-<%= render "devise/shared/links" %>
+        <div class="ctrl-grp columns-12">
+          <div class="ctrls col-10 col-offset-2">
+            <%= f.submit t("devise_related_custom_views.resend_confirmation"), :class => 'btn-outline' %>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+</div>

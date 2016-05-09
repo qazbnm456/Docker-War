@@ -2033,14 +2033,14 @@ ol {
 
 .sp-container h2 {
   position: absolute;
-  top: 40%;
+  top: 30%;
   line-height: 100px;
   height: 90px;
   margin-top: -50px;
   font-size: 90px;
   width: 100%;
   text-align: center;
-  color: transparent;
+  color: rgba(255, 0, 0, 0.77);
   display: none;
   -webkit-animation: blurFadeInOut 3s ease-in backwards;
   -moz-animation: blurFadeInOut 3s ease-in backwards;

@@ -14,6 +14,7 @@ class CryptoController < ApplicationController
     end
     @url = Crypto.url(1).first.url
     @chal = Crypto.find_by_id(1)
+    @hint = Hint.hint('c1').empty? ? "Empty here!" : Hint.hint('c1').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Crypto.flag(1).first.flag)
@@ -52,6 +53,7 @@ class CryptoController < ApplicationController
     end
     @url = Crypto.url(2).first.url
     @chal = Crypto.find_by_id(2)
+    @hint = Hint.hint('c2').empty? ? "Empty here!" : Hint.hint('c2').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Crypto.flag(2).first.flag)
@@ -90,6 +92,7 @@ class CryptoController < ApplicationController
     end
     @url = Crypto.url(3).first.url
     @chal = Crypto.find_by_id(3)
+    @hint = Hint.hint('c3').empty? ? "Empty here!" : Hint.hint('c3').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Crypto.flag(3).first.flag)
@@ -134,6 +137,7 @@ class CryptoController < ApplicationController
     end
     @url = Crypto.url(4).first.url
     @chal = Crypto.find_by_id(4)
+    @hint = Hint.hint('c4').empty? ? "Empty here!" : Hint.hint('c4').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Crypto.flag(4).first.flag)
@@ -178,6 +182,7 @@ class CryptoController < ApplicationController
     end
     @url = Crypto.url(5).first.url
     @chal = Crypto.find_by_id(5)
+    @hint = Hint.hint('c5').empty? ? "Empty here!" : Hint.hint('c5').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Crypto.flag(5).first.flag)

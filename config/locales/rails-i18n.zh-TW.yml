@@ -274,6 +274,12 @@ zh-TW:
       register: 在<string>Facebook</strong>新建一個帳號吧
     login: 登入
     logout: 登出
+    forgot_password: 忘記密碼？
+    sendme_reset_password: 寄發重設密碼信
+    change_password: 變更密碼
+    resend_confirmation: 重寄確認信
+    new_password: 新密碼
+    new_password_confirm: 再次確認
     edit: 修改
     login_notice: 輸入您的電子信箱及密碼 <strong>以登入</strong>
     registration_notice: 輸入您的資料 <strong>以建立帳號</strong>

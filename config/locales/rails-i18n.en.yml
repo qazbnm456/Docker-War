@@ -275,6 +275,12 @@ en:
       register: Create an account with <strong>Facebook</strong>
     login: Log in
     logout: Log out
+    forgot_password: Forgot your password?
+    sendme_reset_password: Send me reset password instructions
+    change_password: Change your password
+    resend_confirmation: Resend confirmation instructions
+    new_password: New password
+    new_password_confirm: Confirm password
     edit: Edit
     login_notice: Enter your email and password <strong>to sign in</strong>
     registration_notice: Enter your personal details <strong>to create an acount</strong>

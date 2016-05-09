@@ -14,6 +14,7 @@ class BasicController < ApplicationController
     end
     @url = Basic.url(1).first.url
     @chal = Basic.find_by_id(1)
+    @hint = Hint.hint('b1').empty? ? "Empty here!" : Hint.hint('b1').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Basic.flag(1).first.flag)
@@ -52,6 +53,7 @@ class BasicController < ApplicationController
     end
     @url = Basic.url(2).first.url
     @chal = Basic.find_by_id(2)
+    @hint = Hint.hint('b2').empty? ? "Empty here!" : Hint.hint('b2').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Basic.flag(2).first.flag)
@@ -90,6 +92,7 @@ class BasicController < ApplicationController
     end
     @url = Basic.url(3).first.url
     @chal = Basic.find_by_id(3)
+    @hint = Hint.hint('b3').empty? ? "Empty here!" : Hint.hint('b3').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Basic.flag(3).first.flag)
@@ -128,6 +131,7 @@ class BasicController < ApplicationController
     end
     @url = Basic.url(4).first.url
     @chal = Basic.find_by_id(4)
+    @hint = Hint.hint('b4').empty? ? "Empty here!" : Hint.hint('b4').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Basic.flag(4).first.flag)
@@ -166,6 +170,7 @@ class BasicController < ApplicationController
     end
     @url = Basic.url(5).first.url
     @chal = Basic.find_by_id(5)
+    @hint = Hint.hint('b5').empty? ? "Empty here!" : Hint.hint('b5').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Basic.flag(5).first.flag)

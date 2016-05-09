@@ -14,6 +14,7 @@ class WebController < ApplicationController
     end
     @url = distribution Web.url(1)
     @chal = Web.find_by_id(1)
+    @hint = Hint.hint('w1').empty? ? "Empty here!" : Hint.hint('w1').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @flag = session[:web][:level1]
@@ -54,6 +55,7 @@ class WebController < ApplicationController
     end
     @url = distribution Web.url(2)
     @chal = Web.find_by_id(2)
+    @hint = Hint.hint('w2').empty? ? "Empty here!" : Hint.hint('w2').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @flag = session[:web][:level2]
@@ -94,6 +96,7 @@ class WebController < ApplicationController
     end
     @url = distribution Web.url(3)
     @chal = Web.find_by_id(3)
+    @hint = Hint.hint('w3').empty? ? "Empty here!" : Hint.hint('w3').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @flag = session[:web][:level3]
@@ -134,6 +137,7 @@ class WebController < ApplicationController
     end
     @url = distribution Web.url(4)
     @chal = Web.find_by_id(4)
+    @hint = Hint.hint('w4').empty? ? "Empty here!" : Hint.hint('w4').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @flag = session[:web][:level4]
@@ -174,6 +178,7 @@ class WebController < ApplicationController
     end
     @url = distribution Web.url(5)
     @chal = Web.find_by_id(5)
+    @hint = Hint.hint('w5').empty? ? "Empty here!" : Hint.hint('w5').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @flag = session[:web][:level5]

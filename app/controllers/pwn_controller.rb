@@ -20,6 +20,7 @@ class PwnController < ApplicationController
     end
     @url = Pwn.url(1).first.url
     @chal = Pwn.find_by_id(1)
+    @hint = Hint.hint('p1').empty? ? "Empty here!" : Hint.hint('p1').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Pwn.flag(1).first.flag)
@@ -64,6 +65,7 @@ class PwnController < ApplicationController
     end
     @url = Pwn.url(2).first.url
     @chal = Pwn.find_by_id(2)
+    @hint = Hint.hint('p2').empty? ? "Empty here!" : Hint.hint('p2').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Pwn.flag(2).first.flag)
@@ -108,6 +110,7 @@ class PwnController < ApplicationController
     end
     @url = Pwn.url(3).first.url
     @chal = Pwn.find_by_id(3)
+    @hint = Hint.hint('p3').empty? ? "Empty here!" : Hint.hint('p3').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Pwn.flag(3).first.flag)
@@ -152,6 +155,7 @@ class PwnController < ApplicationController
     end
     @url = Pwn.url(4).first.url
     @chal = Pwn.find_by_id(4)
+    @hint = Hint.hint('p4').empty? ? "Empty here!" : Hint.hint('p4').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Pwn.flag(4).first.flag)
@@ -196,6 +200,7 @@ class PwnController < ApplicationController
     end
     @url = Pwn.url(5).first.url
     @chal = Pwn.find_by_id(5)
+    @hint = Hint.hint('p5').empty? ? "Empty here!" : Hint.hint('p5').first.hint
     @user = current_user
     @userpass = user_params[:flag]
     @pass = Digest::SHA1.hexdigest(Pwn.flag(5).first.flag)

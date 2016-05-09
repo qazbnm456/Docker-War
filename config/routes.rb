@@ -18,7 +18,7 @@ DockerWar::Application.routes.draw do
   match '/rank', to: 'pages#rank', via: 'get'
   match '/trend', to: 'pages#trend', via: 'get'
   match '/completed_records', to: 'pages#completed_records', via: 'get'
-  match '/timeline', to: 'pages#timeline', via: ['get', 'options']
+  match '/timeline', to: 'pages#timeline', via: 'get'
 
   match '/wargame/basic', to: 'basic#index', via: 'get'
   match '/wargame/basic/save', to: 'basic#content_save', via: 'patch'

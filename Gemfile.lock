@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: git://github.com/twitter/secureheaders.git
-  revision: eff3da9721aae64c25d31b890a2817c21907af96
+  revision: e8f51038759fd4ad71cf4a3815ac4a68105b9e8e
   specs:
     secure_headers (3.3.0)
       useragent
@@ -229,6 +229,10 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kramdown (1.11.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     lol_dba (2.0.3)
       actionpack (>= 3.0, < 5.0)
       activerecord (>= 3.0, < 5.0)
@@ -408,7 +412,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     sqlite3 (1.3.11)
-    sweetalert-rails (0.5.0)
+    sweetalert-rails (1.1.3)
       railties (>= 3.1.0)
     thin (1.5.1)
       daemons (>= 1.0.9)
@@ -485,6 +489,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   kramdown
+  letter_opener
   lol_dba
   mailcatcher
   merit
