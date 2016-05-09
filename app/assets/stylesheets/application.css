@@ -18,7 +18,7 @@
  *= require kule/kule-effects.min
  *= require bootstrap-responsive
  *= require timelineJS/timeline
- *= require sweet-alert
+ *= require sweetalert
  *= require mfb.min
  *= require_tree .
  */

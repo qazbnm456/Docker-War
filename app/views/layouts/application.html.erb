@@ -11,6 +11,11 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
+  <script>
+    $(document).ready(function(){
+      $(".csstab tr").mouseover(function(){$(this).addClass("over");}).mouseout(function(){$(this).removeClass("over");})
+    });
+  </script>
 </head>
 <body>
 <%= render 'layouts/header' unless @disable_nav %>

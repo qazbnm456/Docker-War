@@ -25,7 +25,7 @@
 //= require nprogress-turbolinks
 //= require timelineJS/embed
 //= require turbolinks
-//= require sweet-alert
+//= require sweetalert
 //= require announcements
 //= require jsapi
 //= require chartkick.js
