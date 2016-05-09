@@ -147,7 +147,7 @@ class ApplicationController < ActionController::Base
     @agent.rancher_port = '444'
     @agent.access_key = ENV['RANCHER_ACCESS_KEY']
     @agent.secret_key = ENV['RANCHER_SECRET_KEY']
-    @agent.container_name = "VPS_#{current_user.email.gsub("@", "_0_")}"
+    @agent.container_name = "VPS_U_-#{current_user.email.gsub("@", "_0_")}"
     @agent
   end
 
