@@ -28,8 +28,6 @@ ADD https_nginx.conf /etc/nginx/sites-available/https_nginx.conf
 ADD rails-env.conf /etc/nginx/main.d/rails-env.conf
 RUN mkdir -p /etc/my_init.d
 ADD script/install_dependencies.sh /etc/my_init.d/install_dependencies.sh
-ADD script/setup_lets_encrypt.sh /etc/my_init.d/setup_lets_encrypt.sh
-ADD script/config.sh /home/app/config.sh
 
 ADD . /home/app/project_name
 WORKDIR /home/app/project_name
