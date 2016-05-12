@@ -1,5 +1,6 @@
 class BasicController < ApplicationController
   before_action :authenticate_user!
+  before_action :test_ip, :check_opened
   before_action :get_agent, :get_notice, :except => [:index]
 
   def index
@@ -122,83 +123,6 @@ class BasicController < ApplicationController
     end
   end
 
-  def level4
-    @ranked_players = Array.new
-    Record.all.where(cate: 'b4').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
-      if r.user.id != 1
-        @ranked_players << r.user
-      end
-    end
-    @url = Basic.url(4).first.url
-    @chal = Basic.find_by_id(4)
-    @hint = Hint.hint('b4').empty? ? "Empty here!" : Hint.hint('b4').first.hint
-    @user = current_user
-    @userpass = user_params[:flag]
-    @pass = Digest::SHA1.hexdigest(Basic.flag(4).first.flag)
-    if !@userpass.nil?
-      @userpass = Digest::SHA1.hexdigest @userpass
-      @user.record.find_by_cate('b4').update(last_try_time: DateTime.current)
-      if @userpass == @pass
-        @user.last_submit_time = @user.record.find_by_cate('b4').last_try_time
-        if !@user.record.find_by_cate('b4').solved
-          @user.score += 40
-          @user.record.find_by_cate('b4').update(solved: true, score: @user.score)
-          if @user.save
-            flash[:alert] = 'Congratulations!'
-            @user.record.find_by_cate('b4').update(finish_time: @user.last_submit_time)
-            redirect_to wargame_basic_path
-          else
-            render 'basic/level4'
-          end
-        else
-          flash[:alert] = 'You\'ve passed the problem!'
-          redirect_to wargame_basic_path
-        end
-      else
-        flash[:alert] = 'Failed! Maybe try again?'
-        render 'basic/level4'
-      end
-    end
-  end
-
-  def level5
-    @ranked_players = Array.new
-    Record.all.where(cate: 'b5').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
-      if r.user.id != 1
-        @ranked_players << r.user
-      end
-    end
-    @url = Basic.url(5).first.url
-    @chal = Basic.find_by_id(5)
-    @hint = Hint.hint('b5').empty? ? "Empty here!" : Hint.hint('b5').first.hint
-    @user = current_user
-    @userpass = user_params[:flag]
-    @pass = Digest::SHA1.hexdigest(Basic.flag(5).first.flag)
-    if !@userpass.nil?
-      @userpass = Digest::SHA1.hexdigest @userpass
-      @user.record.find_by_cate('b5').update(last_try_time: DateTime.current)
-      if @userpass == @pass
-        @user.last_submit_time = @user.record.find_by_cate('b5').last_try_time
-        if !@user.record.find_by_cate('b5').solved
-          @user.score += 50
-          @user.record.find_by_cate('b5').update(solved: true, score: @user.score)
-          if @user.save
-            flash[:alert] = 'Congratulations!'
-            @user.record.find_by_cate('b5').update(finish_time: @user.last_submit_time)
-            redirect_to wargame_basic_path
-          else
-            render 'basic/level5'
-          end
-        else
-          flash[:alert] = 'You\'ve passed the problem!'
-          redirect_to wargame_basic_path
-        end
-      else
-        flash[:alert] = 'Failed! Maybe try again?'
-        render 'basic/level5'
-      end
-    end
-  end
 
   def content_save
     @chal = Basic.find_by(:id => params[:basic][:id])
@@ -221,5 +145,18 @@ class BasicController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.permit(:flag)
+  end
+
+  def check_opened
+    if not current_user.admin?
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
+  end
+
+  def test_ip
+    if cannot? :read, Basic
+      raise CanCan::AccessDenied.new("Only ip from 140.117.0.0/16 allowed!", :read, Basic)
+    end
   end
 end

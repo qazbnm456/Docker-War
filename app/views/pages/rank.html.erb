@@ -22,28 +22,18 @@
             <th class="basic-pop-over-1"><%= link_to image_tag("order.png"), sort: :b1 %></th>
             <th class="basic-pop-over-2"><%= link_to image_tag("order.png"), sort: :b2 %></th>
             <th class="basic-pop-over-3"><%= link_to image_tag("order.png"), sort: :b3 %></th>
-            <th class="basic-pop-over-4"><%= link_to image_tag("order.png"), sort: :b4 %></th>
-            <th class="basic-pop-over-5"><%= link_to image_tag("order.png"), sort: :b5 %></th>
             <th class="web-pop-over-1"><%= link_to image_tag("order.png"), sort: :w1 %></th>
             <th class="web-pop-over-2"><%= link_to image_tag("order.png"), sort: :w2 %></th>
             <th class="web-pop-over-3"><%= link_to image_tag("order.png"), sort: :w3 %></th>
-            <th class="web-pop-over-4"><%= link_to image_tag("order.png"), sort: :w4 %></th>
-            <th class="web-pop-over-5"><%= link_to image_tag("order.png"), sort: :w5 %></th>
             <th class="reverse-pop-over-1"><%= link_to image_tag("order.png"), sort: :r1 %></th>
             <th class="reverse-pop-over-2"><%= link_to image_tag("order.png"), sort: :r2 %></th>
             <th class="reverse-pop-over-3"><%= link_to image_tag("order.png"), sort: :r3 %></th>
-            <th class="reverse-pop-over-4"><%= link_to image_tag("order.png"), sort: :r4 %></th>
-            <th class="reverse-pop-over-5"><%= link_to image_tag("order.png"), sort: :r5 %></th>
             <th class="crypto-pop-over-1"><%= link_to image_tag("order.png"), sort: :c1 %></th>
             <th class="crypto-pop-over-2"><%= link_to image_tag("order.png"), sort: :c2 %></th>
             <th class="crypto-pop-over-3"><%= link_to image_tag("order.png"), sort: :c3 %></th>
-            <th class="crypto-pop-over-4"><%= link_to image_tag("order.png"), sort: :c4 %></th>
-            <th class="crypto-pop-over-5"><%= link_to image_tag("order.png"), sort: :c5 %></th>
             <th class="pwn-pop-over-1"><%= link_to image_tag("order.png"), sort: :p1 %></th>
             <th class="pwn-pop-over-2"><%= link_to image_tag("order.png"), sort: :p2 %></th>
             <th class="pwn-pop-over-3"><%= link_to image_tag("order.png"), sort: :p3 %></th>
-            <th class="pwn-pop-over-4"><%= link_to image_tag("order.png"), sort: :p4 %></th>
-            <th class="pwn-pop-over-5"><%= link_to image_tag("order.png"), sort: :p5 %></th>
             <th><%= t("page_ranking.last_submission_time") %></th>
           </tr>
           <% @ranked_players.each_with_index do |user, index| %>
@@ -51,7 +41,7 @@
                 <td><%= index+1 %></td>
                 <td><%= link_to user.name, show_user_path(user) %></td>
                 <td><%= user.score %></td>
-                <% (0...25).each do |i| %>
+                <% (0...15).each do |i| %>
                     <% if user.record[i] && user.record[i].solved %>
                         <td><div class="t1"></div></td>
                     <% else %>
@@ -88,35 +78,35 @@
   </div>
 </div>
 <script>
-  for(i = 1; i<= 5; i++)
+  for(i = 1; i<= 3; i++)
     $(".basic-pop-over-"+i).tooltip({
         container: 'body',
         trigger: 'hover',
         placement: 'top',
         title: "basic "+i+": "+i*10
     })
-  for(i = 1; i<= 5; i++)
+  for(i = 1; i<= 3; i++)
       $(".web-pop-over-"+i).tooltip({
           container: 'body',
           trigger: 'hover',
           placement: 'top',
           title: "web "+i+": "+i*100
       })
-  for(i = 1; i<= 5; i++)
+  for(i = 1; i<= 3; i++)
       $(".reverse-pop-over-"+i).tooltip({
           container: 'body',
           trigger: 'hover',
           placement: 'top',
           title: "reverse "+i+": "+i*100
       })
-  for(i = 1; i<= 5; i++)
+  for(i = 1; i<= 3; i++)
       $(".crypto-pop-over-"+i).tooltip({
           container: 'body',
           trigger: 'hover',
           placement: 'top',
           title: "crypto "+i+": "+i*100
       })
-  for(i = 1; i<= 5; i++)
+  for(i = 1; i<= 3; i++)
       $(".pwn-pop-over-"+i).tooltip({
         container: 'body',
         trigger: 'hover',

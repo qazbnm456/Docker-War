@@ -96,7 +96,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_ability
-    @current_ability ||= Ability.new(current_user)
+    @current_ability ||= Ability.new current_user, request.remote_ip
   end
 
   def get_salt
@@ -113,8 +113,6 @@ class ApplicationController < ActionController::Base
     session[:web][:level1] = get_salt
     session[:web][:level2] = get_salt
     session[:web][:level3] = get_salt
-    session[:web][:level4] = get_salt
-    session[:web][:level5] = get_salt
   end
 
   def flag_destroy(env=nil)
@@ -122,14 +120,10 @@ class ApplicationController < ActionController::Base
       session[:web][:level1] = nil
       session[:web][:level2] = nil
       session[:web][:level3] = nil
-      session[:web][:level4] = nil
-      session[:web][:level5] = nil
     else
       env['rack.session'][:web][:level1] = nil
       env['rack.session'][:web][:level2] = nil
       env['rack.session'][:web][:level3] = nil
-      env['rack.session'][:web][:level4] = nil
-      env['rack.session'][:web][:level5] = nil
     end
   end
 

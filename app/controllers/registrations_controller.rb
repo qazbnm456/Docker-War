@@ -97,27 +97,26 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def after_confirmation_path_for(resource_or_scope)
+    session["user_return_to"] || home_path
+  end
+
   def records_assign(res, tag)
     res.record << Record.create({cate: 'b1', tag: tag})
     res.record << Record.create({cate: 'b2', tag: tag})
     res.record << Record.create({cate: 'b3', tag: tag})
-    res.record << Record.create({cate: 'b4', tag: tag})
-    res.record << Record.create({cate: 'b5', tag: tag})
     res.record << Record.create({cate: 'w1', tag: tag})
     res.record << Record.create({cate: 'w2', tag: tag})
     res.record << Record.create({cate: 'w3', tag: tag})
-    res.record << Record.create({cate: 'w4', tag: tag})
-    res.record << Record.create({cate: 'w5', tag: tag})
     res.record << Record.create({cate: 'r1', tag: tag})
     res.record << Record.create({cate: 'r2', tag: tag})
     res.record << Record.create({cate: 'r3', tag: tag})
-    res.record << Record.create({cate: 'r4', tag: tag})
-    res.record << Record.create({cate: 'r5', tag: tag})
     res.record << Record.create({cate: 'c1', tag: tag})
     res.record << Record.create({cate: 'c2', tag: tag})
     res.record << Record.create({cate: 'c3', tag: tag})
-    res.record << Record.create({cate: 'c4', tag: tag})
-    res.record << Record.create({cate: 'c5', tag: tag})
+    res.record << Record.create({cate: 'p1', tag: tag})
+    res.record << Record.create({cate: 'p2', tag: tag})
+    res.record << Record.create({cate: 'p3', tag: tag})
   end
 
   private

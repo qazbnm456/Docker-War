@@ -1,5 +1,6 @@
 class WebController < ApplicationController
   before_action :authenticate_user!
+  before_action :test_ip, :check_opened
   before_action :get_agent, :get_notice, :except => [:index]
 
   def index
@@ -128,87 +129,6 @@ class WebController < ApplicationController
     end
   end
 
-  def level4
-    @ranked_players = Array.new
-    Record.all.where(cate: 'w4').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
-      if r.user.id != 1
-        @ranked_players << r.user
-      end
-    end
-    @url = distribution Web.url(4)
-    @chal = Web.find_by_id(4)
-    @hint = Hint.hint('w4').empty? ? "Empty here!" : Hint.hint('w4').first.hint
-    @user = current_user
-    @userpass = user_params[:flag]
-    @flag = session[:web][:level4]
-    @pass = Digest::SHA1.hexdigest @flag
-    get_container(controller_name, action_name, Web.subdomain(4), @flag, Web.db(4))
-    if !@userpass.nil?
-      @userpass = Digest::SHA1.hexdigest @userpass
-      @user.record.find_by_cate('w4').update(last_try_time: DateTime.current)
-      if @userpass == @pass
-        @user.last_submit_time = @user.record.find_by_cate('w4').last_try_time
-        if !@user.record.find_by_cate('w4').solved
-          @user.score += 400
-          @user.record.find_by_cate('w4').update(solved: true, score: @user.score)
-          if @user.save
-            flash[:alert] = 'Congratulations!'
-            @user.record.find_by_cate('w4').update(finish_time: @user.last_submit_time)
-            redirect_to wargame_web_path
-          else
-            render 'web/level4'
-          end
-        else
-          flash[:alert] = 'You\'ve passed the problem!'
-          redirect_to wargame_web_path
-        end
-      else
-        flash[:alert] = 'Failed! Maybe try again?'
-        render 'web/level4'
-      end
-    end
-  end
-
-  def level5
-    @ranked_players = Array.new
-    Record.all.where(cate: 'w5').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
-      if r.user.id != 1
-        @ranked_players << r.user
-      end
-    end
-    @url = distribution Web.url(5)
-    @chal = Web.find_by_id(5)
-    @hint = Hint.hint('w5').empty? ? "Empty here!" : Hint.hint('w5').first.hint
-    @user = current_user
-    @userpass = user_params[:flag]
-    @flag = session[:web][:level5]
-    @pass = Digest::SHA1.hexdigest @flag
-    get_container(controller_name, action_name, Web.subdomain(5), @flag, Web.db(5))
-    if !@userpass.nil?
-      @userpass = Digest::SHA1.hexdigest @userpass
-      @user.record.find_by_cate('w5').update(last_try_time: DateTime.current)
-      if @userpass == @pass
-        @user.last_submit_time = @user.record.find_by_cate('w5').last_try_time
-        if !@user.record.find_by_cate('w5').solved
-          @user.score += 500
-          @user.record.find_by_cate('w5').update(solved: true, score: @user.score)
-          if @user.save
-            flash[:alert] = 'Congratulations!'
-            @user.record.find_by_cate('w5').update(finish_time: @user.last_submit_time)
-            redirect_to wargame_web_path
-          else
-            render 'web/level5'
-          end
-        else
-          flash[:alert] = 'You\'ve passed the problem!'
-          redirect_to wargame_web_path
-        end
-      else
-        flash[:alert] = 'Failed! Maybe try again?'
-        render 'web/level5'
-      end
-    end
-  end
 
   def content_save
     @chal = Web.find_by(:id => params[:web][:id])
@@ -235,5 +155,18 @@ class WebController < ApplicationController
 
   def distribution(url)
     url.gsub!(/\[:(.+)\]/) { if $1 === 'port' then current_user.port end}
+  end
+
+  def check_opened
+    if not current_user.admin?
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
+  end
+
+  def test_ip
+    if cannot? :read, Basic
+      raise CanCan::AccessDenied.new("Only ip from 140.117.0.0/16 allowed!", :read, Basic)
+    end
   end
 end

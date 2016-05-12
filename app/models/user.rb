@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL = 'change@me.com'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :custom_timeoutable, :timeout_in => 30.minutes
   validates :name, :sex_id, presence: true
