@@ -134,7 +134,7 @@ class PagesController < ApplicationController
 
   private
     def load_data
-      @@data = { "timeline" => { "headline" => "#{I18n.t("page_ranking.live_submission")}", "type" => "default", "text" => "Docker-War", "date" => [] } }
+      @@data = { "timeline" => { "headline" => "#{I18n.t("page_ranking.live_submission")}", "type" => "default", "text" => "MUCTF", "date" => [] } }
       @@time = DateTime.new(2014, 1, 1, 0, 0, 0)
     end
 

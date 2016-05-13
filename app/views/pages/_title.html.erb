@@ -1,6 +1,6 @@
 <div id="bolb" class="page-header">
   <div class="columns-12">
-  <p id="war" class="tp">Do<span>c</span>k<span>er</span></p><p id="sub" class="tp"><span>W</span><span>ar</span></p>
+  <%= image_tag "MUCTF-mark.png", width: "940px", alt: "MUCTF", :class => 'monkey' %><br>
   <% if user_signed_in? %>
     <%= link_to t("page_partial.title.challenge"), wargame_path, class: "btn btn-large btn-danger" %>
   <% else %>
