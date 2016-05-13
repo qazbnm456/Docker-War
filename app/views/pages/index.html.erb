@@ -1,3 +1,14 @@
+<div class="clock clock-center"></div>
+<script type="text/javascript">
+  var date = new Date(2016, 5, 4, 12, 0, 0, 0);
+  var now = new Date();
+  var diff = (date.getTime()/1000) - (now.getTime()/1000);
+
+  var clock = $('.clock').FlipClock(diff,{
+    clockFace: 'DailyCounter',
+    countdown: true
+  });
+</script>
 <ul id="scene" class="scene">
   <li class="layer" data-depth="0.00"></li>
   <li class="layer" data-depth="0.10"><div class="background"></div></li>

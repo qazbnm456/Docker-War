@@ -20,5 +20,6 @@
  *= require timelineJS/timeline
  *= require sweetalert
  *= require mfb.min
+ *= require flipclock
  *= require_tree .
  */

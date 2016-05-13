@@ -43,6 +43,7 @@ gem 'devise-i18n'
 gem 'status-page', github: 'qazbnm456/status-page'
 gem 'rest-client', github: 'qazbnm456/rest-client'
 gem 'docker-shell-helper', github: 'qazbnm456/rancher.api.docker-shell-helper'
+gem 'flipclockjs-rails', '~> 0.7.7'
 
 group :development do
   gem 'better_errors'

@@ -94,12 +94,12 @@ class PagesController < ApplicationController
     @ranked_players = Array.new
     if(params[:sort].blank?)
       User.all.where('id != 1').order(score: :desc, last_submit_time: :asc).includes(:record).each do |user|
-        @ranked_players << user
+        @ranked_players << user if user.confirmed?
       end
     else
       Record.all.where(cate: params[:sort], tag: @t).order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
         if r.user.id != 1
-          @ranked_players << r.user
+          @ranked_players << r.user if r.user.confirmed?
         end
       end
     end
@@ -114,13 +114,13 @@ class PagesController < ApplicationController
     @t = (@s.nil?) ? (Rails.env.production?) ? ENV['PD_DATABASE_NAME'] : Rails.env : @s.tag
     @scores = Array.new
     if(params[:id].blank?)
-      User.all.where('id != 1').each_with_index do |user, index|
+      User.all.where('id != 1').select { |u| u if u.confirmed? }.each_with_index do |user, index|
         @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
         @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
         @scores[index][:data].sort_by! { |d| d[1]}
       end
     else
-      User.where('id = ?', params[:id]).each_with_index do |user, index|
+      User.where('id = ?', params[:id]).select { |u| u if u.confirmed? }.each_with_index do |user, index|
         @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
         @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
         @scores[index][:data].sort_by! { |d| d[1]}

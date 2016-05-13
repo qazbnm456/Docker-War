@@ -1,5 +1,3 @@
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<%= render 'title' %>
 <ul class='nav nav-tabs'>
   <li class='<%= 'active' if params[:tab].nil? %>'>
     <%= link_to "#{t("page_ranking.ranking")} (#{@ranked_players.size})", rank_path %>

@@ -33,4 +33,5 @@
 //= require sanitize
 //= require tinymce-jquery
 //= require mfb.min
+//= require flipclock.min
 //= require_tree .

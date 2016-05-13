@@ -2247,3 +2247,21 @@ ol {
 #nprogress .bar {
   padding: 0px;
 }
+
+/* clock */
+.clock-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.clock-center {
+  .flip-clock-divider, .flip-clock-label, .flip-clock-dot {
+    color: white;
+    font-szie: 10px;
+  }
+}

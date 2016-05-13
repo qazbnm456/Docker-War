@@ -1,7 +1,12 @@
 class ReverseController < ApplicationController
+  prepend_before_action :test_ip
   before_action :authenticate_user!
-  before_action :test_ip, :check_opened
+  before_action :check_opened
   before_action :get_agent, :get_notice, :except => [:index]
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to home_url, :alert => exception.message
+  end
 
   def index
   end
