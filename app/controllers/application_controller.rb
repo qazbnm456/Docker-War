@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
         img_src: %w('self' data:),
         media_src: %w('self'),
         object_src: %w('self'),
-        script_src: %w(https: 'self' www.google.com 'unsafe-inline'),
+        script_src: %w(https: 'self' www.google.com 'unsafe-inline' 'unsafe-eval'),
         style_src: %w(https: 'self' 'unsafe-inline'),
         base_uri: %w('self'),
         child_src: %w('self'),
