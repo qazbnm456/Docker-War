@@ -254,6 +254,7 @@ zh-TW:
       rule_three: 猜測flags是無濟於事的。
   layout_header:
     navbar:
+      rocket-chat: 討論區
       slack: 討論區(Slack)
       chatroom: 聊天室(測試版)
       qa: 問與答

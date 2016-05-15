@@ -142,6 +142,7 @@ class ApplicationController < ActionController::Base
     @agent.access_key = ENV['RANCHER_ACCESS_KEY']
     @agent.secret_key = ENV['RANCHER_SECRET_KEY']
     @agent.container_name = "VPS_U_-#{current_user.email.gsub("@", "_1_")}-"
+    @agent.rancher_command = "stty columns 80 && stty rows 24 && reset && echo \\\"#{vps_notice}\\\" && LC_ALL=en_IN.UTF-8 asciinema rec -c \\\"/bin/bash -l\\\" -q -w 300 -t \\\"#{@agent.container_name} at #{Time.now}\\\""
     @agent
   end
 

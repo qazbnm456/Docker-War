@@ -254,6 +254,7 @@ en:
       rule_three: Guessing flags will not be tolerated.
   layout_header:
     navbar:
+      rocket-chat: Rocket-Chat
       slack: Slack
       irc: IRC
       chatroom: Chatroom(Beta)

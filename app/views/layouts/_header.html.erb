@@ -6,7 +6,7 @@
   <div class="navbar-content">
     <ul class="navbar-nav right nav-fix">
       <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.chatroom"), chatroom_path, :disabled => true, :class => "navbar-nav-link" %></li>
-      <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.slack"), '#', :target => "_blank", :class => "navbar-nav-link" %></li>
+      <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.rocket-chat"), 'http://wargame.cse.nsysu.edu.tw:3000/', :target => "_blank", :class => "navbar-nav-link" %></li>
       <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.qa"), qna_path, :class => "navbar-nav-link" %></li>
       <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.rule"), rule_path, :class => "navbar-nav-link" %></li>
       <% if user_signed_in? %>
