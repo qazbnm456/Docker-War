@@ -209,7 +209,7 @@ zh-TW:
     registration: 註冊
     homepage: 首頁
   QA:
-    placeholder: 有任何問題想問嗎？ 你提出的問題都會被加在Q&A頁面中喔!
+    placeholder: 有任何問題想問嗎？ 你提出的問題都會被加在問與答頁面中喔!
     submit: 提問題 (最多50字)
     submitted: 已提交
     words_deal: 超過字數限制，多出的字將被移除！
