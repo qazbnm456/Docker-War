@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/qazbnm456/rancher.api.docker-shell-helper.git
-  revision: 84c6e93ac4c4b0791c755678ce3c6355e9a93339
+  revision: eaf2fb2c85954a71c08257a29b27ce2b72ebb84b
   specs:
     docker-shell-helper (0.0.1)
 
@@ -50,9 +50,9 @@ GIT
 
 GIT
   remote: git://github.com/twitter/secureheaders.git
-  revision: e8f51038759fd4ad71cf4a3815ac4a68105b9e8e
+  revision: 13f0c5157a89c0c7056a474adea95de86f8f0f2f
   specs:
-    secure_headers (3.3.0)
+    secure_headers (3.3.1)
       useragent
 
 GEM
@@ -132,7 +132,7 @@ GEM
     bullet (5.0.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.9.0)
-    cancancan (1.13.1)
+    cancancan (1.14.0)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -167,7 +167,7 @@ GEM
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.1.0)
+    devise (4.1.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
@@ -200,7 +200,7 @@ GEM
     flog (4.3.2)
       ruby_parser (~> 3.1, > 3.1.0)
       sexp_processor (~> 4.4)
-    font-awesome-rails (4.6.2.0)
+    font-awesome-rails (4.6.3.0)
       railties (>= 3.2, < 5.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -423,7 +423,7 @@ GEM
     tilt (1.4.1)
     timelineJS-rails (1.1.5)
       jquery-rails
-    tinymce-rails (4.3.8)
+    tinymce-rails (4.3.12)
       railties (>= 3.1.1)
     turbolinks (2.5.3)
       coffee-rails
