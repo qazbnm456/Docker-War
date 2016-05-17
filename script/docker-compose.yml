@@ -1,0 +1,95 @@
+proxy:
+  image: ${NGINX_PROXY}
+  ports:
+    - ${NUM}:80
+  environment:
+    IDENTITY_NAME: ${DOMAIN}
+    IDENTITY_REGEX: ^${NAME}$$
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+vps:
+  image: ${VPS}
+  expose:
+    - "80"
+  environment:
+    VIRTUAL_HOST: vps.${DOMAIN}
+  labels:
+    domain.com: ${NAME}
+  cpu_shares: 256
+  cpuset: "1"
+  mem_limit: 300000000
+  stdin_open: true
+  tty: true
+web-level2:
+  image: ${IMAGE}
+  environment:
+    TEMPLATE_NGINX_HTML: 1
+    VIRTUAL_HOST: ${SUBDOMAIN}.${DOMAIN}
+    FLAG: ${FLAG}
+  labels:
+    domain.com: ${NAME}
+web-level4:
+  image: ${IMAGE}
+  environment:
+    TEMPLATE_NGINX_HTML: 1
+    VIRTUAL_HOST: ${SUBDOMAIN}.${DOMAIN}
+    FLAG: ${FLAG}
+  labels:
+    domain.com: ${NAME}
+web-level1:
+  image: ${IMAGE}
+  links:
+    - ${IMAGE}-mysql:${MYSQL}
+  environment:
+    TEMPLATE_NGINX_HTML: 1
+    VIRTUAL_HOST: ${SUBDOMAIN}.${DOMAIN}
+    DBHOST: stack-${NAME}-stack_${IMAGE}-${DB}_1
+    FLAG: ${FLAG}
+  labels:
+    domain.com: ${NAME}
+web-level1-mysql:
+  image: ${MYSQL}
+  environment:
+    MYSQL_ROOT_PASSWORD: toor
+    MYSQL_USER: Docker-War
+    MYSQL_PASSWORD: Docker-War
+    MYSQL_DATABASE: ${IMAGE}
+    FLAG: ${FLAG}
+web-level3:
+  image: ${IMAGE}
+  links:
+    - ${IMAGE}-mysql:${MYSQL}
+  environment:
+    TEMPLATE_NGINX_HTML: 1
+    VIRTUAL_HOST: ${SUBDOMAIN}.${DOMAIN}
+    DBHOST: stack-${NAME}-stack_${IMAGE}-${DB}_1
+    FLAG: ${FLAG}
+  labels:
+    domain.com: ${NAME}
+web-level3-mysql:
+  image: ${MYSQL}
+  environment:
+    MYSQL_ROOT_PASSWORD: toor
+    MYSQL_USER: Docker-War
+    MYSQL_PASSWORD: Docker-War
+    MYSQL_DATABASE: ${IMAGE}
+    FLAG: ${FLAG}
+web-level5:
+  image: ${IMAGE}
+  links:
+    - ${IMAGE}-mysql:${MYSQL}
+  environment:
+    TEMPLATE_NGINX_HTML: 1
+    VIRTUAL_HOST: ${SUBDOMAIN}.${DOMAIN}
+    DBHOST: stack-${NAME}-stack_${IMAGE}-${DB}_1
+    FLAG: ${FLAG}
+  labels:
+    domain.com: ${NAME}
+web-level5-mysql:
+  image: ${MYSQL}
+  environment:
+    MYSQL_ROOT_PASSWORD: toor
+    MYSQL_USER: Docker-War
+    MYSQL_PASSWORD: Docker-War
+    MYSQL_DATABASE: ${IMAGE}
+    FLAG: ${FLAG}

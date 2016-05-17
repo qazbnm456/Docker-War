@@ -60,7 +60,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
       end
       flag_initialization
-      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n U_-#{current_user.email.gsub("@", "_1_")}- -p #{@port}"
+      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n u--#{current_user.email.gsub("@", "-1-").gsub(".", "-")}- -p #{@port}"
       stdout, stderr, status = Open3.capture3(cmd)
       Rails.logger.info stdout
       Rails.logger.error stderr
