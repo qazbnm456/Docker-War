@@ -97,7 +97,7 @@ class SessionsController < Devise::SessionsController
         end
       end
       flag_initialization
-      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n U_-#{current_user.email.gsub("@", "_0_")}- -p #{@port}"
+      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n u--#{current_user.email.gsub("@", "-0-").gsub(".", "-")}- -p #{@port}"
       stdout, stderr, status = Open3.capture3(cmd)
       Rails.logger.info stdout
       Rails.logger.error stderr
@@ -106,7 +106,7 @@ class SessionsController < Devise::SessionsController
 
   def port_destroy
     if current_user
-      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n U_-#{current_user.email.gsub("@", "_0_")}- -d"
+      cmd = Rails.root.join('script', 'playground.sh').to_s + " -n u--#{current_user.email.gsub("@", "-0-").gsub(".", "-")}- -d"
       stdout, stderr, status = Open3.capture3(cmd)
       Rails.logger.info stdout
       Rails.logger.error stderr

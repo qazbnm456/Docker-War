@@ -65,6 +65,7 @@ read -p "Secret key(At least 30 characters and all random): " secret
 test -z ${secret} && echo "You MUST input a secret key." && exit 0
 
 sed -i 's/domain.com/'${domain}'/g' playground.sh
+sed -i 's/domain.com/'${domain}'/g' docker-compose.yml
 sed -i 's/project_name/'${project}'/g' config.sh
 sed -i 's/project_name/'${project}'/g' setup_sqlchop_proxy.sh
 sed -i 's/domain.com/'${domain}'/g' setup_sqlchop_proxy.sh

@@ -38,91 +38,60 @@
 #    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #    THE SOFTWARE.
 
-# #########################
-#     value
-# #########################
-PWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd script/
 
-# if [[ "$EUID" != "0" ]]; then
-#   echo "[!] This script must be run as root." 1>&2
-#   exit 1
-# fi
+export RANCHER_URL=$RANCHER_URL
+export RANCHER_ACCESS_KEY=$RANCHER_ACCESS_KEY
+export RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY
 
-# Global config variables
-DOMAIN="domain.com"
-DB_DIR="/home/app/db"
-NGINX_PROXY="lobsiinvok_nginx-proxy"
-MYSQL="lobsiinvok_mysql"
-VPS="ctf-tools" # https://github.com/zardus/ctf-tools
+export DOMAIN=domain.com
+export DB_DIR=/home/app/db
+export NGINX_PROXY=lobsiinvok_nginx-proxy
+export MYSQL=lobsiinvok_mysql
+export VPS=ctf-tools
 
 while getopts "n:s:f:b:i:p:d" OPTION; do
     case $OPTION in
         n)
-            NAME=$OPTARG
+            export NAME=$OPTARG
             ;;
         s)
-            SUBDOMAIN=$OPTARG
+            export SUBDOMAIN=$OPTARG
             ;;
         f)
-            FLAG=$OPTARG
+            export FLAG=$OPTARG
             ;;
         p)
-            NUM=$OPTARG
-            echo "[*] Passing PORT: "$NUM
-            docker run -d -p $NUM:80 --name $NAME -e IDENTITY_NAME=$DOMAIN -e IDENTITY_REGEX="^"+$NAME+"$" -v /var/run/docker.sock:/tmp/docker.sock:ro $NGINX_PROXY
-            echo "[*] Creating VPS..."
-            docker run -d -it -e VIRTUAL_HOST="vps".$DOMAIN --cpu-shares=256 --cpuset-cpus="3" -m 300M --oom-kill-disable --label $DOMAIN="$NAME" --name "VPS"_"$NAME" $VPS
+            export NUM=$OPTARG
+            echo "[*] Creating PROXY"
+            rancher-compose -p "stack-"$NAME"-stack" up -d proxy
+            echo "[*] Creating VPS"
+            rancher-compose -p "stack-"$NAME"-stack" up -d vps
             ;;
         b)
-            DB=$OPTARG
+            export DB=$OPTARG
             echo "[*] Passing DB: "$DB
             ;;
         i)
-            IMAGE=$OPTARG
+            export IMAGE=$OPTARG
             echo "[*] Passing IMAGE: "$IMAGE
-            OUT="$(docker ps | grep "^$SUBDOMAIN"_"$NAME$" | wc -l | awk '{print $1}' ORS='')"
-            if [[ "$OUT" == "0" ]]; then
-                if [[ "$DB" == "" ]]; then
-                    docker run \
-                        -d \
-                        -e TEMPLATE_NGINX_HTML=1 \
-                        -e VIRTUAL_HOST=$SUBDOMAIN.$DOMAIN \
-                        -e FLAG="$FLAG" \
-                        --label $DOMAIN="$NAME" \
-                        --name "$SUBDOMAIN"_"$NAME" \
-                        $IMAGE
-                else
-                    case $DB in
-                        mysql)
-                            docker run \
-                                -d \
-                                -e MYSQL_ROOT_PASSWORD=toor \
-                                -e MYSQL_USER=Docker-War \
-                                -e MYSQL_PASSWORD=Docker-War \
-                                -e MYSQL_DATABASE=$IMAGE \
-                                -e FLAG=$FLAG \
-                                --name "$SUBDOMAIN"_"$NAME"_"$DB" \
-                                $MYSQL;
-                            docker cp \
-                                $DB_DIR/$IMAGE/$IMAGE.sql \
-                                "$SUBDOMAIN"_"$NAME"_"$DB":/docker-entrypoint-initdb.d/
-                            docker run -d \
-                                -e TEMPLATE_NGINX_HTML=1 \
-                                -e VIRTUAL_HOST=$SUBDOMAIN.$DOMAIN \
-                                -e DBHOST="$SUBDOMAIN"_"$NAME"_"$DB" \
-                                -e FLAG="$FLAG" \
-                                --link "$SUBDOMAIN"_"$NAME"_"$DB":$MYSQL \
-                                --label $DOMAIN="$NAME" \
-                                --name "$SUBDOMAIN"_"$NAME" \
-                                $IMAGE;
-                        ;;
-                    esac
-                fi
+            if [[ "$DB" == "" ]]; then
+                rancher-compose -p "stack-"$NAME"-stack" up -d $IMAGE
+            else
+                case $DB in
+                    mysql)
+                        rancher-compose -p "stack-"$NAME"-stack" up -d $IMAGE"-mysql"
+                        docker cp \
+                            $DB_DIR/$IMAGE/$IMAGE.sql \
+                            r-stack-$NAME-stack_$IMAGE-mysql_1:/docker-entrypoint-initdb.d/
+                        rancher-compose -p "stack-"$NAME"-stack" up -d $IMAGE
+                    ;;
+                esac
             fi
             ;;
         d)
-            echo "[*] Deleting..."
-            docker rm -f `docker ps -a | grep "$NAME" | awk '{print $1}' ORS=' '`
+            echo "[*] Deleting Containers"
+            rancher-compose -p "stack-"$NAME"-stack" rm -f
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2

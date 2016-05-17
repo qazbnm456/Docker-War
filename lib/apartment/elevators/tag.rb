@@ -11,7 +11,7 @@ module Apartment
           tenant = (@s.nil?) ? (Rails.env.production?) ? ENV['DATABASE_NAME'] : Rails.env : @s.tag
 
           User.all.update_all('score = 0')
-          cmd = Rails.root.join('script', 'playground.sh').to_s + " -n _0_ -d"
+          cmd = Rails.root.join('script', 'playground.sh').to_s + " -n u--#{record.email.gsub("@", "-0-").gsub(".", "-")}- -d"
           stdout, stderr, status = Open3.capture3(cmd)
           p stdout
           p stderr
