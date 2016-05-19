@@ -153,7 +153,10 @@ class BasicController < ApplicationController
   end
 
   def check_opened
-    if not current_user.admin?
+    @tmp = controller_name
+    @tmp[0] = @tmp[0].capitalize
+    @flag = @tmp.constantize.opened? action_name[-1]
+    if (not current_user.admin?) && (@flag != true)
       flash[:alert] = 'Not yet ready!'
       redirect_to (request.referer or home_path)
     end
@@ -161,7 +164,7 @@ class BasicController < ApplicationController
 
   def test_ip
     if cannot? :read, Basic
-      raise CanCan::AccessDenied.new("Only ip from 140.117.0.0/16 allowed!", :read, Basic)
+      raise CanCan::AccessDenied.new("Only IPs from 140.117.0.0/16 are allowed!", :read, Basic)
     end
   end
 end

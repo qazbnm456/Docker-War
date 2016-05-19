@@ -6,4 +6,8 @@ class Pwn < ActiveRecord::Base
   def self.url(id)
     select(:url).where("id = ?", id)
   end
+
+  def self.opened?(id)
+    select(:open).where("id = ?", id).first.open
+  end
 end

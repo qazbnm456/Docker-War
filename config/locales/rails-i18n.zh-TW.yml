@@ -208,6 +208,12 @@ zh-TW:
     intro_two: 全新的CTF體驗
     registration: 註冊
     homepage: 首頁
+  prize:
+    title: 獎品僅提供獎勵之用，請勿過於看重
+    position:
+      first: 第一名
+      second: 第二名
+      third: 第三名
   QA:
     placeholder: 有任何問題想問嗎？ 你提出的問題都會被加在問與答頁面中喔!
     submit: 提問題 (最多50字)
@@ -252,6 +258,12 @@ zh-TW:
       rule_one: 請勿攻擊本伺服器或任何相關連的域名。 若您發現任何我們犯下的錯誤並提報，我們將會不吝惜給您額外的獎勵分。
       rule_two: 除非題目另有要求，否則針對任何題目DDoS都是不允許的。
       rule_three: 猜測flags是無濟於事的。
+    personal:
+      name: 個人守則
+      rule_one: 只允許140.117.0.0/16範圍內的IPs進行競賽
+      rule_two: MUCTF各個題目皆沒有先馳得點分
+      rule_three: 你應該加入官方討論區一起討論
+      rule_four: 祝你好運
   layout_header:
     navbar:
       rocket-chat: 討論區
@@ -259,6 +271,7 @@ zh-TW:
       chatroom: 聊天室(測試版)
       qa: 問與答
       rule: 規則
+      prize: 獎項
       dropdown:
         profile: 個人檔案
         edit_profile: 編輯個人檔案

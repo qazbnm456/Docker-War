@@ -1,0 +1,115 @@
+<style>
+  .flexbox {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+
+  /*
+  TABLE
+  ================================================ */
+
+  table {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #ddd;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  th, td {
+    padding: 15px;
+    text-align: center;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+
+  tr:nth-child(even)>td,
+  tr:nth-child(even)>th {
+    background-color: #efefef;
+  }
+
+  tr:nth-child(odd)>td,
+  tr:nth-child(odd)>th {
+    background-color: white;
+  }
+
+  th,
+  .prize-name {
+    color: #fff;
+  }
+
+  .prize-name {
+    font-size: 2rem;
+    border-top: 1px solid rgba(255,255,255,.2);
+    padding: 25px 0;
+  }
+
+  .prize-name span {
+    font-size: 1rem;
+  }
+
+  /* Background colour */
+
+  .plan-free th,
+  .plan-free .prize-name {
+    background: linear-gradient(-90deg, #009ADB, #00DB9A);
+  }
+
+  .plan-premium th,
+  .plan-premium .prize-name {
+    background: linear-gradient(-90deg, #EE52FF, #009ADB);
+  }
+
+  /*
+  LARGE DISPLAY
+  ================================================ */
+
+  @media ( min-width : 700px ){
+    .flexbox {
+      -webkit-flex-direction: row;
+      flex-direction: row;
+    }
+    .plan-table {
+      margin-left: 3%;
+    }
+    .plan-table:first-of-type {
+      margin-left: 0;
+    }
+  }
+</style>
+<h1 class="th1"><%= t("prize.title") %></h1>
+<div class="flexbox">
+  <div class="plan-table plan-premium">
+    <table>
+      <tr><th><%= t("prize.position.first") %></th></tr>
+      <tr><td class="prize-name">Razer Nabu X<span> ©Razer Inc.</span></td></tr>
+      <tr><td>5 – 7 日電池續航力</td></tr>
+      <tr><td>30 日待機時間</td></tr>
+      <tr><td>防水 1 公尺</td></tr>
+      <tr><td>3 組 LED 指示燈與振動功能</td></tr>
+      <tr><td>相容於：<br>iOS 裝置 – iPhone 5、5S、5C、6、6+<br>Android 4.3 版本行動裝置或更高階版本</td></tr>
+    </table>
+  </div>
+  <div class="plan-table plan-free">
+    <table>
+      <tr><th><%= t("prize.position.second") %></th></tr>
+      <tr><td class="prize-name">資安書籍</td></tr>
+      <tr><td>揭秘家用路由器0day漏洞挖掘技術(簡體書)</td></tr>
+    </table>
+  </div>
+  <div class="plan-table plan-free">
+    <table>
+      <tr><th><%= t("prize.position.third") %></th></tr>
+      <tr><td class="prize-name">トラベル Tケース<span> ©Disney</span></td></tr>
+      <tr><td>ミニーとデイジー</td></tr>
+      <tr><td>800円＋tax</td></tr>
+    </table>
+  </div>
+</div>

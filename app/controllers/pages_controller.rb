@@ -68,6 +68,9 @@ class PagesController < ApplicationController
   def about
   end
 
+  def prize
+  end
+
   def completed_records
     render json: ActiveRecord::Base.connection.execute('SELECT a.name, a.score FROM users AS a WHERE id != 1').chart_json
   end

@@ -13,6 +13,7 @@ DockerWar::Application.routes.draw do
   match '/qna_delete', to: 'pages#qna_delete', via: 'delete'
 
   match '/rule', to: 'pages#rule', via: 'get'
+  match '/prize', to: 'pages#prize', via: 'get'
   match '/about', to: 'pages#about', via: 'get'
   match '/wargame', to: 'pages#wargame', via: 'get'
   match '/rank', to: 'pages#rank', via: 'get'

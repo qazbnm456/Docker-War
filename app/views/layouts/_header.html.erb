@@ -5,10 +5,10 @@
   </div>
   <div class="navbar-content">
     <ul class="navbar-nav right nav-fix">
-      <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.chatroom"), chatroom_path, :disabled => true, :class => "navbar-nav-link" %></li>
       <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.rocket-chat"), 'http://wargame.cse.nsysu.edu.tw:3000/', :target => "_blank", :class => "navbar-nav-link" %></li>
       <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.qa"), qna_path, :class => "navbar-nav-link" %></li>
       <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.rule"), rule_path, :class => "navbar-nav-link" %></li>
+      <li class="navbar-nav-item"><%= link_to t("layout_header.navbar.prize"), prize_path, :class => "navbar-nav-link" %></li>
       <% if user_signed_in? %>
           <li id="fat-menu" class="navbar-nav-item drop drop-hover">
             <a class="navbar-nav-link drop-btn">
