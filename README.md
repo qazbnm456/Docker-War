@@ -2,6 +2,8 @@
 
 This is the Git repo of the `Docker-War` images meant to serve as good bases for **Wargame platform** images.
 
+<div align="center"><img src="challenges.gif" /></div>
+
 **Relevant links:**
  [Github](https://github.com/qazbnm456/Docker-War) |
  [NSYSU Wargame](https://wargame.cse.nsysu.edu.tw)
@@ -16,6 +18,7 @@ This is the Git repo of the `Docker-War` images meant to serve as good bases for
  * [Setup](#setup)
  * [Known issues](#issues)
  * [LICENSE](#license)
+ * [Preview](#preview)
 
 ---------------------------------------
 
@@ -44,7 +47,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 ## Prerequisites
 
 * Git
-* Docker and Docker-Compose
+* Docker, Compose, and Rancher Compose
 * Protoc
 * Node and Npm
 * Mysql (or others)
@@ -58,12 +61,13 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 2. Clone the Github repo, `$ git clone git://github.com/qazbnm456/Docker-War`
 3. Switch into the repo directory, `$ cd Docker-War`
 
-### Installing Docker and Compose
+### Installing Docker, Compose, and Rancher Compose
 
 1. `$ sudo curl -fsSL https://get.docker.com/ | sh`
 2. Verify if docker is installed correctly, `$ sudo docker run hello-world`
 3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
 4. `$ sudo chmod +x /usr/local/bin/docker-compose`
+5. Head for https://github.com/rancher/rancher-compose/releases, and download the one that compatible with your host environment. Don't forget to add it to $PATH.
 
 ### Pre Setup Env Variables and Build the Image
 
@@ -79,11 +83,15 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 <a name="issues"></a>
 ## Known issues
 
-1. Email sender do not work correctly.
-2. Change challenges on-the-fly is still unstable.
-3. Some problems on setting up sqlchop proxy server.
+1. Change challenges on-the-fly is still unstable.
+2. Some problems on setting up sqlchop proxy server.
 
 <a name="license"></a>
 ## License
 
 This project use [SATA License](LICENSE) (Star And Thank Author License), so you have to star this project before using. Read the [license](LICENSE) carefully.
+
+<a name="preview"></a>
+## Preview
+
+<div align="center"><img src="function.gif" /></div>
