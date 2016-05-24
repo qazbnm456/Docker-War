@@ -19,7 +19,7 @@
             </div>
             <div id="basic-collapseOne" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Basic test of your skills to see if you can do any of these missions. Requirements: HTML. <%= link_to 'Take this', wargame_basic_level1_path %>
+                <%= @basic_outlines[0] %> <%= link_to 'Take this', wargame_basic_level1_path %>
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
             </div>
             <div id="basic-collapseTwo" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Basic test of your skills to see if you can do any of these missions. Requirements: HTML. <%= link_to 'Take this', wargame_basic_level2_path %>
+                <%= @basic_outlines[1] %> <%= link_to 'Take this', wargame_basic_level2_path %>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
             </div>
             <div id="basic-collapseThree" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Testing your ability on Binary operation. Requirements: Binary Operation knowledge. <%= link_to 'Take this', wargame_basic_level3_path %>
+                <%= @basic_outlines[2] %> <%= link_to 'Take this', wargame_basic_level3_path %>
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
             </div>
             <div id="web-collapseOne" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Requirements: Basic XML knowledge. <%= link_to 'Take this', wargame_web_level1_path %>
+                <%= @web_outlines[0] %> <%= link_to 'Take this', wargame_web_level1_path %>
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@
             </div>
             <div id="web-collapseTwo" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Requirements: Knowledge of Rails framework. <%= link_to 'Take this', wargame_web_level2_path %>
+                <%= @web_outlines[1] %> <%= link_to 'Take this', wargame_web_level2_path %>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@
             </div>
             <div id="web-collapseThree" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Requirements: SQL. <%= link_to 'Take this', wargame_web_level3_path %>
+                <%= @web_outlines[2] %> <%= link_to 'Take this', wargame_web_level3_path %>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@
             </div>
             <div id="reverse-collapseOne" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Requirements: Basic reversing technique. <%= link_to 'Take this', wargame_reverse_level1_path %>
+                <%= @reverse_outlines[0] %> <%= link_to 'Take this', wargame_reverse_level1_path %>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@
             </div>
             <div id="reverse-collapseTwo" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Requirements: Basic assembly technique. <%= link_to 'Take this', wargame_reverse_level2_path %>
+                <%= @reverse_outlines[1] %> <%= link_to 'Take this', wargame_reverse_level2_path %>
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@
             </div>
             <div id="reverse-collapseThree" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Not yet ready. <%= link_to 'Take this', wargame_reverse_level3_path, :disabled => true %>
+                <%= @reverse_outlines[2] %> <%= link_to 'Take this', wargame_reverse_level3_path %>
               </div>
             </div>
           </div>
@@ -139,7 +139,7 @@
             </div>
             <div id="crypto-collapseOne" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Requirements: Basic crypto technique. <%= link_to 'Take this', wargame_crypto_level1_path %>
+                <%= @crypto_outlines[0] %> <%= link_to 'Take this', wargame_crypto_level1_path %>
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@
             </div>
             <div id="crypto-collapseTwo" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Crypto decryption program writing. <%= link_to 'Take this', wargame_crypto_level2_path %>
+                <%= @crypto_outlines[1] %> <%= link_to 'Take this', wargame_crypto_level2_path %>
               </div>
             </div>
           </div>
@@ -163,7 +163,7 @@
             </div>
             <div id="crypto-collapseThree" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Steganography. <%= link_to 'Take this', wargame_crypto_level3_path %>
+                <%= @crypto_outlines[2] %> <%= link_to 'Take this', wargame_crypto_level3_path %>
               </div>
             </div>
           </div>
@@ -179,7 +179,7 @@
             </div>
             <div id="pwn-collapseOne" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Not yet ready. <%= link_to 'Take this', wargame_pwn_level1_path, :disabled => true %>
+                <%= @pwn_outlines[0] %> <%= link_to 'Take this', wargame_pwn_level1_path %>
               </div>
             </div>
           </div>
@@ -191,7 +191,7 @@
             </div>
             <div id="pwn-collapseTwo" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Not yet ready. <%= link_to 'Take this', wargame_pwn_level2_path, :disabled => true %>
+                <%= @pwn_outlines[1] %> <%= link_to 'Take this', wargame_pwn_level2_path %>
               </div>
             </div>
           </div>
@@ -203,7 +203,7 @@
             </div>
             <div id="pwn-collapseThree" class="accordion-body collapse">
               <div style="background:none;background-color:lightgray;" class="accordion-inner">
-                Not yet ready. <%= link_to 'Take this', wargame_pwn_level3_path, :disabled => true %>
+                <%= @pwn_outlines[2] %> <%= link_to 'Take this', wargame_pwn_level3_path %>
               </div>
             </div>
           </div>

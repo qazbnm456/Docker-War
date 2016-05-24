@@ -10,4 +10,8 @@ class Basic < ActiveRecord::Base
   def self.opened?(id)
     select(:open).where("id = ?", id).first.open
   end
+
+  def self.outlines
+    select(:outline).map { |o| o.outline }
+  end
 end

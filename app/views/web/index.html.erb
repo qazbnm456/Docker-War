@@ -7,7 +7,7 @@
     </div>
     <div id="web-collapseOne" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Basic XML knowledge. <%= link_to 'Take this', wargame_web_level1_path %>
+        <%= @web_outlines[0] %> <%= link_to 'Take this', wargame_web_level1_path %>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     </div>
     <div id="web-collapseTwo" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Knowledge of Rails framework. <%= link_to 'Take this', wargame_web_level2_path %>
+        <%= @web_outlines[1] %> <%= link_to 'Take this', wargame_web_level2_path %>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
     </div>
     <div id="web-collapseThree" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: SQL. <%= link_to 'Take this', wargame_web_level3_path %>
+        <%= @web_outlines[2] %> <%= link_to 'Take this', wargame_web_level3_path %>
       </div>
     </div>
   </div>

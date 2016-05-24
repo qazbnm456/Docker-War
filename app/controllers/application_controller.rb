@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
         frame_src: %w('self'),
         connect_src: %w('self' wss://wargame.cse.nsysu.edu.tw:444),
         font_src: %w('self' fonts.gstatic.com data:),
-        img_src: %w('self' data:),
+        img_src: %w('self' https://raw.githubusercontent.com data:),
         media_src: %w('self'),
         object_src: %w('self'),
         script_src: %w(https: 'self' www.google.com 'unsafe-inline' 'unsafe-eval'),

@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519045122) do
+ActiveRecord::Schema.define(version: 20160524071323) do
 
   create_table "announcements", force: :cascade do |t|
-    t.text     "body",       limit: 16777215
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "badges_sashes", force: :cascade do |t|
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.datetime "updated_at"
     t.text     "content",    limit: 65535
     t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
   create_table "cryptos", force: :cascade do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.datetime "updated_at"
     t.text     "content",    limit: 65535
     t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
   create_table "hints", force: :cascade do |t|
@@ -82,18 +84,18 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.integer  "user_id",       limit: 4
     t.string   "action_method", limit: 255
     t.integer  "action_value",  limit: 4
-    t.boolean  "had_errors",    limit: 1,        default: false
+    t.boolean  "had_errors",    limit: 1,     default: false
     t.string   "target_model",  limit: 255
     t.integer  "target_id",     limit: 4
-    t.text     "target_data",   limit: 16777215
-    t.boolean  "processed",     limit: 1,        default: false
+    t.text     "target_data",   limit: 65535
+    t.boolean  "processed",     limit: 1,     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "merit_activity_logs", force: :cascade do |t|
     t.integer  "action_id",           limit: 4
-    t.string   "related_change_type", limit: 191
+    t.string   "related_change_type", limit: 255
     t.integer  "related_change_id",   limit: 4
     t.string   "description",         limit: 255
     t.datetime "created_at"
@@ -113,7 +115,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
 
   create_table "merit_scores", force: :cascade do |t|
     t.integer "sash_id",  limit: 4
-    t.string  "category", limit: 255
+    t.string  "category", limit: 255, default: "default"
   end
 
   add_index "merit_scores", ["sash_id"], name: "index_merit_scores_on_sash_id", using: :btree
@@ -131,6 +133,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.datetime "updated_at"
     t.text     "content",    limit: 65535
     t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
   create_table "qnas", force: :cascade do |t|
@@ -147,8 +150,8 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.integer  "user_id",       limit: 4
     t.datetime "last_try_time"
     t.datetime "finish_time"
-    t.integer  "score",         limit: 8,   default: 0
-    t.string   "tag",           limit: 255
+    t.integer  "score",         limit: 8,   default: 0,                  unsigned: true
+    t.string   "tag",           limit: 255,                 null: false
   end
 
   add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
@@ -161,6 +164,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.datetime "updated_at"
     t.text     "content",    limit: 65535
     t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
   create_table "sashes", force: :cascade do |t|
@@ -169,8 +173,8 @@ ActiveRecord::Schema.define(version: 20160519045122) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.string   "session_id", limit: 191
-    t.text     "data",       limit: 16777215
+    t.string   "session_id", limit: 255,   null: false
+    t.text     "data",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -179,7 +183,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "settings", force: :cascade do |t|
-    t.string  "tag",    limit: 255
+    t.string  "tag",    limit: 255,                 null: false
     t.boolean "active", limit: 1,   default: false
   end
 
@@ -188,12 +192,12 @@ ActiveRecord::Schema.define(version: 20160519045122) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 191
-    t.string   "encrypted_password",     limit: 255
-    t.string   "reset_password_token",   limit: 191
+    t.string   "email",                  limit: 255, default: "",       null: false
+    t.string   "encrypted_password",     limit: 255, default: "",       null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -205,7 +209,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.integer  "sex_id",                 limit: 4
     t.integer  "score",                  limit: 4,   default: 0
     t.datetime "last_submit_time"
-    t.string   "time_zone",              limit: 255
+    t.string   "time_zone",              limit: 255, default: "Taipei"
     t.boolean  "admin",                  limit: 1,   default: false
     t.integer  "sash_id",                limit: 4
     t.integer  "level",                  limit: 4,   default: 0
@@ -213,7 +217,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size",       limit: 4
     t.datetime "avatar_updated_at"
-    t.integer  "port",                   limit: 8
+    t.integer  "port",                   limit: 8,                                   unsigned: true
     t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -236,6 +240,7 @@ ActiveRecord::Schema.define(version: 20160519045122) do
     t.string   "db",         limit: 255
     t.text     "content",    limit: 65535
     t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
 end

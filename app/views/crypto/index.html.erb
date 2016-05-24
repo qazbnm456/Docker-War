@@ -7,7 +7,7 @@
     </div>
     <div id="crypto-collapseOne" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Basic crypto technique. <%= link_to 'Take this', wargame_crypto_level1_path %>
+        <%= @crypto_outlines[0] %> <%= link_to 'Take this', wargame_crypto_level1_path %>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     </div>
     <div id="crypto-collapseTwo" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Crypto decryption program writing. <%= link_to 'Take this', wargame_crypto_level2_path %>
+        <%= @crypto_outlines[1] %> <%= link_to 'Take this', wargame_crypto_level2_path %>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
     </div>
     <div id="crypto-collapseThree" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Steganography. <%= link_to 'Take this', wargame_crypto_level3_path %>
+        <%= @crypto_outlines[2] %> <%= link_to 'Take this', wargame_crypto_level3_path %>
       </div>
     </div>
   </div>

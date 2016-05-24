@@ -260,10 +260,11 @@ zh-TW:
       rule_three: 猜測flags是無濟於事的。
     personal:
       name: 個人守則
-      rule_one: 只允許140.117.0.0/16範圍內的IPs進行競賽
-      rule_two: MUCTF各個題目皆沒有先馳得點分
-      rule_three: 你應該加入官方討論區一起討論
-      rule_four: 祝你好運
+      rule_one: 禁止分享flags
+      rule_two: 只允許140.117.0.0/16範圍內的IPs進行競賽
+      rule_three: MUCTF各個題目皆沒有先馳得點分
+      rule_four: 你應該加入官方討論區一起討論
+      rule_five: 祝你好運
   layout_header:
     navbar:
       rocket-chat: 討論區

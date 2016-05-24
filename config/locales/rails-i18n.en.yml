@@ -260,10 +260,11 @@ en:
       rule_three: Guessing flags will not be tolerated.
     personal:
       name: Personal
-      rule_one: Only IPs from 140.117.0.0/16 are allowed.
-      rule_two: There will be no breakthrough points in MUCTF.
-      rule_three: You should join our official chatroom.
-      rule_four: GL HF DD.
+      rule_one: Don't share flags with one another.
+      rule_two: Only IPs from 140.117.0.0/16 are allowed.
+      rule_three: There will be no breakthrough points in MUCTF.
+      rule_four: You should join our official chatroom.
+      rule_five: GL HF DD.
   layout_header:
     navbar:
       rocket-chat: Rocket-Chat

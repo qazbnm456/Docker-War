@@ -7,7 +7,7 @@
     </div>
     <div id="basic-collapseOne" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: HTML. <%= link_to 'Take this', wargame_basic_level1_path %>
+        <%= @basic_outlines[0] %> <%= link_to 'Take this', wargame_basic_level1_path %>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     </div>
     <div id="basic-collapseTwo" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: HTML. <%= link_to 'Take this', wargame_basic_level2_path %>
+        <%= @basic_outlines[1] %> <%= link_to 'Take this', wargame_basic_level2_path %>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
     </div>
     <div id="basic-collapseThree" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Binary Operation knowledge. <%= link_to 'Take this', wargame_basic_level3_path %>
+        <%= @basic_outlines[2] %> <%= link_to 'Take this', wargame_basic_level3_path %>
       </div>
     </div>
   </div>

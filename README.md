@@ -23,6 +23,7 @@ This is the Git repo of the `Docker-War` images meant to serve as good bases for
 ---------------------------------------
 
 <a name="notice"></a>
+
 ## Some notices you have to check out.
 
 Sometimes you may confront services looping forever, and this [link](http://stackoverflow.com/questions/11583562/how-to-kill-a-process-running-on-particular-port-in-linux) might helps you. Besides, if you wanna re-add the host, just delete the files in /var/lib/rancher/state.
@@ -32,6 +33,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
     $ sudo chgrp 9999 /run/docker.sock
 
 <a name="todos"></a>
+
 ## TODO
 
 * Modify [nginx-proxy](https://github.com/qazbnm456/nginx-proxy) to support managed IPs by [Rancher](https://github.com/rancher/rancher).
@@ -44,6 +46,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 * (Optional) Importing the concept of [Continuous Deployment](http://rancher.com/continuous-deployment/).
 
 <a name="pre"></a>
+
 ## Prerequisites
 
 * Git
@@ -53,6 +56,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 * Mysql (or others)
 
 <a name="setup"></a>
+
 ## Setup
 
 ### Installing Git
@@ -81,17 +85,20 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 2. `$ sudo docker run dockerwar_wargame rake db:migrate:seeds database:convert_to_utf8mb4`
 
 <a name="issues"></a>
+
 ## Known issues
 
 1. Change challenges on-the-fly is still unstable.
 2. Some problems on setting up sqlchop proxy server.
 
 <a name="license"></a>
+
 ## License
 
 This project use [SATA License](LICENSE) (Star And Thank Author License), so you have to star this project before using. Read the [license](LICENSE) carefully.
 
 <a name="preview"></a>
+
 ## Preview
 
 <div align="center"><img src="function.gif" /></div>

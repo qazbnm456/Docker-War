@@ -1,7 +1,7 @@
 class PwnController < ApplicationController
   prepend_before_action :test_ip
   before_action :authenticate_user!
-  before_action :check_opened
+  before_action :check_opened, :only => [:level1, :level2, :level3]
   before_action :get_agent, :get_notice, :except => [:index]
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -9,6 +9,7 @@ class PwnController < ApplicationController
   end
 
   def index
+    @pwn_outlines = Pwn.outlines
   end
 
   def level1
