@@ -1,8 +1,10 @@
 class WebController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_opened, :only => [:level1, :level2, :level3, :level4, :level5]
   before_action :get_agent, :get_notice, :except => [:index]
 
   def index
+    @web_outlines = Web.attributes
   end
 
   def level1
@@ -235,5 +237,15 @@ class WebController < ApplicationController
 
   def distribution(url)
     url.gsub!(/\[:(.+)\]/) { if $1 === 'port' then current_user.port end}
+  end
+
+  def check_opened
+    @tmp = controller_name.clone
+    @tmp[0] = @tmp[0].capitalize
+    @flag = @tmp.constantize.opened? action_name[-1]
+    if (not current_user.admin?) && (@flag != true)
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
   end
 end

@@ -1,61 +1,61 @@
 <div class="accordion" id="pwn-accordion">
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @pwn_outlines[0][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#pwn-accordion" href="#pwn-collapseOne">
         level1 Score:100
       </a>
     </div>
     <div id="pwn-collapseOne" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_pwn_level1_path, :disabled => true %>
+        <%= @pwn_outlines[0][0] %> <%= link_to 'Take this', wargame_pwn_level1_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @pwn_outlines[1][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#pwn-accordion" href="#pwn-collapseTwo">
         level2 Score:200
       </a>
     </div>
     <div id="pwn-collapseTwo" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_pwn_level2_path, :disabled => true %>
+        <%= @pwn_outlines[1][0] %> <%= link_to 'Take this', wargame_pwn_level2_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @pwn_outlines[2][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#pwn-accordion" href="#pwn-collapseThree">
         level3 Score:300
       </a>
     </div>
     <div id="pwn-collapseThree" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_pwn_level3_path, :disabled => true %>
+        <%= @pwn_outlines[2][0] %> <%= link_to 'Take this', wargame_pwn_level3_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @pwn_outlines[3][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#pwn-accordion" href="#pwn-collapseFour">
         level4 Score:400
       </a>
     </div>
     <div id="pwn-collapseFour" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_pwn_level4_path, :disabled => true %>
+        <%= @pwn_outlines[3][0] %> <%= link_to 'Take this', wargame_pwn_level4_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @pwn_outlines[4][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#pwn-accordion" href="#pwn-collapseFive">
         level5 Score:500
       </a>
     </div>
     <div id="pwn-collapseFive" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_pwn_level5_path, :disabled => true %>
+        <%= @pwn_outlines[4][0] %> <%= link_to 'Take this', wargame_pwn_level5_path %>
       </div>
     </div>
   </div>

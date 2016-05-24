@@ -1,17 +1,13 @@
 class PwnController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_opened, :only => [:level1, :level2, :level3, :level4, :level5]
   before_action :get_agent, :get_notice, :except => [:index]
 
   def index
+    @pwn_outlines = Pwn.attributes
   end
 
   def level1
-
-    if not current_user.admin?
-      flash[:alert] = 'Not yet ready!'
-      redirect_to (request.referer or home_path)
-    end
-
     @ranked_players = Array.new
     Record.all.where(cate: 'p1').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1
@@ -51,12 +47,6 @@ class PwnController < ApplicationController
   end
 
   def level2
-
-    if not current_user.admin?
-      flash[:alert] = 'Not yet ready!'
-      redirect_to (request.referer or home_path)
-    end
-
     @ranked_players = Array.new
     Record.all.where(cate: 'p2').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1
@@ -96,12 +86,6 @@ class PwnController < ApplicationController
   end
 
   def level3
-
-    if not current_user.admin?
-      flash[:alert] = 'Not yet ready!'
-      redirect_to (request.referer or home_path)
-    end
-
     @ranked_players = Array.new
     Record.all.where(cate: 'p3').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1
@@ -141,12 +125,6 @@ class PwnController < ApplicationController
   end
 
   def level4
-
-    if not current_user.admin?
-      flash[:alert] = 'Not yet ready!'
-      redirect_to (request.referer or home_path)
-    end
-
     @ranked_players = Array.new
     Record.all.where(cate: 'p4').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1
@@ -186,12 +164,6 @@ class PwnController < ApplicationController
   end
 
   def level5
-
-    if not current_user.admin?
-      flash[:alert] = 'Not yet ready!'
-      redirect_to (request.referer or home_path)
-    end
-
     @ranked_players = Array.new
     Record.all.where(cate: 'p5').order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
       if r.user.id != 1
@@ -251,5 +223,15 @@ class PwnController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.permit(:flag)
+  end
+
+  def check_opened
+    @tmp = controller_name.clone
+    @tmp[0] = @tmp[0].capitalize
+    @flag = @tmp.constantize.opened? action_name[-1]
+    if (not current_user.admin?) && (@flag != true)
+      flash[:alert] = 'Not yet ready!'
+      redirect_to (request.referer or home_path)
+    end
   end
 end

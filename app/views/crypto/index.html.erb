@@ -1,61 +1,61 @@
 <div class="accordion" id="crypto-accordion">
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @crypto_outlines[0][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#crypto-accordion" href="#crypto-collapseOne">
         level1 Score:100
       </a>
     </div>
     <div id="crypto-collapseOne" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Basic crypto technique. <%= link_to 'Take this', wargame_crypto_level1_path %>
+        <%= @crypto_outlines[0][0] %> <%= link_to 'Take this', wargame_crypto_level1_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @crypto_outlines[1][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#crypto-accordion" href="#crypto-collapseTwo">
         level2 Score:200
       </a>
     </div>
     <div id="crypto-collapseTwo" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Crypto decryption program writing. <%= link_to 'Take this', wargame_crypto_level2_path %>
+        <%= @crypto_outlines[1][0] %> <%= link_to 'Take this', wargame_crypto_level2_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @crypto_outlines[2][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#crypto-accordion" href="#crypto-collapseThree">
         level3 Score:300
       </a>
     </div>
     <div id="crypto-collapseThree" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Steganography. <%= link_to 'Take this', wargame_crypto_level3_path %>
+        <%= @crypto_outlines[2][0] %> <%= link_to 'Take this', wargame_crypto_level3_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @crypto_outlines[3][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#crypto-accordion" href="#crypto-collapseFour">
         level4 Score:400
       </a>
     </div>
     <div id="crypto-collapseFour" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_crypto_level4_path, :disabled => true %>
+        <%= @crypto_outlines[3][0] %> <%= link_to 'Take this', wargame_crypto_level4_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @crypto_outlines[4][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#crypto-accordion" href="#crypto-collapseFive">
         level5 Score:500
       </a>
     </div>
     <div id="crypto-collapseFive" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_crypto_level5_path, :disabled => true %>
+        <%= @crypto_outlines[4][0] %> <%= link_to 'Take this', wargame_crypto_level5_path %>
       </div>
     </div>
   </div>

@@ -252,6 +252,12 @@ zh-TW:
       rule_one: 請勿攻擊本伺服器或任何相關連的域名。 若您發現任何我們犯下的錯誤並提報，我們將會不吝惜給您額外的獎勵分。
       rule_two: 除非題目另有要求，否則針對任何題目DDoS都是不允許的。
       rule_three: 猜測flags是無濟於事的。
+    personal:
+      name: 個人守則
+      rule_one: 禁止分享flags
+      rule_two: NSYSU WARGAME各個題目皆沒有先馳得點分.
+      rule_three: 你應該加入官方討論區一起討論
+      rule_four: 祝你好運
   layout_header:
     navbar:
       slack: 討論區(Slack)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509120451) do
+ActiveRecord::Schema.define(version: 20160524055742) do
 
   create_table "announcements", force: :cascade do |t|
     t.text     "body",       limit: 16777215
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20160509120451) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content",    limit: 65535
+    t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
   create_table "cryptos", force: :cascade do |t|
@@ -46,6 +48,8 @@ ActiveRecord::Schema.define(version: 20160509120451) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content",    limit: 65535
+    t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
   create_table "hints", force: :cascade do |t|
@@ -128,6 +132,8 @@ ActiveRecord::Schema.define(version: 20160509120451) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content",    limit: 65535
+    t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
   create_table "qnas", force: :cascade do |t|
@@ -157,6 +163,8 @@ ActiveRecord::Schema.define(version: 20160509120451) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "content",    limit: 65535
+    t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
   create_table "sashes", force: :cascade do |t|
@@ -227,6 +235,8 @@ ActiveRecord::Schema.define(version: 20160509120451) do
     t.datetime "updated_at"
     t.string   "db",         limit: 255
     t.text     "content",    limit: 65535
+    t.boolean  "open",       limit: 1,     default: false
+    t.string   "outline",    limit: 255,   default: "Not yet ready."
   end
 
 end

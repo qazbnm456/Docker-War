@@ -1,61 +1,61 @@
 <div class="accordion" id="reverse-accordion">
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @reverse_outlines[0][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#reverse-accordion" href="#reverse-collapseOne">
         level1 Score:100
       </a>
     </div>
     <div id="reverse-collapseOne" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Basic reversing technique. <%= link_to 'Take this', wargame_reverse_level1_path %>
+        <%= @reverse_outlines[0][0] %> <%= link_to 'Take this', wargame_reverse_level1_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @reverse_outlines[1][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#reverse-accordion" href="#reverse-collapseTwo">
         level2 Score:200
       </a>
     </div>
     <div id="reverse-collapseTwo" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Requirements: Basic assembly technique. <%= link_to 'Take this', wargame_reverse_level2_path %>
+        <%= @reverse_outlines[1][0] %> <%= link_to 'Take this', wargame_reverse_level2_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @reverse_outlines[2][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#reverse-accordion" href="#reverse-collapseThree">
         level3 Score:300
       </a>
     </div>
     <div id="reverse-collapseThree" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_reverse_level3_path, :disabled => true %>
+        <%= @reverse_outlines[2][0] %> <%= link_to 'Take this', wargame_reverse_level3_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @reverse_outlines[3][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#reverse-accordion" href="#reverse-collapseFour">
         level4 Score:400
       </a>
     </div>
     <div id="reverse-collapseFour" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_reverse_level4_path, :disabled => true %>
+        <%= @reverse_outlines[3][0] %> <%= link_to 'Take this', wargame_reverse_level4_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @reverse_outlines[4][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#reverse-accordion" href="#reverse-collapseFive">
         level5 Score:500
       </a>
     </div>
     <div id="reverse-collapseFive" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        Not yet ready. <%= link_to 'Take this', wargame_reverse_level5_path, :disabled => true %>
+        <%= @reverse_outlines[4][0] %> <%= link_to 'Take this', wargame_reverse_level5_path %>
       </div>
     </div>
   </div>

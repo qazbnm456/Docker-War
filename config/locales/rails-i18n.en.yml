@@ -248,10 +248,16 @@ en:
   page_rule:
     title: Play fair, have fun.  Don't be a jerk.
     infrastructure:
-      name: infrastructure
+      name: Infrastructure
       rule_one: Please do not attack any infrastructure or related domains. Perhaps We can give out points to players who come forward about potential mistakes we've made.
       rule_two: Denial of service attacks on any challenge will not be tolerated, unless the challenge calls for such an attack.
       rule_three: Guessing flags will not be tolerated.
+    personal:
+      name: Personal
+      rule_one: Don't share flags with one another.
+      rule_two: There will be no breakthrough points in NSYSU WARGAME.
+      rule_three: You should join our official chatroom.
+      rule_four: GL HF DD.
   layout_header:
     navbar:
       slack: Slack
