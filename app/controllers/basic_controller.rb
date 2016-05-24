@@ -154,7 +154,7 @@ class BasicController < ApplicationController
   end
 
   def check_opened
-    @tmp = controller_name
+    @tmp = controller_name.clone
     @tmp[0] = @tmp[0].capitalize
     @flag = @tmp.constantize.opened? action_name[-1]
     if (not current_user.admin?) && (@flag != true)
