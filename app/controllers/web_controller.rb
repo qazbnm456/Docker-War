@@ -9,7 +9,7 @@ class WebController < ApplicationController
   end
 
   def index
-    @web_outlines = Web.outlines
+    @web_outlines = Web.attributes
   end
 
   def level1

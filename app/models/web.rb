@@ -15,7 +15,7 @@ class Web < ActiveRecord::Base
     select(:open).where("id = ?", id).first.open
   end
 
-  def self.outlines
-    select(:outline).map { |o| o.outline }
+  def self.attributes
+    select(:outline, :open).map { |o| [o.outline, o.open] }
   end
 end

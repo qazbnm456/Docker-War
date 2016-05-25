@@ -89,11 +89,11 @@ class PagesController < ApplicationController
   end
 
   def wargame
-    @basic_outlines = Basic.outlines
-    @web_outlines = Web.outlines
-    @reverse_outlines = Reverse.outlines
-    @crypto_outlines = Crypto.outlines
-    @pwn_outlines = Pwn.outlines
+    @basic_outlines = Basic.attributes
+    @web_outlines = Web.attributes
+    @reverse_outlines = Reverse.attributes
+    @crypto_outlines = Crypto.attributes
+    @pwn_outlines = Pwn.attributes
   end
 
   def rank

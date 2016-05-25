@@ -9,7 +9,7 @@ class BasicController < ApplicationController
   end
 
   def index
-    @basic_outlines = Basic.outlines
+    @basic_outlines = Basic.attributes
   end
 
   def level1

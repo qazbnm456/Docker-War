@@ -1,37 +1,37 @@
 <div class="accordion" id="reverse-accordion">
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @reverse_outlines[0][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#reverse-accordion" href="#reverse-collapseOne">
         level1 Score:100
       </a>
     </div>
     <div id="reverse-collapseOne" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        <%= @reverse_outlines[0] %> <%= link_to 'Take this', wargame_reverse_level1_path %>
+        <%= @reverse_outlines[0][0] %> <%= link_to 'Take this', wargame_reverse_level1_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @reverse_outlines[1][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#reverse-accordion" href="#reverse-collapseTwo">
         level2 Score:200
       </a>
     </div>
     <div id="reverse-collapseTwo" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        <%= @reverse_outlines[1] %> <%= link_to 'Take this', wargame_reverse_level2_path %>
+        <%= @reverse_outlines[1][0] %> <%= link_to 'Take this', wargame_reverse_level2_path %>
       </div>
     </div>
   </div>
   <div class="accordion-group">
-    <div class="accordion-heading">
+    <div class="accordion-heading <%= "disabled" unless @reverse_outlines[2][1] %>">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#reverse-accordion" href="#reverse-collapseThree">
         level3 Score:300
       </a>
     </div>
     <div id="reverse-collapseThree" class="accordion-body collapse">
       <div style="background:none;background-color:lightgray;" class="accordion-inner">
-        <%= @reverse_outlines[2] %> <%= link_to 'Take this', wargame_reverse_level3_path %>
+        <%= @reverse_outlines[2][0] %> <%= link_to 'Take this', wargame_reverse_level3_path %>
       </div>
     </div>
   </div>

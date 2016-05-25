@@ -9,7 +9,7 @@ class CryptoController < ApplicationController
   end
 
   def index
-    @crypto_outlines = Crypto.outlines
+    @crypto_outlines = Crypto.attributes
   end
 
   def level1

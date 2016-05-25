@@ -9,7 +9,7 @@ class PwnController < ApplicationController
   end
 
   def index
-    @pwn_outlines = Pwn.outlines
+    @pwn_outlines = Pwn.attributes
   end
 
   def level1

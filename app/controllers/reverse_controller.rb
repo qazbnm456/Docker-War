@@ -9,7 +9,7 @@ class ReverseController < ApplicationController
   end
 
   def index
-    @reverse_outlines = Reverse.outlines
+    @reverse_outlines = Reverse.attributes
   end
 
   def level1
