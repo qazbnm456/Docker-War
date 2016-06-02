@@ -49,6 +49,7 @@ export DB_DIR=/home/app/db
 export NGINX_PROXY=lobsiinvok_nginx-proxy
 export MYSQL=lobsiinvok_mysql
 export VPS=ctf-tools
+export SPAWNER=nsysu-wargame-spawner
 
 while getopts "n:s:f:b:i:p:d" OPTION; do
     case $OPTION in
@@ -67,6 +68,8 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
             rancher-compose -p "stack-"$NAME"-stack" up -d proxy
             echo "[*] Creating VPS"
             rancher-compose -p "stack-"$NAME"-stack" up -d vps
+            echo "[*] Creating SPAWNER"
+            rancher-compose -p "stack-"$NAME"-stack" up -d spawner
             ;;
         b)
             export DB=$OPTARG

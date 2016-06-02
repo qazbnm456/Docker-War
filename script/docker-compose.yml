@@ -20,6 +20,14 @@ vps:
   mem_limit: 300000000
   stdin_open: true
   tty: true
+spawner:
+  image: ${SPAWNER}
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /usr/bin/docker:/usr/bin/docker:ro
+    - /lib/x86_64-linux-gnu/libsystemd-journal.so.0:/lib/x86_64-linux-gnu/libsystemd-journal.so.0:ro
+    - /usr/lib/x86_64-linux-gnu/libapparmor.so.1:/usr/lib/x86_64-linux-gnu/libapparmor.so.1:ro
+    - /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7:ro
 web-level2:
   image: ${IMAGE}
   environment:
