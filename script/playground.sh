@@ -45,7 +45,6 @@ export RANCHER_ACCESS_KEY=$RANCHER_ACCESS_KEY
 export RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY
 
 export DOMAIN=domain.com
-export DB_DIR=/home/app/db
 export NGINX_PROXY=lobsiinvok_nginx-proxy
 export MYSQL=lobsiinvok_mysql
 export VPS=ctf-tools
