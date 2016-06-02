@@ -46,7 +46,6 @@ export RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY
 
 export DOMAIN=domain.com
 export NGINX_PROXY=lobsiinvok_nginx-proxy
-export MYSQL=lobsiinvok_mysql
 export VPS=ctf-tools
 export SPAWNER=muctf-spawner
 

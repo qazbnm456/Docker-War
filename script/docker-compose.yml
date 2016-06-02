@@ -56,7 +56,7 @@ web-level1:
   labels:
     domain.com: ${NAME}
 web-level1-mysql:
-  image: ${MYSQL}
+  image: ${IMAGE}-${DB}
   environment:
     MYSQL_ROOT_PASSWORD: toor
     MYSQL_USER: Docker-War
@@ -74,7 +74,7 @@ web-level3:
   labels:
     domain.com: ${NAME}
 web-level3-mysql:
-  image: ${MYSQL}
+  image: ${IMAGE}-${DB}
   environment:
     MYSQL_ROOT_PASSWORD: toor
     MYSQL_USER: Docker-War
@@ -92,7 +92,7 @@ web-level5:
   labels:
     domain.com: ${NAME}
 web-level5-mysql:
-  image: ${MYSQL}
+  image: ${IMAGE}-${DB}
   environment:
     MYSQL_ROOT_PASSWORD: toor
     MYSQL_USER: Docker-War
