@@ -62,7 +62,6 @@ web-level1-mysql:
     MYSQL_USER: Docker-War
     MYSQL_PASSWORD: Docker-War
     MYSQL_DATABASE: ${IMAGE}
-    FLAG: ${FLAG}
 web-level3:
   image: ${IMAGE}
   links:
@@ -81,7 +80,6 @@ web-level3-mysql:
     MYSQL_USER: Docker-War
     MYSQL_PASSWORD: Docker-War
     MYSQL_DATABASE: ${IMAGE}
-    FLAG: ${FLAG}
 web-level5:
   image: ${IMAGE}
   links:
@@ -100,4 +98,3 @@ web-level5-mysql:
     MYSQL_USER: Docker-War
     MYSQL_PASSWORD: Docker-War
     MYSQL_DATABASE: ${IMAGE}
-    FLAG: ${FLAG}
