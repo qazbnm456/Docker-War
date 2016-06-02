@@ -84,9 +84,6 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
                 case $DB in
                     mysql)
                         rancher-compose -p "stack-"$NAME"-stack" up -d $IMAGE"-mysql"
-                        docker cp \
-                            $DB_DIR/$IMAGE/$IMAGE.sql \
-                            r-stack-$NAME-stack_$IMAGE-mysql_1:/docker-entrypoint-initdb.d/
                         rancher-compose -p "stack-"$NAME"-stack" up -d $IMAGE
                     ;;
                 esac
