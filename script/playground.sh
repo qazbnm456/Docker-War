@@ -45,9 +45,7 @@ export RANCHER_ACCESS_KEY=$RANCHER_ACCESS_KEY
 export RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY
 
 export DOMAIN=domain.com
-export DB_DIR=/home/app/db
 export NGINX_PROXY=lobsiinvok_nginx-proxy
-export MYSQL=lobsiinvok_mysql
 export VPS=ctf-tools
 export SPAWNER=nsysu-wargame-spawner
 
@@ -84,9 +82,6 @@ while getopts "n:s:f:b:i:p:d" OPTION; do
                 case $DB in
                     mysql)
                         rancher-compose -p "stack-"$NAME"-stack" up -d $IMAGE"-mysql"
-                        docker cp \
-                            $DB_DIR/$IMAGE/$IMAGE.sql \
-                            r-stack-$NAME-stack_$IMAGE-mysql_1:/docker-entrypoint-initdb.d/
                         rancher-compose -p "stack-"$NAME"-stack" up -d $IMAGE
                     ;;
                 esac

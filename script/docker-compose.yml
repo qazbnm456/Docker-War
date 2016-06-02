@@ -56,13 +56,12 @@ web-level1:
   labels:
     domain.com: ${NAME}
 web-level1-mysql:
-  image: ${MYSQL}
+  image: ${IMAGE}-${DB}
   environment:
     MYSQL_ROOT_PASSWORD: toor
     MYSQL_USER: Docker-War
     MYSQL_PASSWORD: Docker-War
     MYSQL_DATABASE: ${IMAGE}
-    FLAG: ${FLAG}
 web-level3:
   image: ${IMAGE}
   links:
@@ -75,13 +74,12 @@ web-level3:
   labels:
     domain.com: ${NAME}
 web-level3-mysql:
-  image: ${MYSQL}
+  image: ${IMAGE}-${DB}
   environment:
     MYSQL_ROOT_PASSWORD: toor
     MYSQL_USER: Docker-War
     MYSQL_PASSWORD: Docker-War
     MYSQL_DATABASE: ${IMAGE}
-    FLAG: ${FLAG}
 web-level5:
   image: ${IMAGE}
   links:
@@ -94,10 +92,9 @@ web-level5:
   labels:
     domain.com: ${NAME}
 web-level5-mysql:
-  image: ${MYSQL}
+  image: ${IMAGE}-${DB}
   environment:
     MYSQL_ROOT_PASSWORD: toor
     MYSQL_USER: Docker-War
     MYSQL_PASSWORD: Docker-War
     MYSQL_DATABASE: ${IMAGE}
-    FLAG: ${FLAG}
