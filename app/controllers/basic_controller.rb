@@ -36,6 +36,7 @@ class BasicController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('b1').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_basic_path
           else
             render 'basic/level1'
@@ -75,6 +76,7 @@ class BasicController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('b2').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_basic_path
           else
             render 'basic/level2'
@@ -114,6 +116,7 @@ class BasicController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('b3').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_basic_path
           else
             render 'basic/level3'

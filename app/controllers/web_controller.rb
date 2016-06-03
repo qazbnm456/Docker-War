@@ -38,6 +38,7 @@ class WebController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('w1').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_web_path
           else
             render 'web/level1'
@@ -79,6 +80,7 @@ class WebController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('w2').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_web_path
           else
             render 'web/level2'
@@ -120,6 +122,7 @@ class WebController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('w3').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_web_path
           else
             render 'web/level3'

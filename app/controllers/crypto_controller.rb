@@ -36,6 +36,7 @@ class CryptoController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('c1').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_crypto_path
           else
             render 'crypto/level1'
@@ -75,6 +76,7 @@ class CryptoController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('c2').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_crypto_path
           else
             render 'crypto/level2'
@@ -114,6 +116,7 @@ class CryptoController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('c3').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_crypto_path
           else
             render 'crypto/level3'

@@ -128,7 +128,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_container(controller_name, action_name, subdomain, flag, db)
-    cmd = Rails.root.join('script', 'playground.sh').to_s + " -n u--#{current_user.email.gsub("@", "-1-").gsub(".", "-")}- -s #{subdomain} -f #{flag.inspect} -b #{(db.nil? || db.empty?) ? ''.inspect : db} -i #{controller_name+"-"+action_name}"
+    cmd = Rails.root.join('script', 'playground.sh').to_s + " -n u--#{current_user.email.gsub("@", "-1-").gsub(".", "-")}- -s #{subdomain} -f #{flag.inspect} -b #{(db.nil? || db.empty?) ? ''.inspect : db} -i #{controller_name+"-muctf-"+action_name}"
     stdout, stderr, status = Open3.capture3(cmd)
     Rails.logger.info stdout
     Rails.logger.error stderr
@@ -182,5 +182,9 @@ class ApplicationController < ActionController::Base
     "\\r\\n"\
     "# search for a tool\\r\\n"\
     "manage-tools search preload\\r\\n"
+  end
+
+  def hubot_callback(user, controller_name, action_name)
+    RestClient.post 'http://wargame.cse.nsysu.edu.tw:3001/bot/trend', { :name => user.name, :email => user.email, :chal => controller_name+"-"+action_name }
   end
 end

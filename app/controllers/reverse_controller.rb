@@ -36,6 +36,7 @@ class ReverseController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('r1').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_reverse_path
           else
             render 'reverse/level1'
@@ -75,6 +76,7 @@ class ReverseController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('r2').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_reverse_path
           else
             render 'reverse/level2'
@@ -115,6 +117,7 @@ class ReverseController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('r3').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_reverse_path
           else
             render 'reverse/level3'

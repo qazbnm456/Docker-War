@@ -37,6 +37,7 @@ class PwnController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('p1').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_pwn_path
           else
             render 'pwn/level1'
@@ -77,6 +78,7 @@ class PwnController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('p2').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_pwn_path
           else
             render 'pwn/level2'
@@ -117,6 +119,7 @@ class PwnController < ApplicationController
           if @user.save
             flash[:alert] = 'Congratulations!'
             @user.record.find_by_cate('p3').update(finish_time: @user.last_submit_time)
+            hubot_callback(@user, controller_name, action_name)
             redirect_to wargame_pwn_path
           else
             render 'pwn/level3'
