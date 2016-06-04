@@ -78,14 +78,14 @@ class PagesController < ApplicationController
   def timeline
     Record.all.order(last_try_time: :desc).where('last_try_time > ?', @@time).each do |r|
       if !r.last_try_time.nil?
-        @@data["timeline"]["date"] << { "startDate" => r.last_try_time.strftime("%Y,%m,%d,%H,%M,%S"), "headline" => "#{I18n.t("page_ranking.description", :name => r.user.name, :cate => r.cate, :solved => r.solved)}" }
+        @@data["timeline"]["date"] << { "startDate" => r.last_try_time.strftime("%Y,%m,%d,%H,%M,%S"), "headline" => CGI::escape("#{I18n.t("page_ranking.description", :name => r.user.name, :cate => r.cate, :solved => r.solved)}") }
             #@@data["timeline"]["date"].inject({}) do |h, k|
               #(h[k["timeline"]["date"]["startDate"]] ||= {}).merge!(k){ |key, old, new| old || new }
               #h
             #end.values
       end
     end
-    render json: ActionController::Base.helpers.sanitize(@@data)
+    render json: @@data
   end
 
   def wargame
