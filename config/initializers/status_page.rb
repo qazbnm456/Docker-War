@@ -6,7 +6,7 @@ StatusPage.configure do
   # Use service
   self.use :database
   self.use :cache
-  self.add_custom_service Docker, host: 'unix:///tmp/docker.sock'
+  self.add_custom_service Docker
   # self.use :redis
   # Custom redis url
   # self.use :redis, url: 'redis://you-redis-host:3306/1'
