@@ -78,7 +78,7 @@ class PagesController < ApplicationController
   def timeline
     Record.all.order(last_try_time: :desc).where('last_try_time > ?', @@time).each do |r|
       if !r.last_try_time.nil?
-        @@data["timeline"]["date"] << { "startDate" => r.last_try_time.strftime("%Y,%m,%d,%H,%M,%S"), "headline" => CGI::escape("#{I18n.t("page_ranking.description", :name => r.user.name, :cate => r.cate, :solved => r.solved)}") }
+        @@data["timeline"]["date"] << { "startDate" => r.last_try_time.strftime("%Y,%m,%d,%H,%M,%S"), "headline" => "#{I18n.t("page_ranking.description", :name => r.user.name, :cate => r.cate, :solved => r.solved)}" }
             #@@data["timeline"]["date"].inject({}) do |h, k|
               #(h[k["timeline"]["date"]["startDate"]] ||= {}).merge!(k){ |key, old, new| old || new }
               #h
@@ -97,23 +97,30 @@ class PagesController < ApplicationController
   end
 
   def rank
-    @s = Setting.find_by_active(true)
-    @t = (@s.nil?) ? (Rails.env.production?) ? ENV['PD_DATABASE_NAME'] : Rails.env : @s.tag
-    @ranked_players = Array.new
-    if(params[:sort].blank?)
+    if params[:tab] == 'live_submission'
+      @ranked_players = Array.new
       User.all.where('id != 1').order(score: :desc, last_submit_time: :asc).includes(:record).each do |user|
         @ranked_players << user if user.confirmed?
       end
     else
-      Record.all.where(cate: params[:sort], tag: @t).order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
-        if r.user.id != 1
-          @ranked_players << r.user if r.user.confirmed?
+      @s = Setting.find_by_active(true)
+      @t = (@s.nil?) ? (Rails.env.production?) ? ENV['PD_DATABASE_NAME'] : Rails.env : @s.tag
+      @ranked_players = Array.new
+      if(params[:sort].blank?)
+        User.all.where('id != 1').order(score: :desc, last_submit_time: :asc).includes(:record).each do |user|
+          @ranked_players << user if user.confirmed?
+        end
+      else
+        Record.all.where(cate: params[:sort], tag: @t).order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
+          if r.user.id != 1
+            @ranked_players << r.user if r.user.confirmed?
+          end
         end
       end
-    end
-    respond_to do |format|
-      format.html
-      format.json { render json: @ranked_players }
+      respond_to do |format|
+        format.html
+        format.json { render json: @ranked_players }
+      end
     end
   end
 
