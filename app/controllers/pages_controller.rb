@@ -124,13 +124,13 @@ class PagesController < ApplicationController
     if(params[:id].blank?)
       User.all.where('id != 1').select { |u| u if u.confirmed? }.each_with_index do |user, index|
         @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
-        @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
+        @scores[index][:data] << [Time.zone.now.to_time.to_i*1000, 0]
         @scores[index][:data].sort_by! { |d| d[1]}
       end
     else
       User.where('id = ?', params[:id]).select { |u| u if u.confirmed? }.each_with_index do |user, index|
         @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
-        @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
+        @scores[index][:data] << [Time.zone.now.to_time.to_i*1000, 0]
         @scores[index][:data].sort_by! { |d| d[1]}
       end
     end
