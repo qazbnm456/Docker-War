@@ -85,7 +85,7 @@ class PagesController < ApplicationController
             #end.values
       end
     end
-    render json: @@data
+    render json: ActionController::Base.helpers.sanitize(@@data)
   end
 
   def wargame
