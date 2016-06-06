@@ -1,4 +1,4 @@
-require File.expand_path('../../../lib/status_page/docker', __FILE__)
+Dir[File.expand_path('../../../lib/status_page/*.rb', __FILE__)].each { |file| require file }
 
 StatusPage.configure do
   # Cache check status result 10 seconds
@@ -6,9 +6,7 @@ StatusPage.configure do
   # Use service
   self.use :database
   self.use :cache
+  self.add_custom_service CustomRedis, :url => 'redis://redis:6379/1'
+  self.use :sidekiq
   self.add_custom_service Docker
-  # self.use :redis
-  # Custom redis url
-  # self.use :redis, url: 'redis://you-redis-host:3306/1'
-  # self.use :sidekiq
 end

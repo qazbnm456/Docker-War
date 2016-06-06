@@ -1,5 +1,9 @@
+require 'sidekiq/web'
 DockerWar::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   mount StatusPage::Engine =>'/'
   root 'pages#index'
 

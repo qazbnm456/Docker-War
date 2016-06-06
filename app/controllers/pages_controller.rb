@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   end
 
   def home
-    @all_news = News.reverse_order
+    @all_news = News.all.reverse_order
     @qna = Qna.new
   end
 

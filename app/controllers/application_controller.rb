@@ -134,10 +134,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_container(controller_name, action_name, subdomain, flag, db)
-    cmd = Rails.root.join('script', 'playground.sh').to_s + " -n u--#{current_user.email.gsub("@", "-0-").gsub(".", "-")}- -s #{subdomain} -f #{flag.inspect} -b #{(db.nil? || db.empty?) ? ''.inspect : db} -i #{controller_name+"-"+action_name}"
-    stdout, stderr, status = Open3.capture3(cmd)
-    Rails.logger.info stdout
-    Rails.logger.error stderr
+    GetContainersJob.perform_now(current_user.email, controller_name, action_name, subdomain, flag, db)
   end
 
   def get_agent

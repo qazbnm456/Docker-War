@@ -110,9 +110,10 @@ This project use [SATA License](LICENSE) (Star And Thank Author License), so you
 %>
 
 <style>
-  ul {
+  #about > ul {
     list-style: initial !important;
   }
 </style>
-
-<%= markdown(@text) %>
+<div id="about">
+  <%= markdown(@text) %>
+</div>
