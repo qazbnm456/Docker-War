@@ -56,12 +56,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @port = rand(49152...65536)
       if !User.update(current_user.id, :port => @port).valid?
         @port += 1
-        @port %= 65536
-        @port += 49152
+        @port += 49152 if @port == 65536 && @port %= 65536
         while !User.update(current_user.id, :port => @port).valid? do
           @port += 1
-          @port %= 65536
-          @port += 49152
+          @port += 49152 if @port == 65536 && @port %= 65536
         end
       end
       flag_initialization

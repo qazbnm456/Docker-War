@@ -229,7 +229,6 @@ en:
   page_ranking:
     ranking: Ranking
     chart: Chart
-    live: Live
     name: Name
     score: Score
     date: Date

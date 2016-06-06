@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   end
 
   def home
-    @all_news = News.all
+    @all_news = News.reverse_order
     @qna = Qna.new
   end
 
@@ -73,7 +73,7 @@ class PagesController < ApplicationController
   end
 
   def timeline
-    Record.all.order(last_try_time: :desc).where('last_try_time > ?', @@time).each do |r|
+    Record.order(last_try_time: :desc).where('last_try_time > ?', @@time).find_each(:batch_size => 100) do |r|
       if !r.last_try_time.nil?
         @@data["timeline"]["date"] << { "startDate" => r.last_try_time.strftime("%Y,%m,%d,%H,%M,%S"), "headline" => "#{I18n.t("page_ranking.description", :name => r.user.name, :cate => r.cate, :solved => r.solved)}" }
             #@@data["timeline"]["date"].inject({}) do |h, k|
@@ -98,11 +98,11 @@ class PagesController < ApplicationController
     @t = (@s.nil?) ? (Rails.env.production?) ? ENV['PD_DATABASE_NAME'] : Rails.env : @s.tag
     @ranked_players = Array.new
     if(params[:sort].blank?)
-      User.all.where('id != 1').order(score: :desc, last_submit_time: :asc).includes(:record).each do |user|
+      User.where('id != 1').order(score: :desc, last_submit_time: :asc).includes(:record).find_each(:batch_size => 100) do |user|
         @ranked_players << user
       end
     else
-      Record.all.where(cate: params[:sort], tag: @t).order(solved: :desc, finish_time: :asc).includes(:user => :record).each do |r|
+      Record.where(cate: params[:sort], tag: @t).order(solved: :desc, finish_time: :asc).includes(:user => :record).find_each(:batch_size => 100) do |r|
         if r.user.id != 1
           @ranked_players << r.user
         end
@@ -119,13 +119,13 @@ class PagesController < ApplicationController
     @t = (@s.nil?) ? (Rails.env.production?) ? ENV['PD_DATABASE_NAME'] : Rails.env : @s.tag
     @scores = Array.new
     if(params[:id].blank?)
-      User.all.where('id != 1').each_with_index do |user, index|
+      User.where('id != 1').find_each(:batch_size => 100).with_index do |user, index|
         @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
         @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
         @scores[index][:data].sort_by! { |d| d[1]}
       end
     else
-      User.where('id = ?', params[:id]).each_with_index do |user, index|
+      User.where('id = ?', params[:id]).find_each(:batch_size => 100).with_index do |user, index|
         @scores << { :name => user.name, :data => user.record.where("score != 0 and tag = '#{@t}'").map { |r| [r.finish_time.to_time.to_i*1000, r.score, r.cate] }.sort_by { |r| -r[1] } }
         @scores[index][:data] << [user.created_at.to_time.to_i*1000, 0]
         @scores[index][:data].sort_by! { |d| d[1]}

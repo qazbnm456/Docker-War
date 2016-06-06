@@ -7,9 +7,6 @@
   <li class='<%= 'active' if params[:tab] == 'Pie Chart' %>'>
     <%= link_to t("page_ranking.chart"), rank_path(tab: 'Pie Chart') %>
   </li>
-  <li class='<%= 'active' if params[:tab] == 'live_submission' %>'>
-    <%= link_to t("page_ranking.live"), rank_path(tab: 'live_submission') %>
-  </li>
 </ul>
 <div class="columns-12">
   <div class="col-12">
@@ -62,27 +59,8 @@
               </tr>
           <% end %>
         </table>
-    <% elsif params[:tab] == 'live_submission' %>
-        <div id="time_line"></div>
-        <a class="btn btn-info btn-large" href="#" onclick="Push()"><%= t("page_ranking.refresh") %></a>
-        <script>
-          function Push() {
-            $('#time_line').empty();
-            $.getJSON('/timeline.json', function (data) {
-              createStoryJS({
-                type: 'timeline',
-                width: '100%',
-                height: '340',
-                source: data, //get the events.json format from https://github.com/VeriteCo/TimelineJS#file-formats
-                embed_id: 'time_line',
-                start_at_end: true
-              });
-            });
-          }
-          setTimeout(function() { Push(); }, 200);
-        </script>
     <% elsif params[:tab] == 'Pie Chart' %>
-        <%= pie_chart Record.where(:solved => true).group(:cate).count %>
+        <%= pie_chart Record.where('solved = 1 AND user_id != 1').group(:cate).count %>
         <div id="chart"></div>
     <% end %>
   </div>
