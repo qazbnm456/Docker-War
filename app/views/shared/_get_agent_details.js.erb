@@ -1,0 +1,10 @@
+$("#data-docker-terminal").html('<div data-docker-terminal-token="<%= @token %>" data-docker-terminal-host="<%= @rancher_host %>:<%= @rancher_port %>"></div>');
+$(".contains").css("max-width", '100%');
+$(".chal-body").css("max-width", "50%");
+$(".chal-body").css("float", "left");
+$(".chal-body").css("width", "50%");
+$("[data-docker-terminal-token]").each(function(i, el) {
+  var token = $(el).data('docker-terminal-token');
+  var host = $(el).data('docker-terminal-host');
+  docker.terminal.startTerminalForContainer(host, token);
+});

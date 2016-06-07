@@ -38,9 +38,11 @@
       </li>
 
       <li>
-        <a href="#" onclick="shell()" data-mfb-label="<%= t("challenge_menu.terminal") %>" class="mfb-component__button--child">
-          <i class="mfb-component__child-icon ion-social-tux"></i>
-        </a>
+        <%= form_tag get_agent_details_path, :id => 'shell', :remote => 'true' do %>
+            <a href="#" onclick="submitFrmAjax();" data-mfb-label="<%= t("challenge_menu.terminal") %>" class="mfb-component__button--child">
+              <i class="mfb-component__child-icon ion-social-tux"></i>
+            </a>
+        <% end %>
       </li>
     </ul>
   </li>
@@ -85,8 +87,7 @@
 </div>
 <%= render 'shared/each_rank', ranked_players: ranked_players, index: index %>
 
-<div data-docker-terminal-token="<%= @agent.get_token %>"
-     data-docker-terminal-host="<%= @agent.rancher_host %>:<%= @agent.rancher_port %>"></div>
+<div id="data-docker-terminal"></div>
 
 <script>
 
@@ -145,18 +146,14 @@
         c.css("z-index", 1);
         c.css("display", prev);
     }
-
-    function shell() {
-        $(".contains").css("max-width", '100%');
-        $(".chal-body").css("max-width", "50%");
-        $(".chal-body").css("float", "left");
-        $(".chal-body").css("width", "50%");
-        $("[data-docker-terminal-token]").each(function(i, el) {
-          var token = $(el).data('docker-terminal-token');
-          var host = $(el).data('docker-terminal-host');
-          docker.terminal.startTerminalForContainer(host, token);
-        });
-    }
+</script>
+<script>
+  function submitFrmAjax(){
+    $.post({
+      url : "<%= get_agent_details_path %>",
+      data : $("#shell").serialize()
+    });
+  }
 </script>
 <script>
   textSize = function () {

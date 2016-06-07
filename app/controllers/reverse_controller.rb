@@ -1,7 +1,6 @@
 class ReverseController < ApplicationController
   before_action :authenticate_user!
   before_action :check_opened, :only => [:level1, :level2, :level3, :level4, :level5]
-  before_action :get_agent, :get_notice, :except => [:index]
 
   def index
     @reverse_outlines = Reverse.attributes

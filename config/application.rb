@@ -25,6 +25,7 @@ module DockerWar
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.default_locale = "zh-TW"
+    config.action_view.embed_authenticity_token_in_remote_forms = true
     config.active_job.queue_adapter = :sidekiq
     config.eager_load_paths += %W(#{config.root}/app/jobs)
     config.assets.precompile += %w(rails_admin/rails_admin.css rails_admin/rails_admin.js *.png *.jpg *.jpeg *.gif)

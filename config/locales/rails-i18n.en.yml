@@ -304,3 +304,4 @@ en:
     concentration_mode: Concentration Mode
     hint: Hint(s) if any
     terminal: Terminal
+    error_get_agent_details: Failed to retrieve the session! Come back later.

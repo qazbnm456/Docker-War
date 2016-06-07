@@ -1,8 +1,9 @@
 require 'diuitauth'
 class PagesController < ApplicationController
-  before_action :authenticate_user!, only: [:chatroom, :wargame, :new_q, :qna_ans, :qna_edit, :qna_delete]
+  before_action :authenticate_user!, only: [:chatroom, :wargame, :new_q, :qna_ans, :qna_edit, :qna_delete, :get_agent_details]
   before_action :load_data, only: :timeline
   before_action :disable_nav, only: :index
+  before_action :get_agent, :get_notice, :only => [:get_agent_details]
 
   def index
   end
@@ -134,6 +135,19 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @scores }
+    end
+  end
+
+  def get_agent_details
+    @token = @agent.get_token
+    @rancher_host = @agent.rancher_host
+    @rancher_port = @agent.rancher_port
+    respond_to do |format|
+      format.js { render partial: "shared/get_agent_details" }
+    end
+  rescue NoMethodError
+    respond_to do |format|
+      format.js { render partial: "shared/error_get_agent_details" }
     end
   end
 

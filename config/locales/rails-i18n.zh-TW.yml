@@ -303,3 +303,4 @@ zh-TW:
     concentration_mode: 專注模式
     hint: 提示(如果有的話)
     terminal: 終端機
+    error_get_agent_details: 終端機會話取得失敗，請稍候再試
