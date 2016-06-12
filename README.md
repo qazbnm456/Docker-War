@@ -1,6 +1,4 @@
-# Docker based image for building a wargame platform
-
-This is the Git repo of the `Docker-War` images meant to serve as good bases for **Wargame platform** images.
+# Docker based Wargame Platform - To practice your CTF skills
 
 <div align="center"><img src="challenges.gif" /></div>
 
@@ -36,10 +34,10 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 ## TODO
 
-* Modify [nginx-proxy](https://github.com/qazbnm456/nginx-proxy) to support managed IPs by [Rancher](https://github.com/rancher/rancher).
 * Covering Unit Test and Integration Test.
 * CI with [drone](https://github.com/drone/drone) and [dapper](https://github.com/rancher/dapper)
 * Ability to change challenges on-the-fly.
+* Move [term.js](https://github.com/rancher/term.js) to [xterm.js](https://github.com/sourcelair/xterm.js).
 * (Optional) Instant notifications built with WebSocket.
 * (Optional) Change to SPA when Rails 5 releases.
 * (Optional) Use [BTRFS](https://btrfs.wiki.kernel.org/index.php/Main_Page) or [ZFS](http://zfsonlinux.org) filesystem to storage images.
