@@ -2,7 +2,7 @@
 
 #    The Star And Thank Author License (SATA)
 #
-#    Copyright (c) 2014-2016 Lobsiinvok (lobsiinvok@tdohacker.org)
+#    Copyright (c) 2014-2016 Boik Su (lobsiinvok@tdohacker.org)
 #
 #    Project Url: https://github.com/qazbnm456/Docker-War
 #
@@ -61,5 +61,4 @@ cd $PWD \
     && echo "Enable the https endpoint" \
     && ln -s /etc/nginx/sites-available/https_nginx.conf /etc/nginx/sites-enabled/https_nginx.conf \
     && echo "Reload nginx service..." \
-    && service nginx reload \
-    && /home/app/project_name/script/setup_sqlchop_proxy.sh &
+    && service nginx reload &

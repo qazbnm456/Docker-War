@@ -1,7 +1,6 @@
 require 'diuitauth'
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:chatroom, :wargame, :new_q, :qna_ans, :qna_edit, :qna_delete, :get_agent_details]
-  before_action :load_data, only: :timeline
   before_action :disable_nav, only: :index
   before_action :get_agent, :get_notice, :only => [:get_agent_details]
 
@@ -73,19 +72,6 @@ class PagesController < ApplicationController
     render json: ActiveRecord::Base.connection.execute('SELECT a.name, a.score FROM users AS a WHERE id != 1').chart_json
   end
 
-  def timeline
-    Record.order(last_try_time: :desc).where('last_try_time > ?', @@time).find_each(:batch_size => 100) do |r|
-      if !r.last_try_time.nil?
-        @@data["timeline"]["date"] << { "startDate" => r.last_try_time.strftime("%Y,%m,%d,%H,%M,%S"), "headline" => "#{I18n.t("page_ranking.description", :name => r.user.name, :cate => r.cate, :solved => r.solved)}" }
-            #@@data["timeline"]["date"].inject({}) do |h, k|
-              #(h[k["timeline"]["date"]["startDate"]] ||= {}).merge!(k){ |key, old, new| old || new }
-              #h
-            #end.values
-      end
-    end
-    render json: @@data
-  end
-
   def wargame
     @basic_outlines = Basic.attributes
     @web_outlines = Web.attributes
@@ -152,11 +138,6 @@ class PagesController < ApplicationController
   end
 
   private
-    def load_data
-      @@data = { "timeline" => { "headline" => "#{I18n.t("page_ranking.live_submission")}", "type" => "default", "text" => "Docker-War", "date" => [] } }
-      @@time = DateTime.new(2014, 1, 1, 0, 0, 0)
-    end
-
     def getToken
       private_key = "#{ENV['DIUIT_PRIVATE_KEY']}"
       exp = Time.now.utc.to_i + 4 * 3600

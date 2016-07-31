@@ -2,7 +2,7 @@
 
 #    The Star And Thank Author License (SATA)
 #    
-#    Copyright (c) 2014-2016 Lobsiinvok (lobsiinvok@tdohacker.org)
+#    Copyright (c) 2014-2016 Boik Su (lobsiinvok@tdohacker.org)
 #    
 #    Project Url: https://github.com/qazbnm456/Docker-War
 #    
@@ -43,7 +43,7 @@
 # #########################
 set -e
 
-PREREQUISITIES_IMAGES=(lobsiinvok_nginx-proxy richarvey/nginx-php-fpm lampe/minimal-nginx lobsiinvok_mysql)
+PREREQUISITIES_IMAGES=(lobsiinvok_nginx-proxy richarvey/nginx-php-fpm lampe/minimal-nginx)
 
 if docker version 2> /dev/null 1>&2; then
     echo -e "\e[0;32m Docker works!\e[0m";
@@ -73,5 +73,5 @@ if docker version 2> /dev/null 1>&2; then
         fi
     done
 else
-    echo -e "\e[0;31m Cannot find Docker\e[0m";
+    echo -e "\e[0;31m Docker not found!\e[0m";
 fi

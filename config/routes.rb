@@ -22,7 +22,6 @@ DockerWar::Application.routes.draw do
   match '/rank', to: 'pages#rank', via: 'get'
   match '/trend', to: 'pages#trend', via: 'get'
   match '/completed_records', to: 'pages#completed_records', via: 'get'
-  match '/timeline', to: 'pages#timeline', via: 'get'
   match '/get_agent_details', to: 'pages#get_agent_details', via: 'post'
 
   match '/wargame/basic', to: 'basic#index', via: 'get'

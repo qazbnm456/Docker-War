@@ -2,7 +2,7 @@
 
 #    The Star And Thank Author License (SATA)
 #
-#    Copyright (c) 2014-2016 Lobsiinvok (lobsiinvok@tdohacker.org)
+#    Copyright (c) 2014-2016 Boik Su (lobsiinvok@tdohacker.org)
 #
 #    Project Url: https://github.com/qazbnm456/Docker-War
 #
@@ -67,8 +67,6 @@ test -z ${secret} && echo "You MUST input a secret key." && exit 0
 sed -i 's/domain.com/'${domain}'/g' playground.sh
 sed -i 's/domain.com/'${domain}'/g' docker-compose.yml
 sed -i 's/project_name/'${project}'/g' config.sh
-sed -i 's/project_name/'${project}'/g' setup_sqlchop_proxy.sh
-sed -i 's/domain.com/'${domain}'/g' setup_sqlchop_proxy.sh
 sed -i 's/project_name/'${project}'/g' setup_lets_encrypt.sh
 sed -i 's/domain.com/'${domain}'/g' setup_lets_encrypt.sh
 

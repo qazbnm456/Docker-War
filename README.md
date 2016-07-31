@@ -22,7 +22,7 @@
 
 <a name="notice"></a>
 
-## Some notices you have to check out.
+## Notice
 
 Sometimes you may confront services looping forever, and this [link](http://stackoverflow.com/questions/11583562/how-to-kill-a-process-running-on-particular-port-in-linux) might helps you. Besides, if you wanna re-add the host, just delete the files in /var/lib/rancher/state.
 
@@ -39,7 +39,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 * Ability to change challenges on-the-fly.
 * Move [term.js](https://github.com/rancher/term.js) to [xterm.js](https://github.com/sourcelair/xterm.js).
 * (Optional) Instant notifications built with WebSocket.
-* (Optional) Change to SPA when Rails 5 releases.
+* (Optional) Change to SPA.
 * (Optional) Use [BTRFS](https://btrfs.wiki.kernel.org/index.php/Main_Page) or [ZFS](http://zfsonlinux.org) filesystem to storage images.
 * (Optional) Importing the concept of [Continuous Deployment](http://rancher.com/continuous-deployment/).
 
@@ -49,8 +49,6 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 * Git
 * Docker, Compose, and Rancher Compose
-* Protoc
-* Node and Npm
 * Mysql (or others)
 
 <a name="setup"></a>
@@ -67,7 +65,7 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 1. `$ sudo curl -fsSL https://get.docker.com/ | sh`
 2. Verify if docker is installed correctly, `$ sudo docker run hello-world`
-3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
+3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
 4. `$ sudo chmod +x /usr/local/bin/docker-compose`
 5. Head for https://github.com/rancher/rancher-compose/releases, and download the one that compatible with your host environment. Don't forget to add it to $PATH.
 

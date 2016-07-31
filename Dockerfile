@@ -1,10 +1,9 @@
-FROM phusion/passenger-ruby22
-MAINTAINER Firmhouse "lobsiinvok@tdohacker.org"
+FROM phusion/passenger-ruby23
+MAINTAINER Boik Su "lobsiinvok@tdohacker.org"
 
 ENV HOME /root
 ENV RAILS_ENV production
 RUN usermod -aG docker_env app
-RUN echo unix:///tmp/docker.sock > /etc/container_environment/DOCKER_HOST
 
 CMD ["/sbin/my_init"]
 
@@ -12,8 +11,7 @@ CMD ["/sbin/my_init"]
 RUN apt-get update \
   && apt-get upgrade -y \
   && apt-get install -y lxc \
-  && apt-get install -y ruby2.3 ruby2.3-dev \
-  && ruby-switch --set ruby2.3
+  && apt-get install -y imagemagick libmagickwand-dev
 
 WORKDIR /tmp
 ADD Gemfile Gemfile

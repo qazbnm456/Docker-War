@@ -2,7 +2,7 @@
 
 #    The Star And Thank Author License (SATA)
 #
-#    Copyright (c) 2014-2016 Lobsiinvok (lobsiinvok@tdohacker.org)
+#    Copyright (c) 2014-2016 Boik Su (lobsiinvok@tdohacker.org)
 #
 #    Project Url: https://github.com/qazbnm456/Docker-War
 #
@@ -47,7 +47,7 @@ export RANCHER_SECRET_KEY=$RANCHER_SECRET_KEY
 export DOMAIN=domain.com
 export NGINX_PROXY=lobsiinvok_nginx-proxy
 export VPS=ctf-tools
-export SPAWNER=nsysu-wargame-spawner
+export SPAWNER=wargame-spawner
 
 while getopts "n:s:f:b:i:p:d" OPTION; do
     case $OPTION in

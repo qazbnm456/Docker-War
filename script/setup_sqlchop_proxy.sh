@@ -2,7 +2,7 @@
 
 #    The Star And Thank Author License (SATA)
 #
-#    Copyright (c) 2014-2016 Lobsiinvok (lobsiinvok@tdohacker.org)
+#    Copyright (c) 2014-2016 Boik Su (lobsiinvok@tdohacker.org)
 #
 #    Project Url: https://github.com/qazbnm456/Docker-War
 #
