@@ -42,6 +42,7 @@ class ApplicationController < ActionController::Base
         upgrade_insecure_requests: true, # see https://www.w3.org/TR/upgrade-insecure-requests/
         report_uri: %w(https://331f16c75888d350134a58be3b017b7a.report-uri.io/r/default/csp/enforce)
     }
+=begin
     config.hpkp = {
         report_only: false,
         max_age: 270.days.to_i,
@@ -52,6 +53,7 @@ class ApplicationController < ActionController::Base
             {sha256: "+jZrZTw2Qn84hZSEHdg1EbpcSpj7HDgV0iw+gB+U3As="}
         ]
     }
+=end
   end
 
   protected

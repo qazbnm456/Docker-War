@@ -1,5 +1,5 @@
-FROM phusion/passenger-ruby23
-MAINTAINER Boik Su "lobsiinvok@tdohacker.org"
+FROM phusion/passenger-customizable
+MAINTAINER Boik Su "boik@tdohacker.org"
 
 ENV HOME /root
 ENV RAILS_ENV production
@@ -7,17 +7,27 @@ RUN usermod -aG docker_env app
 
 CMD ["/sbin/my_init"]
 
+#   Build system and git.
+RUN /pd_build/utilities.sh
+#   Ruby support.
+RUN /pd_build/ruby-2.3.1.sh
+#   Opt-in for Redis.
+RUN /pd_build/redis.sh
+
 # https://forums.docker.com/t/using-docker-in-a-dockerized-jenkins-container/322/6
 RUN apt-get update \
   && apt-get upgrade -y \
   && apt-get install -y lxc \
-  && apt-get install -y imagemagick libmagickwand-dev
+  && apt-get install -y imagemagick libmagickwand-dev sudo
 
 WORKDIR /tmp
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 RUN gem install bundler \
   && bundle install
+# Enable the Redis service.
+RUN rm -f /etc/service/redis/down
+# Enable the Nginx service.
 RUN rm -f /etc/service/nginx/down
 RUN rm /etc/nginx/sites-enabled/default
 

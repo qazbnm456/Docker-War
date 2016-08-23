@@ -2,7 +2,7 @@
 
 #    The Star And Thank Author License (SATA)
 #
-#    Copyright (c) 2014-2016 Boik Su (lobsiinvok@tdohacker.org)
+#    Copyright (c) 2014-2016 Boik Su (boik@tdohacker.org)
 #
 #    Project Url: https://github.com/qazbnm456/Docker-War
 #
@@ -49,15 +49,16 @@ openssl -h >/dev/null 2>&1 || { echo >&2 "Openssl is needed but I cannot find th
 PWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $PWD \
     && git clone https://github.com/lukas2511/letsencrypt.sh.git \
-    && cd letsencrypt.sh && echo domain.com > domains.txt \
-    && mkdir -p /home/app/project_name/public/.well-known/acme-challenge \
+    && cd letsencrypt.sh \
     && mv /home/app/config.sh . \
+    && mkdir -p /home/app/project_name/public/.well-known/acme-challenge \
     && echo "Enable the http endpoint" \
     && ln -s /etc/nginx/sites-available/http_nginx.conf /etc/nginx/sites-enabled/http_nginx.conf \
     && echo "Reload nginx service..." \
     && service nginx reload \
     && echo "Generate Letsencrypt SSL certificates" \
-    && ./letsencrypt.sh -c \
+    && ./letsencrypt.sh -c --config `pwd`/config.sh --domain domain.com \
+    && openssl dhparam -out "/etc/my_init.d/letsencrypt.sh/certs/domain.com/dhparam.pem" 2048 \
     && echo "Enable the https endpoint" \
     && ln -s /etc/nginx/sites-available/https_nginx.conf /etc/nginx/sites-enabled/https_nginx.conf \
     && echo "Reload nginx service..." \

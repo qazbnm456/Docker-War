@@ -65,13 +65,13 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 
 1. `$ sudo curl -fsSL https://get.docker.com/ | sh`
 2. Verify if docker is installed correctly, `$ sudo docker run hello-world`
-3. ``$ sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``
+3. `sudo -i` first, ``$ curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``, then `$ exit`
 4. `$ sudo chmod +x /usr/local/bin/docker-compose`
 5. Head for https://github.com/rancher/rancher-compose/releases, and download the one that compatible with your host environment. Don't forget to add it to $PATH.
 
 ### Pre Setup Env Variables and Build the Image
 
-1. `$ sudo script/setup.sh`, and filling in fields it requires.
+1. `$ cd script/ && sudo ./setup.sh && cd ..`, and filling in fields it requires.
 2. `$ cat rails-env.conf` to see what variables you need to set when running this image.
 3. `$ sudo docker-compose build` and you can take a cup of coffee.
 

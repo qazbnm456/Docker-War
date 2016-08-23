@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: git://github.com/twitter/secureheaders.git
-  revision: 023008df01fecbf285fc15adcedf351be12d22dd
+  revision: a1d74cf9d53e1b9df0a68a45589b83bdea846279
   specs:
     secure_headers (3.4.0)
       useragent
@@ -129,13 +129,13 @@ GEM
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
       will_paginate
-    brakeman (3.3.3)
+    brakeman (3.3.5)
     builder (3.2.2)
-    bullet (5.2.0)
+    bullet (5.3.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     cancancan (1.15.0)
-    capybara (2.7.1)
+    capybara (2.8.0)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -208,7 +208,7 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    groupdate (3.0.1)
+    groupdate (3.0.2)
       activesupport (>= 3)
     haml (4.0.7)
       tilt
@@ -221,7 +221,7 @@ GEM
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
-    jquery-rails (4.1.1)
+    jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
@@ -232,7 +232,7 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    kramdown (1.11.1)
+    kramdown (1.12.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -245,8 +245,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    mailcatcher (0.6.4)
-      activesupport (~> 4.0)
+    mailcatcher (0.6.5)
       eventmachine (= 1.0.9.1)
       mail (~> 2.3)
       rack (~> 1.5)
@@ -273,7 +272,7 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    nprogress-rails (0.2.0.1)
+    nprogress-rails (0.2.0.2)
     oauth2 (1.2.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -289,7 +288,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    paperclip (5.0.0)
+    paperclip (5.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -366,7 +365,7 @@ GEM
       rainbow (~> 2.0)
       unparser (~> 0.2.2)
     remotipart (1.2.1)
-    responders (2.2.0)
+    responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.2)
       rspec-support (~> 3.5.0)
@@ -446,7 +445,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.1)
+    uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -511,7 +510,7 @@ DEPENDENCIES
   mailcatcher
   merit
   mysql2
-  nprogress-rails
+  nprogress-rails (= 0.2.0.2)
   oauth2
   omniauth
   omniauth-facebook
