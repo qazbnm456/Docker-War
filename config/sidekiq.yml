@@ -6,12 +6,15 @@
 :logfile: log/sidekiq.log
 :queues:
   - [docker_assignment, 2]
+  - [get_containers, 2]
   - default
 development:
   :queues:
     - [docker_assignment, 2]
+    - [get_containers, 2]
     - default
 production:
   :queues:
     - [docker_assignment, 2]
+    - [get_containers, 2]
     - default
