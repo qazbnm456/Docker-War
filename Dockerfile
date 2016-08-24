@@ -23,13 +23,17 @@ RUN apt-get update \
 WORKDIR /tmp
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
-RUN gem install bundler \
-  && bundle install
+RUN chown -R app.app /tmp \
+  && gem install bundler \
+  && bundle install --jobs 40 --retry 10
 # Enable the Redis service.
 RUN rm -f /etc/service/redis/down
 # Enable the Nginx service.
 RUN rm -f /etc/service/nginx/down
 RUN rm /etc/nginx/sites-enabled/default
+# Enable the Sidekiq service.
+RUN mkdir /etc/service/sidekiq
+ADD script/sidekiq.sh /etc/service/sidekiq/run
 
 ADD http_nginx.conf /etc/nginx/sites-available/http_nginx.conf
 ADD https_nginx.conf /etc/nginx/sites-available/https_nginx.conf
@@ -40,6 +44,7 @@ ADD script/setup_lets_encrypt.sh /etc/my_init.d/setup_lets_encrypt.sh
 ADD script/config.sh /home/app/config.sh
 
 ADD . /home/app/project_name
+RUN mkdir -p /home/app/project_name/tmp/pids
 WORKDIR /home/app/project_name
 RUN chown -R app:app /home/app/project_name
 RUN sudo -u app RAILS_ENV=production bundle exec rake assets:precompile --trace

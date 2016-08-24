@@ -69,6 +69,7 @@ sed -i 's/domain.com/'${domain}'/g' docker-compose.yml
 sed -i 's/project_name/'${project}'/g' config.sh
 sed -i 's/project_name/'${project}'/g' setup_lets_encrypt.sh
 sed -i 's/domain.com/'${domain}'/g' setup_lets_encrypt.sh
+sed -i 's/project_name/'${project}'/g' sidekiq.sh
 
 cd $PWD/../
 
