@@ -95,7 +95,7 @@ class SessionsController < Devise::SessionsController
         end
       end
       flag_initialization
-      UserContainersAssignmentJob.perform_now(current_user.email, @port)
+      UserContainersAssignmentJob.perform_later(current_user.email, @port)
     end
   end
 

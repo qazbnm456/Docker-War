@@ -136,7 +136,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_container(controller_name, action_name, subdomain, flag, db)
-    GetContainersJob.perform_now(current_user.email, controller_name, action_name, subdomain, flag, db)
+    GetContainersJob.perform_later(current_user.email, controller_name, action_name, subdomain, flag, db)
   end
 
   def get_agent

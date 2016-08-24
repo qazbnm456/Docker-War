@@ -11,3 +11,6 @@ sidekiq_url = "redis://#{redis_config['host']}:#{redis_config['port']}/0"
 Sidekiq.configure_server do |config|
   config.redis = { namespace: 'sidekiq', url: sidekiq_url }
 end
+Sidekiq.configure_client do |config|
+  config.redis = { namespace: 'sidekiq', url: sidekiq_url }
+end

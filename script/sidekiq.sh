@@ -43,4 +43,4 @@
 # #########################
 
 cd /home/app/project_name
-exec /sbin/setuser app bundle exec sidekiq -e production
+exec /sbin/setuser app bundle exec sidekiq -C config/sidekiq.yml -e production
