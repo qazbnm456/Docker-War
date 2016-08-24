@@ -62,4 +62,5 @@ cd $PWD \
     && echo "Enable the https endpoint" \
     && ln -s /etc/nginx/sites-available/https_nginx.conf /etc/nginx/sites-enabled/https_nginx.conf \
     && echo "Reload nginx service..." \
-    && service nginx reload &
+    && service nginx reload \
+    && sidekiq &

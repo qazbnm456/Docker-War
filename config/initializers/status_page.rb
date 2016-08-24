@@ -6,7 +6,7 @@ StatusPage.configure do
   # Use service
   self.use :database
   self.use :cache
-  self.add_custom_service CustomRedis, :url => 'redis://redis:6379/1'
+  self.add_custom_service CustomRedis, :url => 'redis://127.0.0.1:6379/1'
   self.use :sidekiq
   self.add_custom_service Docker
 end
