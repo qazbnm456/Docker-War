@@ -12,11 +12,9 @@
 
  * [Notice](#notice)
  * [TODO](#todos)
- * [Prerequisites](#pre)
- * [Setup](#setup)
+ * [Wiki](#wiki)
  * [Known issues](#issues)
  * [LICENSE](#license)
- * [Preview](#preview)
 
 ---------------------------------------
 
@@ -43,42 +41,11 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 * (Optional) Use [BTRFS](https://btrfs.wiki.kernel.org/index.php/Main_Page) or [ZFS](http://zfsonlinux.org) filesystem to storage images.
 * (Optional) Importing the concept of [Continuous Deployment](http://rancher.com/continuous-deployment/).
 
-<a name="pre"></a>
+<a name="wiki"></a>
 
-## Prerequisites
+## Wiki
 
-* Git
-* Docker, Compose, and Rancher Compose
-* Mysql (or others)
-
-<a name="setup"></a>
-
-## Setup
-
-### Installing Git
-
-1. `$ sudo apt-get install git`
-2. Clone the Github repo, `$ git clone git://github.com/qazbnm456/Docker-War`
-3. Switch into the repo directory, `$ cd Docker-War`
-
-### Installing Docker, Compose, and Rancher Compose
-
-1. `$ sudo curl -fsSL https://get.docker.com/ | sh`
-2. Verify if docker is installed correctly, `$ sudo docker run hello-world`
-3. `sudo -i` first, ``$ curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose``, then `$ exit`
-4. `$ sudo chmod +x /usr/local/bin/docker-compose`
-5. Head for https://github.com/rancher/rancher-compose/releases, and download the one that compatible with your host environment. Don't forget to add it to $PATH.
-
-### Pre Setup Env Variables and Build the Image
-
-1. `$ cd script/ && sudo ./setup.sh && cd ..`, and filling in fields it requires.
-2. `$ cat rails-env.conf` to see what variables you need to set when running this image.
-3. `$ sudo docker-compose build` and you can take a cup of coffee.
-
-### Up Server and See What You Get
-
-1. `$ sudo docker-compose up` to up the server.
-2. `$ sudo docker run dockerwar_wargame rake db:migrate:seeds database:convert_to_utf8mb4`
+### [Wiki](https://github.com/qazbnm456/Docker-War/wiki)
 
 <a name="issues"></a>
 
@@ -92,9 +59,3 @@ Before using docker in Docker-War, [setup.sh](https://github.com/qazbnm456/Docke
 ## License
 
 This project use [SATA License](LICENSE) (Star And Thank Author License), so you have to star this project before using. Read the [license](LICENSE) carefully.
-
-<a name="preview"></a>
-
-## Preview
-
-<div align="center"><img src="function.gif" /></div>
